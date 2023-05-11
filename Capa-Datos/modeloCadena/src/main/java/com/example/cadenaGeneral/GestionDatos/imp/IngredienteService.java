@@ -12,7 +12,7 @@ import java.util.List;
 @Stateless
 public class IngredienteService implements IIngredienteService {
 
-    @PersistenceContext
+    @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;
 
     @Override

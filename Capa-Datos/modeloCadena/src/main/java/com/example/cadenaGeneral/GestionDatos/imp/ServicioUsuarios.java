@@ -9,7 +9,7 @@ import jakarta.persistence.PersistenceContext;
 @Stateless
 public class ServicioUsuarios implements IUsuarioService {
 
-    @PersistenceContext
+    @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;
 
     @Override

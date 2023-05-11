@@ -11,7 +11,7 @@ import java.util.List;
 
 @Stateless
 public class PlatoService implements IPlatoService {
-    @PersistenceContext
+    @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;
 
     @Override

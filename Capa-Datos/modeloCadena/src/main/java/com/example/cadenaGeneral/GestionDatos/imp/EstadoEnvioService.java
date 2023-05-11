@@ -10,7 +10,7 @@ import java.util.List;
 
 @Stateless
 public class EstadoEnvioService implements IEstadoEnvioService {
-    @PersistenceContext
+    @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;
     @Override
     public void agregarEstadoEnvio(EstadoEnvio estadoEnvio) {

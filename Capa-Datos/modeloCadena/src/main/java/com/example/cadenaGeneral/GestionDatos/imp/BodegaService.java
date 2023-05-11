@@ -10,7 +10,7 @@ import java.util.List;
 
 @Stateless
 public class BodegaService implements IBodegaService {
-    @PersistenceContext
+    @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;
 
     @Override
