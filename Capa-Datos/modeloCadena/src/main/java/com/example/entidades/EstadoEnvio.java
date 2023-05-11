@@ -13,7 +13,7 @@ import lombok.*;
 public class EstadoEnvio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "estado", nullable = false)
     private String estado;

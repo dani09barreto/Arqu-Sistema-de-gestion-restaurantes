@@ -13,7 +13,7 @@ import lombok.*;
 public class Bodega {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "nombre", unique = true, nullable = false)
     private String nombre;

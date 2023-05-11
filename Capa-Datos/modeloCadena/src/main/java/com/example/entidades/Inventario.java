@@ -13,7 +13,7 @@ import lombok.*;
 public class Inventario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "Bodegaid")
