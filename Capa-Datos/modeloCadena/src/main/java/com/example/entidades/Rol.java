@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @Builder
+@ToString
 @Table(name="rol")
 public class Rol implements Serializable {
     @Id

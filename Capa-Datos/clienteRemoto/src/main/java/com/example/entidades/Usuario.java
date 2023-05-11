@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,6 +11,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Builder
+@ToString
 @Table(name="usuario")
 public class Usuario implements Serializable {
     @Id
@@ -32,11 +32,4 @@ public class Usuario implements Serializable {
 
     @Column(name = "telefono", unique = true, nullable = false)
     private Double telefono;
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "rolusuario",
-            joinColumns = {@JoinColumn(name = "Usuarioid")},
-            inverseJoinColumns = {@JoinColumn(name = "Rolid")})
-    private Set<Rol> roles;
 }
