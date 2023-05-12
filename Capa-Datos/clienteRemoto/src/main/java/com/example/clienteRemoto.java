@@ -14,7 +14,7 @@ public class clienteRemoto {
             serviceLocator.getRemoteBodegaService().obtenerTodasBodegas().forEach(bodega -> {
                 System.out.println(bodega.getNombre());
             });
-            serviceLocator.getRemoteIngredientePlatoService().obtenerIngredientesPlato(29L).forEach(ingredientePlato -> {
+/*            serviceLocator.getRemoteIngredientePlatoService().obtenerIngredientesPlato(29L).forEach(ingredientePlato -> {
                 System.out.println(ingredientePlato.getPlato().getNombre());
                 System.out.println(ingredientePlato.getIngrediente().getNombre());
                 System.out.println(ingredientePlato.getIngrediente().getTipoIngrediente().getNombre());
@@ -25,7 +25,7 @@ public class clienteRemoto {
                 System.out.println(rol.getId());
                 System.out.println(rol.getNombre());
             });
-/*            Set<Rol> rolesUsuario = new HashSet<>();
+*//*            Set<Rol> rolesUsuario = new HashSet<>();
             rolesUsuario.add(serviceLocator.getRemoteRoleService().obtenerRolPorNombre("ADMIN"));
             Usuario usuario = Usuario.builder()
                     .correo("danielf.barreto@outlook.com")
@@ -35,7 +35,7 @@ public class clienteRemoto {
                     .nombre("Daniel Felipe")
                     .roles(rolesUsuario)
                     .build();
-            serviceLocator.getRemoteUsuarioService().agregarUsuario(usuario);*/
+            serviceLocator.getRemoteUsuarioService().agregarUsuario(usuario);*//*
             System.out.println(serviceLocator.getRemoteUsuarioService().obtenerUsuarioPorNombreUsuario("danib").getUsuario());
             serviceLocator.getRemoteUsuarioService().obtenerRolUsuarioPorNombreUsuario("danib").forEach(rolUsuario -> {
                 System.out.println(rolUsuario.getRol().getNombre());
@@ -51,10 +51,12 @@ public class clienteRemoto {
 
             List<Rol> rolesUs = new ArrayList<>();
             rolesUs.add(serviceLocator.getRemoteRoleService().obtenerRolPorNombre("WORKER"));
-            serviceLocator.getRemoteUsuarioService().agregarUsuario(us, rolesUs);
+            serviceLocator.getRemoteUsuarioService().agregarUsuario(us, rolesUs);*/
 
 
         } catch (NamingException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

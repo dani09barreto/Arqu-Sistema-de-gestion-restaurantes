@@ -8,11 +8,13 @@ import javax.naming.NamingException;
 import java.util.Properties;
 
 public class ServiceLocator implements IServiceLocator{
+    IResponseLB restClient = new ResponseLB();
     @Override
-    public IRemoteBodegaService getRemoteBodegaService() throws NamingException {
+    public IRemoteBodegaService getRemoteBodegaService() throws Exception {
         Properties jndiProperties = new Properties();
         jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
-        jndiProperties.put(Context.PROVIDER_URL, "http-remoting://localhost:8180");
+        String uri = restClient.getResponse();
+        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
         jndiProperties.put("jboss.naming.client.ejb.context", true);
         Context context = new InitialContext(jndiProperties);
         String name = "ejb:/modeloCadena/RemoteBodegaService!com.example.IRemoteServiciosDatos.IRemoteBodegaService";

@@ -5,7 +5,7 @@ import com.example.IRemoteServiciosDatos.*;
 import javax.naming.NamingException;
 
 public interface IServiceLocator {
-    IRemoteBodegaService getRemoteBodegaService() throws NamingException;
+    IRemoteBodegaService getRemoteBodegaService() throws Exception;
     IRemoteCantidadIngredienteService getRemoteCantidadIngredienteService();
     IRemoteComentarioRestauranteService getRemoteComentarioRestauranteService();
     IRemoteEstadoEnvioService getRemoteEstadoEnvioService();
