@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="myPersistenceUnit">
+        <jta-data-source>java:/MySqlDS</jta-data-source>
+        <class>com.example.entidades.Menu</class>
+        <class>com.example.entidades.TipoIngrediente</class>
+        <class>com.example.entidades.Plato</class>
+        <class>com.example.entidades.Usuario</class>
+        <class>com.example.entidades.Bodega</class>
+        <class>com.example.entidades.CantidadIngrediente</class>
+        <class>com.example.entidades.ComentarioRestaurante</class>
+        <class>com.example.entidades.EstadoEnvio</class>
+        <class>com.example.entidades.Ingrediente</class>
+        <class>com.example.entidades.IngredientePlato</class>
+        <class>com.example.entidades.Rol</class>
+        <class>com.example.entidades.Inventario</class>
+        <class>com.example.entidades.Restaurante</class>
+        <properties>
+        </properties>
+    </persistence-unit>
+</persistence>
