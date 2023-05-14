@@ -2,11 +2,12 @@ package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
 import com.example.entidades.Adicionales;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IAdicionalesService;
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
-
+@Stateless
 public class AdicionalesService implements IAdicionalesService {
     @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;

@@ -2,11 +2,12 @@ package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
 import com.example.entidades.PlatoPedido;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IPlatoPedidoService;
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
-
+@Stateless
 public class PlatoPedidoService implements IPlatoPedidoService {
     @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;

@@ -2,11 +2,12 @@ package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
 import com.example.entidades.Inventario;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IInventarioService;
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
-
+@Stateless
 public class InventarioService implements IInventarioService {
     @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;
