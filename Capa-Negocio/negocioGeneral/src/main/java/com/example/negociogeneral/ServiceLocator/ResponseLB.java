@@ -1,26 +1,22 @@
-package com.example;
+package com.example.negociogeneral.ServiceLocator;
 
-import org.apache.http.Header;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
+@Service
 public class ResponseLB implements IResponseLB{
-
     private final static String URL = "http://localhost/";
     private final static String HEADER_NAME = "X-Upstream";
     @Override
     public String getResponse() throws IOException {
-        HttpClient httpClient = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet(URL);
-        HttpResponse response = httpClient.execute(request);
-
-        // Obtener el valor del encabezado X-Upstream
-        Header header = response.getFirstHeader(HEADER_NAME);
-        return header.getValue();
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity <String> responseEntity = restTemplate.getForEntity(URL, String.class);
+        HttpHeaders headers = responseEntity.getHeaders();
+        return headers.getFirst(HEADER_NAME);
     }
 }

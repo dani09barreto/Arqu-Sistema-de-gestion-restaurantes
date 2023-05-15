@@ -1,4 +1,4 @@
-package com.example.authServer.config;
+package com.example.negociogeneral.Security.config;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

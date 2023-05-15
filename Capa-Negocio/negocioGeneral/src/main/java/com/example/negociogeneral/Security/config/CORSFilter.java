@@ -1,4 +1,4 @@
-package com.example.authServer.config;
+package com.example.negociogeneral.Security.config;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;

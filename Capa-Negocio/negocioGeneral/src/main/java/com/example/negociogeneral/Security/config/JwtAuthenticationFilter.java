@@ -1,4 +1,4 @@
-package com.example.authServer.config;
+package com.example.negociogeneral.Security.config;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;

@@ -1,4 +1,4 @@
-package com.example.authServer.config;
+package com.example.negociogeneral.Security.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
