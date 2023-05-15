@@ -19,7 +19,7 @@ public class RegistroPago implements Serializable {
     @Column(name = "fecha",nullable = false,unique = true)
     private Date fecha;
     @ManyToOne
-    @Column(name = "Pagoid",nullable = false,unique = true)
+    @JoinColumn(name = "Pagoid",nullable = false,unique = true)
     private Pago Pagoid;
 
 }

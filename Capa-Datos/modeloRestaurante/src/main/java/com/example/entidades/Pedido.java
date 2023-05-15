@@ -22,10 +22,10 @@ public class Pedido implements Serializable {
     @Column(name = "tiempoestado",nullable = false)
     private String tiempoestado;
     @ManyToOne
-    @Column(name = "Mesaid",nullable = false,unique = true)
+    @JoinColumn(name = "Mesaid",nullable = false,unique = true)
     private Mesa Mesaid;
     @ManyToOne
-    @Column(name = "Clienteid",nullable = false,unique = true)
+    @JoinColumn(name = "Clienteid",nullable = false,unique = true)
     private Cliente Clienteid;
 
 }

@@ -21,7 +21,7 @@ public class Inventario implements Serializable {
     @Column(name = "cantidad",nullable = false)
     private long cantidad;
     @ManyToOne
-    @Column(name = "Ingredienteid",nullable = false,unique = true)
+    @JoinColumn(name = "Ingredienteid",nullable = false,unique = true)
     private Ingrediente Ingredienteid;
 
 }

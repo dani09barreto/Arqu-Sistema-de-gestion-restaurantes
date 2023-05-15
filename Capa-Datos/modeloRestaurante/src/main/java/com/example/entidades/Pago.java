@@ -23,9 +23,9 @@ public class Pago implements Serializable {
     @Column(name = "descuento",nullable = false)
     private Double descuento;
     @ManyToOne
-    @Column(name = "Pedidoid",nullable = false,unique = true)
+    @JoinColumn(name = "Pedidoid",nullable = false,unique = true)
     private Pedido Pedidoid;
     @ManyToOne
-    @Column(name = "TipoPagoid",nullable = false,unique = true)
+    @JoinColumn(name = "TipoPagoid",nullable = false,unique = true)
     private TipoPago tipopagoid;
 }

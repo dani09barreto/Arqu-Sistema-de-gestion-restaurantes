@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="modeloCadena">
-    <output-path>$PROJECT_DIR$/out/artifacts/modeloCadena</output-path>
+    <output-path>$PROJECT_DIR$/../../JARS</output-path>
     <root id="archive" name="modeloCadena.jar">
       <element id="module-output" name="modeloCadena" />
       <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />

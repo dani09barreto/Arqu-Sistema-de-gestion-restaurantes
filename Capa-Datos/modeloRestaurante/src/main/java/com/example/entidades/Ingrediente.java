@@ -22,8 +22,7 @@ public class Ingrediente implements Serializable {
     private String nombre;
 
     @ManyToOne
-    @Column(name = "TipoIngredienteid",nullable = false,unique = true)
+    @JoinColumn(name = "TipoIngredienteid",nullable = false,unique = true)
     private TipoIngrediente tipoIngredienteid;
-
 
 }

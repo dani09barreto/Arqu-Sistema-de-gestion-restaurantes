@@ -28,5 +28,5 @@ public class IngredientePlato implements Serializable {
     private Ingrediente ingrediente;
 
     @Column(name = "cantidad")
-    private double cantidad;
+    private Integer cantidad;
 }
