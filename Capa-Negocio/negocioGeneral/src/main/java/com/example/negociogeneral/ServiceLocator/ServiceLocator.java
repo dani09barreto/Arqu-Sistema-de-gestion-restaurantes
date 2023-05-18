@@ -81,4 +81,28 @@ public class ServiceLocator implements IServiceLocator {
         String name = "ejb:/modeloCadena/RemoteRoleService!com.example.IRemoteServiciosDatos.IRemoteRoleService";
         return (IRemoteRoleService) context.lookup(name);
     }
+
+    @Override
+    public IRemoteMenuService getRemoteMenuService() throws NamingException, IOException {
+        Properties jndiProperties = new Properties();
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        String uri = restClient.getResponse();
+        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
+        jndiProperties.put("jboss.naming.client.ejb.context", true);
+        Context context = new InitialContext(jndiProperties);
+        String name = "ejb:/modeloCadena/RemoteMenuService!com.example.IRemoteServiciosDatos.IRemoteMenuService";
+        return (IRemoteMenuService) context.lookup(name);
+    }
+
+    @Override
+    public IRemotePlatoService getRemotePlatoService() throws NamingException, IOException {
+        Properties jndiProperties = new Properties();
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        String uri = restClient.getResponse();
+        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
+        jndiProperties.put("jboss.naming.client.ejb.context", true);
+        Context context = new InitialContext(jndiProperties);
+        String name = "ejb:/modeloCadena/RemotePlatoService!com.example.IRemoteServiciosDatos.IRemotePlatoService";
+        return (IRemotePlatoService) context.lookup(name);
+    }
 }

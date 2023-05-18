@@ -42,6 +42,11 @@ public class RemoteUsuarioService implements IRemoteUsuarioService {
 
     @Override
     public void eliminarUsuario(String username) {
+        Usuario us = usuarioService.obtenerUsuarioPorNombreUsuario(username);
+        List<RolUsuario> roles = rolUsuarioService.obtenerRolesUsuario(us);
+        for (RolUsuario rolUsuario : roles) {
+            rolUsuarioService.eliminarRolUsuario(rolUsuario);
+        }
         usuarioService.eliminarUsuario(username);
     }
 

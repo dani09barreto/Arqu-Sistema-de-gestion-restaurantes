@@ -35,4 +35,9 @@ public class ServicioBodega implements IServicioBodega {
     public void eliminarBodega(Long id) throws Exception {
         serviceLocator.getRemoteBodegaService().eliminarBodega(id);
     }
+
+    @Override
+    public Bodega obtenerBodega(Long id) throws Exception {
+        return serviceLocator.getRemoteBodegaService().obtenerBodega(id);
+    }
 }

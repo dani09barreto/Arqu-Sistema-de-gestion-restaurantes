@@ -11,4 +11,5 @@ public interface IServicioBodega {
     void agregarBodega(Bodega bodega) throws Exception;
     void actualizarBodega(Bodega bodega) throws Exception;
     void eliminarBodega(Long id) throws Exception;
+    Bodega obtenerBodega(Long id) throws Exception;
 }
