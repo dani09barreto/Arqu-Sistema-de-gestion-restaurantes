@@ -105,4 +105,40 @@ public class ServiceLocator implements IServiceLocator {
         String name = "ejb:/modeloCadena/RemotePlatoService!com.example.IRemoteServiciosDatos.IRemotePlatoService";
         return (IRemotePlatoService) context.lookup(name);
     }
+
+    @Override
+    public IRemoteIngredienteService getRemoteIngredienteService() throws NamingException, IOException {
+        Properties jndiProperties = new Properties();
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        String uri = restClient.getResponse();
+        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
+        jndiProperties.put("jboss.naming.client.ejb.context", true);
+        Context context = new InitialContext(jndiProperties);
+        String name = "ejb:/modeloCadena/RemoteIngredienteService!com.example.IRemoteServiciosDatos.IRemoteIngredienteService";
+        return (IRemoteIngredienteService) context.lookup(name);
+    }
+
+    @Override
+    public IRemoteInventarioService getRemoteInventarioService() throws NamingException, IOException {
+        Properties jndiProperties = new Properties();
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        String uri = restClient.getResponse();
+        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
+        jndiProperties.put("jboss.naming.client.ejb.context", true);
+        Context context = new InitialContext(jndiProperties);
+        String name = "ejb:/modeloCadena/RemoteInventarioService!com.example.IRemoteServiciosDatos.IRemoteInventarioService";
+        return (IRemoteInventarioService) context.lookup(name);
+    }
+
+    @Override
+    public IRemoteRestauranteService getRemoteRestauranteService() throws NamingException, IOException {
+        Properties jndiProperties = new Properties();
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        String uri = restClient.getResponse();
+        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
+        jndiProperties.put("jboss.naming.client.ejb.context", true);
+        Context context = new InitialContext(jndiProperties);
+        String name = "ejb:/modeloCadena/RemoteRestauranteService!com.example.IRemoteServiciosDatos.IRemoteRestauranteService";
+        return (IRemoteRestauranteService) context.lookup(name);
+    }
 }

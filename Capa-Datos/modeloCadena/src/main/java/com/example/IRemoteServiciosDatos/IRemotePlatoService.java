@@ -8,7 +8,7 @@ import java.util.List;
 
 @Remote
 public interface IRemotePlatoService {
-    void agregarPlato(Plato plato);
+    Plato agregarPlato(Plato plato);
     void actualizarPlato(Plato plato);
     void eliminarPlato(Long id);
     Plato obtenerPlato(Long id);

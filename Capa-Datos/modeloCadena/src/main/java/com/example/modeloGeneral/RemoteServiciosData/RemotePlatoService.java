@@ -20,8 +20,8 @@ public class RemotePlatoService implements IRemotePlatoService {
     IPlatoService platoService;
 
     @Override
-    public void agregarPlato(Plato plato) {
-        platoService.agregarPlato(plato);
+    public Plato agregarPlato(Plato plato) {
+        return platoService.agregarPlato(plato);
     }
 
     @Override

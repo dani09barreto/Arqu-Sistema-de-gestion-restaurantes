@@ -15,8 +15,8 @@ public class RemoteMenuService implements IRemoteMenuService {
     IMenuService menuService;
 
     @Override
-    public void agregarMenu(Menu menu) {
-        menuService.agregarMenu(menu);
+    public Menu agregarMenu(Menu menu) {
+        return menuService.agregarMenu(menu);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class Plato implements Serializable {
     @Column(name = "img")
     private String img;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Menuid")
     private Menu menu;
 }

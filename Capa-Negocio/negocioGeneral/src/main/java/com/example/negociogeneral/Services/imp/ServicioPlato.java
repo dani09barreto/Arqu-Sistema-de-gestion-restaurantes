@@ -1,5 +1,6 @@
 package com.example.negociogeneral.Services.imp;
 
+import com.example.entidades.IngredientePlato;
 import com.example.entidades.Menu;
 import com.example.entidades.Plato;
 import com.example.negociogeneral.ServiceLocator.IServiceLocator;
@@ -20,8 +21,8 @@ public class ServicioPlato implements IServicioPlato {
     private IServiceLocator serviceLocator;
 
     @Override
-    public void agregarPlato(Plato plato) {
-
+    public Plato agregarPlato(Plato plato) throws NamingException, IOException {
+        return serviceLocator.getRemotePlatoService().agregarPlato(plato);
     }
 
     @Override
@@ -42,5 +43,10 @@ public class ServicioPlato implements IServicioPlato {
     @Override
     public List<Plato> obtenerTodosPlatosPorMenu(Menu menu) throws NamingException, IOException {
         return serviceLocator.getRemotePlatoService().obtenerTodosPlatosPorMenu(menu.getId());
+    }
+
+    @Override
+    public void agregarIngredienteAPlato(IngredientePlato ingredientePlato) throws NamingException, IOException {
+        serviceLocator.getRemoteIngredientePlatoService().agregarIngredientePlato(ingredientePlato);
     }
 }

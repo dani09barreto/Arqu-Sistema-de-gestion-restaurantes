@@ -18,8 +18,8 @@ public class ServicioMenu implements IServicioMenu {
     private IServiceLocator serviceLocator;
 
     @Override
-    public void agregarMenu(Menu menu) throws NamingException, IOException {
-        serviceLocator.getRemoteMenuService().agregarMenu(menu);
+    public Menu agregarMenu(Menu menu) throws NamingException, IOException {
+        return serviceLocator.getRemoteMenuService().agregarMenu(menu);
     }
 
     @Override

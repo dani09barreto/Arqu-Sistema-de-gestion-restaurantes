@@ -1,10 +1,15 @@
 package com.example.negociogeneral.Controller;
 
+import com.example.entidades.Ingrediente;
+import com.example.entidades.IngredientePlato;
 import com.example.entidades.Menu;
 import com.example.entidades.Plato;
+import com.example.negociogeneral.Payload.Request.IngredienteRequest;
 import com.example.negociogeneral.Payload.Request.NuevoMenuRequest;
+import com.example.negociogeneral.Payload.Request.NuevoPlatoRequest;
 import com.example.negociogeneral.Payload.Response.MenuResponse;
 import com.example.negociogeneral.Payload.Response.PlatoResponse;
+import com.example.negociogeneral.Services.intf.IServicioIngrediente;
 import com.example.negociogeneral.Services.intf.IServicioMenu;
 import com.example.negociogeneral.Services.intf.IServicioPlato;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.naming.NamingException;
 import java.io.IOException;
@@ -33,11 +35,43 @@ public class ControllerMenu {
     @Qualifier("servicioPlato")
     IServicioPlato servicioPlato;
 
+    @Autowired
+    @Qualifier("servicioIngrediente")
+    IServicioIngrediente servicioIngrediente;
+
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     public ResponseEntity <?> crearMenu(@RequestBody NuevoMenuRequest nuevoMenu){
-        System.out.println(nuevoMenu.getNombre());
-        return ResponseEntity.ok().body("Menu creado exitosamente");
+        try {
+            Menu menuTemp = Menu.builder()
+                    .nombre(nuevoMenu.getNombre())
+                    .build();
+            Menu menu = servicioMenu.agregarMenu(menuTemp);
+
+            for (NuevoPlatoRequest plato: nuevoMenu.getPlatos()) {
+                Plato platoTemp = Plato.builder()
+                        .nombre(plato.getNombre())
+                        .precio(plato.getPrecio())
+                        .descripcion(plato.getDescripcion())
+                        .img(plato.getImagen())
+                        .menu(menu)
+                        .build();
+                Plato p = servicioPlato.agregarPlato(platoTemp);
+
+                for (IngredienteRequest ingrediente: plato.getIngredientes()) {
+                    Ingrediente ingredienteTemp = servicioIngrediente.obtenerIngrediente(ingrediente.getIngredienteId());
+                    IngredientePlato ingredientePlato = IngredientePlato.builder()
+                            .ingrediente(ingredienteTemp)
+                            .plato(p)
+                            .cantidad(ingrediente.getCantidad())
+                            .build();
+                    servicioPlato.agregarIngredienteAPlato(ingredientePlato);
+                }
+            }
+            return ResponseEntity.ok("Menu creado correctamente");
+        } catch (NamingException | IOException e) {
+            return ResponseEntity.badRequest().body("Error al crear el menu");
+        }
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
@@ -73,5 +107,17 @@ public class ControllerMenu {
         }
     }
 
-    
+/*    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/eliminar/menu={id}")
+    public ResponseEntity <?> eliminarMenu(@PathVariable Long id){
+        try {
+            servicioMenu.eliminarMenu(id);
+            return ResponseEntity.ok("Menu eliminado correctamente");
+        } catch (NamingException | IOException e) {
+            return ResponseEntity.badRequest().body("Error al eliminar el menu");
+        }
+    }*/
+
+
+
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public interface IServicioMenu {
-    void agregarMenu(Menu menu) throws NamingException, IOException;
+    Menu agregarMenu(Menu menu) throws NamingException, IOException;
     void actualizarMenu(Menu menu) throws NamingException, IOException;
     void eliminarMenu(Long id) throws NamingException, IOException;
     Menu obtenerMenu(Long id) throws NamingException, IOException;
