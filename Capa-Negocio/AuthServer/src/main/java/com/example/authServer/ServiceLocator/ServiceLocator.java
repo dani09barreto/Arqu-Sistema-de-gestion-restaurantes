@@ -14,6 +14,7 @@ import java.util.Properties;
 @Service
 public class ServiceLocator implements IServiceLocator {
     private final IResponseLB restClient;
+    String uri = "localhost:8081";
 
     public ServiceLocator(@Qualifier("responseLB") IResponseLB restClient) {
         this.restClient = restClient;
@@ -23,7 +24,7 @@ public class ServiceLocator implements IServiceLocator {
     public IRemoteUsuarioService getRemoteUsuarioService() throws NamingException, IOException {
         Properties jndiProperties = new Properties();
         jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
-        String uri = restClient.getResponse();
+        //String uri = restClient.getResponse();
         jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
         jndiProperties.put("jboss.naming.client.ejb.context", true);
         Context context = new InitialContext(jndiProperties);
@@ -35,7 +36,7 @@ public class ServiceLocator implements IServiceLocator {
     public IRemoteRoleService getRemoteRoleService() throws NamingException, IOException {
         Properties jndiProperties = new Properties();
         jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
-        String uri = restClient.getResponse();
+        //String uri = restClient.getResponse();
         jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
         jndiProperties.put("jboss.naming.client.ejb.context", true);
         Context context = new InitialContext(jndiProperties);

@@ -35,6 +35,11 @@ public class RemoteEstadoEnvioService implements IRemoteEstadoEnvioService {
     }
 
     @Override
+    public EstadoEnvio obtenerEstadoEnvioPorNombre(String nombre) {
+        return estadoEnvioService.obtenerEstadoEnvioPorNombre(nombre);
+    }
+
+    @Override
     public List<EstadoEnvio> obtenerTodosEstadosEnvio() {
         return estadoEnvioService.obtenerTodosEstadosEnvio();
     }

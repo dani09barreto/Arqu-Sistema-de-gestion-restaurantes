@@ -1,7 +1,6 @@
 package com.example.negociogeneral.Services.imp;
 
-import com.example.entidades.Bodega;
-import com.example.entidades.Inventario;
+import com.example.entidades.*;
 import com.example.negociogeneral.ServiceLocator.IServiceLocator;
 import com.example.negociogeneral.Services.intf.IServicioInventario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,21 @@ public class ServicioInventario implements IServicioInventario {
     }
 
     @Override
-    public List<Inventario> obtenerTodosInventarioPorBodega(Bodega bodega) throws NamingException, IOException {
-        return serviceLocator.getRemoteInventarioService().obtenerTodosInventarioPorBodega(bodega);
+    public List<Inventario> obtenerTodosInventarioPorBodega(Bodega bodega, int page, int pageSize) throws NamingException, IOException {
+        return serviceLocator.getRemoteInventarioService().obtenerTodosInventarioPorBodega(bodega, page, pageSize);
+    }
+
+    @Override
+    public Inventario obtenerTodosInventarioPorBodegaPorIngrediente(Bodega bodega, Ingrediente ingrediente) throws NamingException, IOException {
+        return serviceLocator.getRemoteInventarioService().obtenerTodosInventarioPorBodegaPorIngrediente(bodega, ingrediente);
+    }
+
+    @Override
+    public void agregarEnvioInventario(EnvioInventario envioInventario, List<CantidadIngrediente> ingredientesInventario) throws NamingException, IOException {
+        EnvioInventario en = serviceLocator.getRemoteEnvioInventarioService().agregarEnvioInventario(envioInventario);
+        for (CantidadIngrediente cantidadIngrediente : ingredientesInventario) {
+            cantidadIngrediente.setEnvioInventario(en);
+            serviceLocator.getRemoteCantidadIngredienteService().agregarCantidadIngrediente(cantidadIngrediente);
+        }
     }
 }

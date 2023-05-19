@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import javax.naming.NamingException;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -32,8 +34,8 @@ public class ServicioRestaurante implements IServicioRestaurante {
     }
 
     @Override
-    public Restaurante obtenerRestaurante(Long id) {
-        return null;
+    public Restaurante obtenerRestaurante(Long id) throws NamingException, IOException {
+        return serviceLocator.getRemoteRestauranteService().obtenerRestaurante(id);
     }
 
     @Override

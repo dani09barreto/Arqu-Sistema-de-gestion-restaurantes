@@ -26,6 +26,9 @@ public class EnvioInventario implements Serializable {
     @ManyToOne
     @JoinColumn(name = "EstadoEnvioid")
     private EstadoEnvio estadoEnvio;
+    @ManyToOne
+    @JoinColumn(name = "Bodegaid")
+    private Bodega bodega;
     @Column(name = "fecha")
     private Date fecha;
 }
