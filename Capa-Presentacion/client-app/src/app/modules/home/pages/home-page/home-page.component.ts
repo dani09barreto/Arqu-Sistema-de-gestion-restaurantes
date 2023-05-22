@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { PlaceSelectorComponent } from '../place-selector/place-selector.component';
+import {MatDialog} from '@angular/material/dialog';
+import { LoginPopupComponent } from '../login-popup/login-popup.component';
+
+
 
 @Component({
   selector: 'app-home-page',
@@ -7,5 +11,24 @@ import { PlaceSelectorComponent } from '../place-selector/place-selector.compone
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent {
+  reloadPage() {
+    location.reload();
+  }
+
+  constructor(public dialog: MatDialog) {}
+
+  openPopup(): void {
+    alert('Iniciar Sesion');
+
+    const dialogRef = this.dialog.open(LoginPopupComponent, {
+      width: '250px',
+      height:'100%',
+      data: {},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
+  }
 
 }

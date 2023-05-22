@@ -4,6 +4,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -14,6 +16,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatDialogModule
   ],
 
   /**PONER LO DE COOKIESS */

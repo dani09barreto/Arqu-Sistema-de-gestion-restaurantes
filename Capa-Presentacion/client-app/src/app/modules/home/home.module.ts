@@ -5,6 +5,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { PlaceSelectorComponent } from './pages/place-selector/place-selector.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   exports: [
     HomePageComponent
