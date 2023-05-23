@@ -28,7 +28,10 @@ public class Plato implements Serializable {
     @Column(name = "precio")
     private BigInteger precio;
 
-    @ManyToOne
+    @Column(name = "img")
+    private String img;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Menuid")
     private Menu menu;
 }

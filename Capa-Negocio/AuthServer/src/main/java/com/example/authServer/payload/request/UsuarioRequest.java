@@ -2,6 +2,8 @@ package com.example.authServer.payload.request;
 
 import lombok.*;
 
+import java.math.BigInteger;
+
 @AllArgsConstructor
 @Getter
 @NoArgsConstructor
@@ -12,6 +14,6 @@ public class UsuarioRequest {
     private String password;
     private String nombre;
     private String correo;
-    private Double telefono;
+    private BigInteger telefono;
     private String rol;
 }

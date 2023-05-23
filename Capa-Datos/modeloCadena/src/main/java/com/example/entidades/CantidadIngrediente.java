@@ -18,13 +18,13 @@ public class CantidadIngrediente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "Ingredienteid")
     private Ingrediente ingrediente;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Platoid")
-    private Plato plato;
+    @ManyToOne
+    @JoinColumn(name = "EnvioInventarioid")
+    private EnvioInventario envioInventario;
 
     @Column(name = "cantidad")
     private int cantidad;

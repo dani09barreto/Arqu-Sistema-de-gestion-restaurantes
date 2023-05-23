@@ -14,8 +14,9 @@ public class MenuService implements IMenuService {
     private EntityManager entityManager;
 
     @Override
-    public void agregarMenu(Menu menu) {
+    public Menu agregarMenu(Menu menu) {
         entityManager.persist(menu);
+        return obtenerMenuPorNombre(menu.getNombre());
     }
 
     @Override
@@ -34,6 +35,13 @@ public class MenuService implements IMenuService {
     @Override
     public Menu obtenerMenu(Long id) {
         return entityManager.find(Menu.class, id);
+    }
+
+    @Override
+    public Menu obtenerMenuPorNombre(String nombre) {
+        return entityManager.createQuery("SELECT m FROM Menu m WHERE m.nombre = :nombre", Menu.class)
+                .setParameter("nombre", nombre)
+                .getSingleResult();
     }
 
     @Override
