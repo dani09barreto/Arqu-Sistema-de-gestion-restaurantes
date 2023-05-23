@@ -1,0 +1,169 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.application_envios"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="22"
+8-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:6:5-67
+11-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:6:22-64
+12    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+12-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:7:5-79
+12-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:7:22-76
+13    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+13-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:8:5-81
+13-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:8:22-78
+14    <uses-permission android:name="android.permission.CAMERA" />
+14-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:9:5-65
+14-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:9:22-62
+15    <uses-permission android:name="android.permission.READ_CONTACTS" />
+15-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:10:5-72
+15-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:10:22-69
+16    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+16-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:11:5-80
+16-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:11:22-77
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:12:5-81
+17-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:12:22-78
+18
+19    <!-- Include required permissions for Google Maps API to run. -->
+20    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+20-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\1b3b113de29989e5f158bf236441b103\transformed\play-services-maps-18.1.0\AndroidManifest.xml:23:5-79
+20-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\1b3b113de29989e5f158bf236441b103\transformed\play-services-maps-18.1.0\AndroidManifest.xml:23:22-76
+21
+22    <uses-feature
+22-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\1b3b113de29989e5f158bf236441b103\transformed\play-services-maps-18.1.0\AndroidManifest.xml:26:5-28:35
+23        android:glEsVersion="0x00020000"
+23-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\1b3b113de29989e5f158bf236441b103\transformed\play-services-maps-18.1.0\AndroidManifest.xml:27:9-41
+24        android:required="true" />
+24-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\1b3b113de29989e5f158bf236441b103\transformed\play-services-maps-18.1.0\AndroidManifest.xml:28:9-32
+25
+26    <queries>
+26-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\1b3b113de29989e5f158bf236441b103\transformed\play-services-maps-18.1.0\AndroidManifest.xml:30:5-34:15
+27
+28        <!-- Needs to be explicitly declared on Android R+ -->
+29        <package android:name="com.google.android.apps.maps" />
+29-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\1b3b113de29989e5f158bf236441b103\transformed\play-services-maps-18.1.0\AndroidManifest.xml:33:9-64
+29-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\1b3b113de29989e5f158bf236441b103\transformed\play-services-maps-18.1.0\AndroidManifest.xml:33:18-61
+30    </queries>
+31
+32    <permission
+32-->[androidx.core:core:1.9.0] C:\Users\danie\.gradle\caches\transforms-3\f5896e6a027ba92fdc7c623f875e955f\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+33        android:name="com.example.application_envios.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+33-->[androidx.core:core:1.9.0] C:\Users\danie\.gradle\caches\transforms-3\f5896e6a027ba92fdc7c623f875e955f\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+34        android:protectionLevel="signature" />
+34-->[androidx.core:core:1.9.0] C:\Users\danie\.gradle\caches\transforms-3\f5896e6a027ba92fdc7c623f875e955f\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+35
+36    <uses-permission android:name="com.example.application_envios.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+36-->[androidx.core:core:1.9.0] C:\Users\danie\.gradle\caches\transforms-3\f5896e6a027ba92fdc7c623f875e955f\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+36-->[androidx.core:core:1.9.0] C:\Users\danie\.gradle\caches\transforms-3\f5896e6a027ba92fdc7c623f875e955f\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+37
+38    <application
+38-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:14:5-41:19
+39        android:name="com.example.application_envios.App"
+39-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:15:9-28
+40        android:allowBackup="true"
+40-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:16:9-35
+41        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+41-->[androidx.core:core:1.9.0] C:\Users\danie\.gradle\caches\transforms-3\f5896e6a027ba92fdc7c623f875e955f\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+42        android:dataExtractionRules="@xml/data_extraction_rules"
+42-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:17:9-65
+43        android:debuggable="true"
+44        android:fullBackupContent="@xml/backup_rules"
+44-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:18:9-54
+45        android:icon="@mipmap/ic_launcher"
+45-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:19:9-43
+46        android:label="@string/app_name"
+46-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:20:9-41
+47        android:roundIcon="@mipmap/ic_launcher_round"
+47-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:21:9-54
+48        android:supportsRtl="true"
+48-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:22:9-35
+49        android:testOnly="true"
+50        android:theme="@style/Theme.Applicationenvios"
+50-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:23:9-55
+51        android:usesCleartextTraffic="true" >
+51-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:24:9-44
+52        <activity
+52-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:26:9-28:40
+53            android:name="com.example.application_envios.activities.UserSettingsActivity"
+53-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:27:13-60
+54            android:exported="false" />
+54-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:28:13-37
+55        <activity
+55-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:29:9-31:40
+56            android:name="com.example.application_envios.activities.LogInActivity"
+56-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:30:13-53
+57            android:exported="false" />
+57-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:31:13-37
+58        <activity
+58-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:32:9-40:20
+59            android:name="com.example.application_envios.activities.MainActivity"
+59-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:33:13-52
+60            android:exported="true" >
+60-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:34:13-36
+61            <intent-filter>
+61-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:35:13-39:29
+62                <action android:name="android.intent.action.MAIN" />
+62-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:36:17-69
+62-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:36:25-66
+63
+64                <category android:name="android.intent.category.LAUNCHER" />
+64-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:38:17-77
+64-->D:\Daniel\ProyectoArqui\Arqu-Sistema-de-gestion-restaurantes\Capa-Presentacion\AppEnvios\app\src\main\AndroidManifest.xml:38:27-74
+65            </intent-filter>
+66        </activity>
+67        <!-- Needs to be explicitly declared on P+ -->
+68        <uses-library
+68-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\1b3b113de29989e5f158bf236441b103\transformed\play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
+69            android:name="org.apache.http.legacy"
+69-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\1b3b113de29989e5f158bf236441b103\transformed\play-services-maps-18.1.0\AndroidManifest.xml:40:13-50
+70            android:required="false" />
+70-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\1b3b113de29989e5f158bf236441b103\transformed\play-services-maps-18.1.0\AndroidManifest.xml:41:13-37
+71
+72        <activity
+72-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\9f5638f3b0d5d5ad31072d8a7e8c8480\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+73            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+73-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\9f5638f3b0d5d5ad31072d8a7e8c8480\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+74            android:exported="false"
+74-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\9f5638f3b0d5d5ad31072d8a7e8c8480\transformed\play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+75            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+75-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\9f5638f3b0d5d5ad31072d8a7e8c8480\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+76
+77        <meta-data
+77-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\5744b546a2a26949c806c122a05a87ed\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+78            android:name="com.google.android.gms.version"
+78-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\5744b546a2a26949c806c122a05a87ed\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+79            android:value="@integer/google_play_services_version" />
+79-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\danie\.gradle\caches\transforms-3\5744b546a2a26949c806c122a05a87ed\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+80
+81        <provider
+81-->[androidx.emoji2:emoji2:1.2.0] C:\Users\danie\.gradle\caches\transforms-3\112a099502228b2b317b1c79d5f085b0\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+82            android:name="androidx.startup.InitializationProvider"
+82-->[androidx.emoji2:emoji2:1.2.0] C:\Users\danie\.gradle\caches\transforms-3\112a099502228b2b317b1c79d5f085b0\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+83            android:authorities="com.example.application_envios.androidx-startup"
+83-->[androidx.emoji2:emoji2:1.2.0] C:\Users\danie\.gradle\caches\transforms-3\112a099502228b2b317b1c79d5f085b0\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+84            android:exported="false" >
+84-->[androidx.emoji2:emoji2:1.2.0] C:\Users\danie\.gradle\caches\transforms-3\112a099502228b2b317b1c79d5f085b0\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+85            <meta-data
+85-->[androidx.emoji2:emoji2:1.2.0] C:\Users\danie\.gradle\caches\transforms-3\112a099502228b2b317b1c79d5f085b0\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+86                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+86-->[androidx.emoji2:emoji2:1.2.0] C:\Users\danie\.gradle\caches\transforms-3\112a099502228b2b317b1c79d5f085b0\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+87                android:value="androidx.startup" />
+87-->[androidx.emoji2:emoji2:1.2.0] C:\Users\danie\.gradle\caches\transforms-3\112a099502228b2b317b1c79d5f085b0\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+88            <meta-data
+88-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\danie\.gradle\caches\transforms-3\7cfe2704946b18bb678666b3953b74c4\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+89                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+89-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\danie\.gradle\caches\transforms-3\7cfe2704946b18bb678666b3953b74c4\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+90                android:value="androidx.startup" />
+90-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\danie\.gradle\caches\transforms-3\7cfe2704946b18bb678666b3953b74c4\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+91        </provider>
+92    </application>
+93
+94</manifest>

@@ -1,0 +1,146 @@
+[
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\menu_main_menu.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\menu\\main_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-pngs-31:\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\raw_carr.json.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\raw\\carr.json"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\anim_slide_down.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\anim\\slide_down.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\drawable-v24_ic_baseline_person_24.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\drawable-v24\\ic_baseline_person_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\drawable_dialog_rounded_background.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\drawable\\dialog_rounded_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\drawable_ic_baseline_logout_24.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\drawable\\ic_baseline_logout_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\raw_map_day_style.json.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\raw\\map_day_style.json"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-mdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-xhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\layout_dialog_loading.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\layout\\dialog_loading.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-hdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\layout_activity_log_in.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\layout\\activity_log_in.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-xxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\drawable-v24_ic_baseline_person_24_white.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\drawable-v24\\ic_baseline_person_24_white.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\anim_slide_up.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\anim\\slide_up.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\raw_map_night_style.json.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\raw\\map_night_style.json"
+    },
+    {
+        "merged": "com.example.application_envios.app-merged_res-36:/drawable_dialog_rounded_background.xml.flat",
+        "source": "com.example.application_envios.app-main-38:/drawable/dialog_rounded_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\drawable-v24_ic_baseline_password_24.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\drawable-v24\\ic_baseline_password_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\layout_activity_user_settings.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\layout\\activity_user_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\drawable_cutlery.png.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\drawable\\cutlery.png"
+    },
+    {
+        "merged": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-merged_res-36:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\danie\\.gradle\\daemon\\7.3.3\\com.example.application_envios.app-main-38:\\xml\\backup_rules.xml"
+    }
+]

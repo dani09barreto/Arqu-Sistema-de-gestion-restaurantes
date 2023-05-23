@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.example.application_envios.app-mergeDebugResources-35:/layout/activity_main.xml",
+        "source": "com.example.application_envios.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.application_envios.app-mergeDebugResources-35:/layout/activity_log_in.xml",
+        "source": "com.example.application_envios.app-main-38:/layout/activity_log_in.xml"
+    },
+    {
+        "merged": "com.example.application_envios.app-mergeDebugResources-35:/layout/dialog_loading.xml",
+        "source": "com.example.application_envios.app-main-38:/layout/dialog_loading.xml"
+    },
+    {
+        "merged": "com.example.application_envios.app-mergeDebugResources-35:/layout/activity_user_settings.xml",
+        "source": "com.example.application_envios.app-main-38:/layout/activity_user_settings.xml"
+    }
+]
