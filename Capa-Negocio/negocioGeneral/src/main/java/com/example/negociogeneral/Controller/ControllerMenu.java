@@ -74,7 +74,6 @@ public class ControllerMenu {
         }
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/listar")
     public ResponseEntity <?> listarMenus(){
         List<MenuResponse> menusResponse = new ArrayList<>();

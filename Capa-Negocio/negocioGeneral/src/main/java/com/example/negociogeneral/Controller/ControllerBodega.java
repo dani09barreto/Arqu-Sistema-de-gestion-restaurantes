@@ -2,6 +2,7 @@ package com.example.negociogeneral.Controller;
 
 import com.example.entidades.Bodega;
 import com.example.negociogeneral.Services.intf.IServicioBodega;
+import com.example.negociogeneral.WebSocket.WebSocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,12 @@ public class ControllerBodega {
     @Qualifier("servicioBodega")
     @Autowired
     IServicioBodega servicioBodega;
+
+    @PostMapping("/mensaje")
+    public ResponseEntity<?> mensaje(){
+        WebSocketHandler.enviarActualizacion("hola");
+        return ResponseEntity.ok().body("mensaje enviado");
+    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listar")

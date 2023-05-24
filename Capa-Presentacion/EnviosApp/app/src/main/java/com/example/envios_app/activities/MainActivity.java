@@ -16,7 +16,7 @@ public class MainActivity extends AuthenticatedActivity {
 
     private ActivityMainBinding binding;
     private WebSocketClientImpl webSocketClient;
-    public static final String serverUrl = "ws://192.168.10.13:8190/websocket-path";
+    public static final String serverUrl = "ws://172.20.10.4:8190/websocket-path";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +26,19 @@ public class MainActivity extends AuthenticatedActivity {
         sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
         try {
-            webSocketClient = new WebSocketClientImpl(serverUrl, token);
+            webSocketClient = new WebSocketClientImpl(serverUrl, token, binding, this);
             webSocketClient.connect();
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            alertsHelper.shortToast(getApplicationContext(), "Error al conectar con el servidor");
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        alertsHelper.shortToast(getApplicationContext(), "onDestroy");
         if (webSocketClient != null && webSocketClient.isOpen()) {
             webSocketClient.close();
         }
     }
-
-
 }

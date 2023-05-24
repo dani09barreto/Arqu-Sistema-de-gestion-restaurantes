@@ -26,7 +26,7 @@ public class LoginActivity extends BasicActivity {
 
     private ActivityLoginBinding binding;
     private IUsuarioService userService;
-    private static final String BASE_URL = "http://192.168.10.13:8180/api/auth/";
+    private static final String BASE_URL = "http://172.20.10.4:8180/api/auth/";
 
 
     @Override

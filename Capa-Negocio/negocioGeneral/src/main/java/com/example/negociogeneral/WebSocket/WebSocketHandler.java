@@ -17,6 +17,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
         sessions.add(session);
+        System.out.println("Nueva conexión: " + session.getId());
     }
 
     @Override

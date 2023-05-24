@@ -13,5 +13,5 @@ public interface IServicioRestaurante {
     void actualizarRestaurante(Restaurante restaurante);
     void eliminarRestaurante(Long id);
     Restaurante obtenerRestaurante(Long id) throws NamingException, IOException;
-    List<Restaurante> obtenerTodosRestaurantes();
+    List<Restaurante> obtenerTodosRestaurantes() throws NamingException, IOException;
 }

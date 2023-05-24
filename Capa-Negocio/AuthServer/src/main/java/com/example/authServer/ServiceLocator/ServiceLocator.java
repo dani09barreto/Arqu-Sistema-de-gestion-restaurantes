@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ServiceLocator implements IServiceLocator {
     private static IResponseLB restClient;
     private final Map<String, IRemoteUsuarioService> cacheRemoteUsuarioService = new ConcurrentHashMap<>();
-    private final Map<String, IRemoteRoleService> cacheRemoteRolService = new ConcurrentHashMap<>();
+    private final Map<String, IRemoteRoleService> cacheRemoteRoleService = new ConcurrentHashMap<>();
 
     public ServiceLocator(@Qualifier("responseLB") IResponseLB restClient) {
         this.restClient = restClient;
@@ -26,9 +26,8 @@ public class ServiceLocator implements IServiceLocator {
     @Override
     public IRemoteUsuarioService getRemoteUsuarioService() throws NamingException, IOException {
         String uri = restClient.getResponse();
-        IRemoteUsuarioService rm = cacheRemoteUsuarioService.get(uri);
-        if (rm != null){
-            return rm;
+        if (cacheRemoteUsuarioService.containsKey(uri)) {
+            return cacheRemoteUsuarioService.get(uri);
         }
         Properties jndiProperties = new Properties();
         jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
@@ -36,17 +35,16 @@ public class ServiceLocator implements IServiceLocator {
         jndiProperties.put("jboss.naming.client.ejb.context", true);
         Context context = new InitialContext(jndiProperties);
         String name = "ejb:/modeloCadena/RemoteUsuarioService!com.example.IRemoteServiciosDatos.IRemoteUsuarioService";
-        rm = (IRemoteUsuarioService) context.lookup(name);
-        cacheRemoteUsuarioService.put(uri, rm);
-        return rm;
+        IRemoteUsuarioService remoteUsuarioService = (IRemoteUsuarioService) context.lookup(name);
+        cacheRemoteUsuarioService.put(uri, remoteUsuarioService);
+        return remoteUsuarioService;
     }
 
     @Override
     public IRemoteRoleService getRemoteRoleService() throws NamingException, IOException {
         String uri = restClient.getResponse();
-        IRemoteRoleService rm = cacheRemoteRolService.get(uri);
-        if (rm != null){
-            return rm;
+        if (cacheRemoteRoleService.containsKey(uri)) {
+            return cacheRemoteRoleService.get(uri);
         }
         Properties jndiProperties = new Properties();
         jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
@@ -54,8 +52,8 @@ public class ServiceLocator implements IServiceLocator {
         jndiProperties.put("jboss.naming.client.ejb.context", true);
         Context context = new InitialContext(jndiProperties);
         String name = "ejb:/modeloCadena/RemoteRoleService!com.example.IRemoteServiciosDatos.IRemoteRoleService";
-        rm = (IRemoteRoleService) context.lookup(name);
-        cacheRemoteRolService.put(uri, rm);
-        return rm;
+        IRemoteRoleService remoteRoleService = (IRemoteRoleService) context.lookup(name);
+        cacheRemoteRoleService.put(uri, remoteRoleService);
+        return remoteRoleService;
     }
 }
