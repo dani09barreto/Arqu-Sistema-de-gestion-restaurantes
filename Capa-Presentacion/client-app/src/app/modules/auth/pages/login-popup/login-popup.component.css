@@ -16,7 +16,7 @@
   padding: 80px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   color: #ffff;
-  background-color:  rgba(0, 0, 0, 0.8);
+  background-color:  rgba(0, 0, 0, 0.95);
 }
 
 .container h2 {
@@ -56,4 +56,11 @@
 .container button:hover {
   background-color: #fdd10a;
   color: #000000;
+}
+
+.label-align {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  margin-right: 10px;
 }
