@@ -7,6 +7,7 @@ import com.example.negociogeneral.Payload.Response.InventarioResponse;
 import com.example.negociogeneral.Services.intf.*;
 import com.example.negociogeneral.Utils.DistanciaHeap;
 import com.example.negociogeneral.Utils.TokenUtils;
+import com.example.negociogeneral.WebSocket.WebSocketHandler;
 import org.apache.el.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -79,6 +80,7 @@ public class ControllerInventario {
     @PostMapping("/solicitarInventario/restaurante={id}")
     public ResponseEntity <?> solicitarInventario (@PathVariable Long id, @RequestBody List<InventarioRequest> inventarioRequest, HttpServletRequest request){
         try {
+            EnvioInventario miEnvio = null;
             EstadoEnvio estadoEnvio = servicioEstadoEnvio.obtenerEstadoEnvioPorNombre("Recibido");
             Usuario usuarioRequest = servicioUsuario.obtenerUsuario(tokenUtils.getUsernameToToken(request));
             Restaurante restaurante = servicioRestaurante.obtenerRestaurante(id);
@@ -114,8 +116,10 @@ public class ControllerInventario {
                 if (ingredientesEnvio.size() != inventarioRequest.size()){
                     return ResponseEntity.badRequest().body("No hay suficiente inventario en la bodega " + bodega.getNombre());
                 }
-                servicioInventario.agregarEnvioInventario(envioInventario, ingredientesEnvio);
+                miEnvio = servicioInventario.agregarEnvioInventario(envioInventario, ingredientesEnvio);
+                break;
             }
+            WebSocketHandler.enviarActualizacion(miEnvio);
             return ResponseEntity.ok().body("Inventario solicitado");
 
         } catch (Exception e) {

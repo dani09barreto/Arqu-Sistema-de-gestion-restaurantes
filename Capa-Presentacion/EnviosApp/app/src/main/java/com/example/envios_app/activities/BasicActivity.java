@@ -12,6 +12,7 @@ import com.example.envios_app.services.LocationService;
 import com.example.envios_app.services.RouterGoogleAPIService;
 import com.example.envios_app.utils.AlertsHelper;
 import com.example.envios_app.utils.PermissionHelper;
+import com.example.envios_app.utils.ResponseLB;
 
 import javax.inject.Inject;
 
@@ -26,6 +27,8 @@ public abstract class BasicActivity extends AppCompatActivity {
     LocationService locationService;
     @Inject
     RouterGoogleAPIService routerGoogleAPIService;
+    @Inject
+    ResponseLB responseLB;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

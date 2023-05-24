@@ -12,5 +12,4 @@ public interface ICantidadIngredienteService {
     void actualizarCantidadIngrediente(CantidadIngrediente cantidadIngrediente);
     void eliminarCantidadIngrediente(Long id);
     CantidadIngrediente obtenerCantidadIngrediente(Long id);
-    List <CantidadIngrediente> obtenerTodasCantidadIngredientesPorPlato(Plato plato);
 }

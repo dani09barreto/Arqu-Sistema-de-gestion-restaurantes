@@ -49,11 +49,12 @@ public class ServicioInventario implements IServicioInventario {
     }
 
     @Override
-    public void agregarEnvioInventario(EnvioInventario envioInventario, List<CantidadIngrediente> ingredientesInventario) throws NamingException, IOException {
+    public EnvioInventario agregarEnvioInventario(EnvioInventario envioInventario, List<CantidadIngrediente> ingredientesInventario) throws NamingException, IOException {
         EnvioInventario en = serviceLocator.getRemoteEnvioInventarioService().agregarEnvioInventario(envioInventario);
         for (CantidadIngrediente cantidadIngrediente : ingredientesInventario) {
             cantidadIngrediente.setEnvioInventario(en);
             serviceLocator.getRemoteCantidadIngredienteService().agregarCantidadIngrediente(cantidadIngrediente);
         }
+        return en;
     }
 }

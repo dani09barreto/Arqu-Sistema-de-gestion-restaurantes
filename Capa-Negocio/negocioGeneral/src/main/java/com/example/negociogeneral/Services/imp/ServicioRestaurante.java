@@ -39,7 +39,7 @@ public class ServicioRestaurante implements IServicioRestaurante {
     }
 
     @Override
-    public List<Restaurante> obtenerTodosRestaurantes() {
-        return null;
+    public List<Restaurante> obtenerTodosRestaurantes() throws NamingException, IOException {
+        return serviceLocator.getRemoteRestauranteService().obtenerTodosRestaurantes();
     }
 }
