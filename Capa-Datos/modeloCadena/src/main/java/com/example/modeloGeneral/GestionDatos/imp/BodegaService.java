@@ -7,20 +7,26 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 @Stateless
 public class BodegaService implements IBodegaService {
     @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;
 
+    private ConcurrentMap<Long, Bodega> cache = new ConcurrentHashMap<>();
+
     @Override
     public void agregarBodega(Bodega bodega) {
         entityManager.persist(bodega);
+        cache.put(bodega.getId(), bodega);
     }
 
     @Override
     public void actualizarBodega(Bodega bodega) {
         entityManager.merge(bodega);
+        cache.put(bodega.getId(), bodega);
     }
 
     @Override
@@ -28,12 +34,20 @@ public class BodegaService implements IBodegaService {
         Bodega bodega = obtenerBodega(id);
         if (bodega != null) {
             entityManager.remove(bodega);
+            cache.remove(id);
         }
     }
 
     @Override
     public Bodega obtenerBodega(Long id) {
-        return entityManager.find(Bodega.class, id);
+        Bodega bodega = cache.get(id);
+        if (bodega == null) {
+            bodega = entityManager.find(Bodega.class, id);
+            if (bodega != null) {
+                cache.put(id, bodega);
+            }
+        }
+        return bodega;
     }
 
     @Override

@@ -15,5 +15,5 @@ public interface IServicioInventario {
     Inventario obtenerInventario(Long id) throws NamingException, IOException;
     List<Inventario> obtenerTodosInventarioPorBodega(Bodega bodega, int page, int pageSize) throws NamingException, IOException;
     Inventario obtenerTodosInventarioPorBodegaPorIngrediente(Bodega bodega, Ingrediente ingrediente) throws NamingException, IOException;
-    void agregarEnvioInventario(EnvioInventario envioInventario, List <CantidadIngrediente> ingredientesInventario) throws NamingException, IOException;
+    EnvioInventario agregarEnvioInventario(EnvioInventario envioInventario, List <CantidadIngrediente> ingredientesInventario) throws NamingException, IOException;
 }

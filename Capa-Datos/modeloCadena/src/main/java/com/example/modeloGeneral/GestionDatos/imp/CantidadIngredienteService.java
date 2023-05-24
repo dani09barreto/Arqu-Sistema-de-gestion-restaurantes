@@ -37,11 +37,4 @@ public class CantidadIngredienteService implements ICantidadIngredienteService {
     public CantidadIngrediente obtenerCantidadIngrediente(Long id) {
         return entityManager.find(CantidadIngrediente.class, id);
     }
-
-    @Override
-    public List<CantidadIngrediente> obtenerTodasCantidadIngredientesPorPlato(Plato plato) {
-        return entityManager.createQuery("SELECT c FROM CantidadIngrediente c WHERE c.plato = :plato", CantidadIngrediente.class)
-                .setParameter("plato", plato)
-                .getResultList();
-    }
 }
