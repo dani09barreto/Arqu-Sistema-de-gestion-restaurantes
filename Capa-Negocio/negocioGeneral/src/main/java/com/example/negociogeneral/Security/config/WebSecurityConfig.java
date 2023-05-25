@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/general/menus/listar",
-                        "/api/general/restaurantes/listar/nombres").permitAll()
+                        "/api/general/restaurantes/listar/nombres", "/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
