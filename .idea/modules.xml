@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Arqu-Sistema-de-gestion-restaurantes.iml" filepath="$PROJECT_DIR$/.idea/Arqu-Sistema-de-gestion-restaurantes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Capa-Datos/clienteRemoto/src/main/main.iml" filepath="$PROJECT_DIR$/Capa-Datos/clienteRemoto/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Capa-Datos/modeloCadena/modeloCadena.iml" filepath="$PROJECT_DIR$/Capa-Datos/modeloCadena/modeloCadena.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Capa-Datos/modeloRestaurante/modeloRestaurante.iml" filepath="$PROJECT_DIR$/Capa-Datos/modeloRestaurante/modeloRestaurante.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Capa-Datos/clienteRemoto/src/test/test.iml" filepath="$PROJECT_DIR$/Capa-Datos/clienteRemoto/src/test/test.iml" />
+    </modules>
+  </component>
+</project>
