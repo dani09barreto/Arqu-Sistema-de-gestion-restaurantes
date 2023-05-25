@@ -15,8 +15,9 @@ public class PlatoService implements IPlatoService {
     private EntityManager entityManager;
 
     @Override
-    public void agregarPlato(Plato plato) {
+    public Plato agregarPlato(Plato plato) {
         entityManager.persist(plato);
+        return obtenerPlatoPorNombre(plato.getNombre());
     }
 
     @Override
@@ -35,6 +36,13 @@ public class PlatoService implements IPlatoService {
     @Override
     public Plato obtenerPlato(Long id) {
         return entityManager.find(Plato.class, id);
+    }
+
+    @Override
+    public Plato obtenerPlatoPorNombre(String nombre) {
+        return entityManager.createQuery("SELECT p FROM Plato p WHERE p.nombre = :nombre", Plato.class)
+                .setParameter("nombre", nombre)
+                .getSingleResult();
     }
 
     @Override

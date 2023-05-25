@@ -18,7 +18,7 @@ public class Ingrediente implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "TipoIngredienteid", nullable = false)
     private TipoIngrediente tipoIngrediente;
 

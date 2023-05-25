@@ -7,9 +7,10 @@ import java.util.List;
 
 @Local
 public interface IMenuService {
-    void agregarMenu(Menu menu);
+    Menu agregarMenu(Menu menu);
     void actualizarMenu(Menu menu);
     void eliminarMenu(Long id);
     Menu obtenerMenu(Long id);
+    Menu obtenerMenuPorNombre(String nombre);
     List<Menu> obtenerTodosMenus();
 }
