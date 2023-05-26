@@ -51,6 +51,7 @@ dependencies {
     implementation "com.airbnb.android:lottie:5.0.3"
     implementation 'org.java-websocket:Java-WebSocket:1.5.1'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
 
 
     def lombokVer = "1.18.24"

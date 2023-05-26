@@ -7,10 +7,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.envios_app.R;
+import com.example.envios_app.REST.IDespachadorService;
 import com.example.envios_app.REST.IUsuarioService;
+import com.example.envios_app.model.DestServer;
+import com.example.envios_app.utils.ResponseLB;
 import com.example.envios_app.databinding.ActivityLoginBinding;
 import com.example.envios_app.model.AuthToken;
 import com.example.envios_app.model.LoginUser;
+import com.example.envios_app.utils.RetrofitClient;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -26,7 +30,9 @@ public class LoginActivity extends BasicActivity {
 
     private ActivityLoginBinding binding;
     private IUsuarioService userService;
-    private static final String BASE_URL = "http://172.20.10.4:8180/api/auth/";
+    private IDespachadorService despachadorService;
+    private static final String URL_DESPACHADOR = "http://192.168.10.8:100/";
+    private static final String DESTINO_AUTH = "auth";
 
 
     @Override
@@ -36,29 +42,72 @@ public class LoginActivity extends BasicActivity {
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
 
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(120, TimeUnit.SECONDS) // Timeout para establecer la conexión
-                .readTimeout(120, TimeUnit.SECONDS) // Timeout para leer la respuesta
-                .writeTimeout(120, TimeUnit.SECONDS) // Timeout para escribir la solicitud
-                .hostnameVerifier((hostname, session) -> true)
-                .build();
+        if (!existeDestinoAuth()){
+            getUrlDespachador(URL_DESPACHADOR);
+        }
 
-        // Crear instancia de Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        binding.loginButton.setOnClickListener(view -> getUrlAuth());
+    }
 
-        // Crear objeto del servicio
-        userService = retrofit.create(IUsuarioService.class);
+    private void getUrlDespachador(String urlDespachador) {
+        responseLB.getResponse(URL_DESPACHADOR, new ResponseLB.ResponseCallback() {
+            @Override
+            public void onResponse(String headerValue) {
+                getUrlLBAuth(String.format("http://%s/api/dispatcher/", headerValue));
+            }
 
-        binding.loginButton.setOnClickListener(view -> doLogin());
+            @Override
+            public void onError(String errorMessage) {
+                alertsHelper.shortToast(getApplicationContext(), errorMessage);
+            }
+        });
+    }
+
+    private void getUrlLBAuth(String urlDespachador) {
+
+        despachadorService = RetrofitClient.getRetrofitInstance(urlDespachador).create(IDespachadorService.class);
+
+        Call<DestServer> call = despachadorService.obtenerDestino(DESTINO_AUTH);
+        call.enqueue(new Callback<DestServer>() {
+            @Override
+            public void onResponse(Call<DestServer> call, Response<DestServer> response) {
+                if (response.isSuccessful()){
+                    runOnUiThread(() -> {
+                        DestServer destServer = response.body();
+                        if (destServer != null) {
+                            SharedPreferences sharedPref = getSharedPreferences("auth", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("direccion", destServer.getDireccion());
+                            editor.apply();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DestServer> call, Throwable t) {
+                alertsHelper.shortToast(getApplicationContext(), t.getMessage());
+            }
+        });
 
     }
 
-    private void doLogin() {
-        loadingDialog.show();
+    private void getUrlAuth(){
+        responseLB.getResponse(getDestinoAuth(), new ResponseLB.ResponseCallback() {
+            @Override
+            public void onResponse(String headerValue) {
+                doLogin(String.format("http://%s/api/auth/", headerValue));
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                alertsHelper.shortToast(getApplicationContext(), errorMessage);
+            }
+        });
+    }
+
+    private void doLogin(String urlAuth) {
+
         String user = Objects.requireNonNull(binding.loginUsername.getEditText()).getText().toString();
         String pass = Objects.requireNonNull(binding.loginPass.getEditText()).getText().toString();
 
@@ -75,17 +124,18 @@ public class LoginActivity extends BasicActivity {
             binding.loginPass.setError(getString(R.string.error_pass_label));
             return;
         }
+
+        userService = RetrofitClient.getRetrofitInstance(urlAuth).create(IUsuarioService.class);
+        loadingDialog.show();
         LoginUser loginUser = new LoginUser(user, pass);
         Call<AuthToken> call = userService.login(loginUser);
         call.enqueue(new Callback<AuthToken>() {
             @Override
             public void onResponse(Call<AuthToken> call, Response<AuthToken> response) {
                 if (response.isSuccessful()){
-                    alertsHelper.shortToast(getApplicationContext(), "Usuario o contraseña no validos");
                     runOnUiThread(() ->{
                         AuthToken token = response.body();
                         SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
-                        // Crea un objeto Editor para realizar modificaciones en SharedPreferences
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("token", token.getToken());
                         editor.apply();
@@ -108,6 +158,17 @@ public class LoginActivity extends BasicActivity {
         });
 
 
+    }
+
+
+    private boolean existeDestinoAuth(){
+        sharedPreferences = getSharedPreferences("auth", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("direccion", null) != null;
+    }
+
+    private String getDestinoAuth(){
+        sharedPreferences = getSharedPreferences("auth", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("direccion", null);
     }
 
     public static Intent createIntent(Activity activity) {

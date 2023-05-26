@@ -1,12 +1,9 @@
 package com.example.envios_app.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
 
-import com.example.envios_app.R;
-import com.example.envios_app.databinding.ActivityLoginBinding;
 import com.example.envios_app.databinding.ActivityMainBinding;
 import com.example.envios_app.webSocket.WebSocketClientImpl;
 
