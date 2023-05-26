@@ -1,5 +1,6 @@
 package com.example.dispacherserver.controller;
 
+import com.example.dispacherserver.payload.DestServer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.annotation.PostConstruct;
@@ -90,13 +91,13 @@ public class ControllerDispacher {
     }
 
 
-    @GetMapping("/dest={destination}")
+    @GetMapping(value = "/dest={destination}", produces = "application/json")
     public ResponseEntity<?> dispatcher(@PathVariable String destination) {
         String server = serverMap.get(destination);
         if (server == null){
             return ResponseEntity.notFound().build();
         } else {
-            return ResponseEntity.ok(server);
+            return ResponseEntity.ok(new DestServer(server));
         }
     }
 }
