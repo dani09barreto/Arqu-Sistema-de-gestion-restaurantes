@@ -12,6 +12,8 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   text-align: center;
+  transition: transform 0.3s ease;
+
 }
 
 .imagen {
@@ -37,4 +39,15 @@
 
 .agregar-btn:hover {
   background-color: #f9c200;
+}
+
+
+.plato:hover {
+  transform: scale(1.1);
+}
+
+.plato-container {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
 }

@@ -8,11 +8,13 @@
   />
   <span href="#" (click)="reloadPage()" >McAllister's</span>
   <div style="width: 50%;"></div>
+  <div class="cantidad">{{ cantidadProductos }}</div>
 
-  <!-- Enlace del carrito de compras -->
-  <a class="buttonKart" href="#" style="display: flex; justify-content: center; align-items: center; border-radius: 50%; padding: 5x; margin-right: 10px;" (click)="abrirCarrito()">
+    <!-- Enlace del carrito de compras -->
+  <a class="buttonKart" href="#" style="display: flex; justify-content: center; align-items: center; border-radius: 50%; padding: 5px; margin-right: 10px;" (click)="abrirCarrito()">
     <img src="https://cdn-icons-png.flaticon.com/256/4/4295.png" alt="Carrito de Compras" style="vertical-align: middle; height: 25px; width: 25px;">
   </a>
+
 
   <!-- Botón de Iniciar Sesión -->
   <a class="button" target="_blank" (click)="openPopup()" rel="noopener" title="Iniciar Sesión" style="margin-left: 10px;">

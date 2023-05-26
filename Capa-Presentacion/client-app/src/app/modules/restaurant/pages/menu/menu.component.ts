@@ -32,7 +32,7 @@ export class MenuComponent {
     },
     {
       nombre: 'Plato 4',
-      imagen: 'https://jumboalacarta.com.ar/wp-content/uploads/2019/06/shutterstock_521741356.jpg',
+      imagen: 'https://cdn.colombia.com/gastronomia/2011/08/25/pizza-margarita-3684.jpg',
       descripcion: 'Descripción del plato 4',
       precio: 50.000
     }

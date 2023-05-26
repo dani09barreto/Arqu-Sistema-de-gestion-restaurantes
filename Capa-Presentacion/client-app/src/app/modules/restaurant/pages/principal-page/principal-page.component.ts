@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class PrincipalPageComponent {
 
+  cantidadProductos: number = 0;
+
   OnInit(){
     console.log("Que pasaa");
   }
