@@ -1,0 +1,66 @@
+.popu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  font-size: 20px;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  color: #ffff;
+  background-color:  rgba(0, 0, 0, 0.95);
+}
+
+.container h2 {
+  margin: 8px 0;
+}
+
+.container form {
+  margin-top: 16px;
+}
+
+.container form div {
+  margin-bottom: 16px;
+}
+
+.container label {
+  margin-right: 8px;
+}
+
+.container input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.container button {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.container button:hover {
+  background-color: #fdd10a;
+  color: #000000;
+}
+
+.label-align {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  margin-right: 10px;
+}

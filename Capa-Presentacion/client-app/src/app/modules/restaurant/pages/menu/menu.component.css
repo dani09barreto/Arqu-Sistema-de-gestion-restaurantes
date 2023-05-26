@@ -1,0 +1,53 @@
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.plato {
+  width: 300px;
+  margin: 16px;
+  padding: 16px;
+  color: white;
+  background-color:  rgba(0, 0, 0, 0.6);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  transition: transform 0.3s ease;
+
+}
+
+.imagen {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  margin: 0 auto 16px;
+}
+
+.precio {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.agregar-btn {
+  background-color: #fdd10a;
+  color: #000000;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.agregar-btn:hover {
+  background-color: #f9c200;
+}
+
+
+.plato:hover {
+  transform: scale(1.1);
+}
+
+.plato-container {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
