@@ -19,14 +19,14 @@ public class IngredientePlato implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Platoid")
     private Plato plato;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Ingredienteid")
     private Ingrediente ingrediente;
 
     @Column(name = "cantidad")
-    private double cantidad;
+    private Integer cantidad;
 }

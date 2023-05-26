@@ -18,5 +18,4 @@ public class TipoPago implements Serializable {
     private long id;
     @Column(name = "nombre",nullable = false,unique = true)
     private String nombre;
-
 }

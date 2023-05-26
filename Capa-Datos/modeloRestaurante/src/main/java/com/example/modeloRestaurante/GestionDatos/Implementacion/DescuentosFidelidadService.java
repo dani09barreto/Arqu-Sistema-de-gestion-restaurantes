@@ -2,11 +2,12 @@ package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
 import com.example.entidades.DescuentoFidelidad;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IDescuentoFidelidadService;
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
-
+@Stateless
 public class DescuentosFidelidadService implements IDescuentoFidelidadService {
     @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;

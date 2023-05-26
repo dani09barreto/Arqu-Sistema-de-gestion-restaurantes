@@ -1,9 +1,10 @@
 package com.example.modeloRestaurante.GestionDatos.Interfaces;
 
 import com.example.entidades.Adicionales;
+import jakarta.ejb.Local;
 
 import java.util.List;
-
+@Local
 public interface IAdicionalesService {
     void agregarAdicionales(Adicionales adicionales);
     void actualizarAdicionales(Adicionales adicionales);

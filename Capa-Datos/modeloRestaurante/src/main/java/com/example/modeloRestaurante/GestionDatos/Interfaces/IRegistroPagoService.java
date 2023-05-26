@@ -1,9 +1,10 @@
 package com.example.modeloRestaurante.GestionDatos.Interfaces;
 
 import com.example.entidades.RegistroPago;
+import jakarta.ejb.Local;
 
 import java.util.List;
-
+@Local
 public interface IRegistroPagoService {
     void agregarRegistroPago(RegistroPago registroPago);
     void actualizarRegistroPago(RegistroPago registroPago);

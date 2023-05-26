@@ -22,10 +22,10 @@ public class PlatoPedido implements Serializable {
     @Column(name = "cantidad",nullable = false)
     private long cantidad;
     @ManyToOne
-    @Column(name = "Pedidoid",nullable = false,unique = true)
+    @JoinColumn(name = "Pedidoid",nullable = false,unique = true)
     private Pedido Pedidoid;
     @ManyToOne
-    @Column(name = "Platoid",nullable = false,unique = true)
+    @JoinColumn(name = "Platoid",nullable = false,unique = true)
     private Plato Platoid;
 
 

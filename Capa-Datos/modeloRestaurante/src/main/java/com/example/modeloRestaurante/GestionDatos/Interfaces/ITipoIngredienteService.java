@@ -1,9 +1,10 @@
 package com.example.modeloRestaurante.GestionDatos.Interfaces;
 
 import com.example.entidades.TipoIngrediente;
+import jakarta.ejb.Local;
 
 import java.util.List;
-
+@Local
 public interface ITipoIngredienteService {
     void agregarTipoIngrediente(TipoIngrediente tipoIngrediente);
     void actualizarTipoIngrediente(TipoIngrediente tipoIngrediente);

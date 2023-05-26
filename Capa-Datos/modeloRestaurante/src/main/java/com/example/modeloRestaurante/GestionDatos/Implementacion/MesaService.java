@@ -2,11 +2,12 @@ package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
 import com.example.entidades.Mesa;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IMesaService;
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
-
+@Stateless
 public class MesaService implements IMesaService {
     @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;

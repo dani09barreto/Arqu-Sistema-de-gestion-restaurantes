@@ -19,11 +19,11 @@ public class AdicionalesPago implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
-    @Column(name = "Pagoid",nullable = false,unique = true)
+    @JoinColumn(name = "Pagoid",nullable = false,unique = true)
     private Pago Pagoid;
 
     @ManyToOne
-    @Column(name = "Adicionalesid",nullable = false,unique = true)
+    @JoinColumn(name = "Adicionalesid",nullable = false,unique = true)
     private Adicionales Adicionalesid;
 
 

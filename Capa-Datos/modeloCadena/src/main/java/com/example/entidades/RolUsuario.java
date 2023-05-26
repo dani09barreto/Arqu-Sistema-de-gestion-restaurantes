@@ -21,7 +21,7 @@ public class RolUsuario implements Serializable {
     @JoinColumn(name = "Rolid")
     private Rol rol;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE, optional = false)
     @JoinColumn(name = "Usuarioid")
     private Usuario usuario;
 }

@@ -11,5 +11,6 @@ public interface IRemoteEstadoEnvioService {
     void actualizarEstadoEnvio(EstadoEnvio estadoEnvio);
     void eliminarEstadoEnvio(Long id);
     EstadoEnvio obtenerEstadoEnvio(Long id);
+    EstadoEnvio obtenerEstadoEnvioPorNombre(String nombre);
     List<EstadoEnvio> obtenerTodosEstadosEnvio();
 }

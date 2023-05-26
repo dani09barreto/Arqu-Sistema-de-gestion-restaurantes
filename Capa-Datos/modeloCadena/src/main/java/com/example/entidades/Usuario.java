@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -32,5 +33,5 @@ public class Usuario implements Serializable {
     private String correo;
 
     @Column(name = "telefono", unique = true, nullable = false)
-    private Double telefono;
+    private BigInteger telefono;
 }

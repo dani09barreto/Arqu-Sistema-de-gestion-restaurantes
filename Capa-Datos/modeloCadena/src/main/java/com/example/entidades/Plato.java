@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,9 +26,12 @@ public class Plato implements Serializable {
     private String descripcion;
 
     @Column(name = "precio")
-    private double precio;
+    private BigInteger precio;
 
-    @ManyToOne
+    @Column(name = "img")
+    private String img;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Menuid")
     private Menu menu;
 }

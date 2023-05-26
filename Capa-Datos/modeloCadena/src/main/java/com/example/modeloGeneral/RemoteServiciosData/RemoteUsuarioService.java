@@ -22,6 +22,9 @@ public class RemoteUsuarioService implements IRemoteUsuarioService {
     @Override
     public Usuario agregarUsuario(Usuario usuario, List<Rol> roles) {
         Usuario us = usuarioService.agregarUsuario(usuario);
+        if (us ==  null){
+            return null;
+        }
         for (Rol rol : roles) {
             RolUsuario rolUsuario = RolUsuario.builder()
                     .usuario(us)
@@ -39,6 +42,11 @@ public class RemoteUsuarioService implements IRemoteUsuarioService {
 
     @Override
     public void eliminarUsuario(String username) {
+        Usuario us = usuarioService.obtenerUsuarioPorNombreUsuario(username);
+        List<RolUsuario> roles = rolUsuarioService.obtenerRolesUsuario(us);
+        for (RolUsuario rolUsuario : roles) {
+            rolUsuarioService.eliminarRolUsuario(rolUsuario);
+        }
         usuarioService.eliminarUsuario(username);
     }
 

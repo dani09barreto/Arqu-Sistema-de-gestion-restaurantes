@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 @Data
 @NoArgsConstructor
@@ -23,7 +24,7 @@ public class Plato implements Serializable {
     @Column(name = "descripcion",nullable = false,unique = true)
     private String descripcion;
     @Column(name = "precio",nullable = false)
-    private float precio;
+    private BigInteger precio;
     @Column(name = "img",nullable = false,unique = true)
     private String img;
 

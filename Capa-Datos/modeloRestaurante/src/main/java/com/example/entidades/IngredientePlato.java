@@ -21,9 +21,9 @@ public class IngredientePlato implements Serializable {
     @Column(name = "cantidad",nullable = false)
     private long cantidad;
     @ManyToOne
-    @Column(name = "Ingredienteid",nullable = false,unique = true)
+    @JoinColumn(name = "Ingredienteid",nullable = false,unique = true)
     private Ingrediente Ingredienteid;
     @ManyToOne
-    @Column(name = "Platoid",nullable = false,unique = true)
+    @JoinColumn(name = "Platoid",nullable = false,unique = true)
     private Plato Platoid;
 }

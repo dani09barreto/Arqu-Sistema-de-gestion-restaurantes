@@ -36,10 +36,4 @@ public class RemoteCantidadIngredienteService implements IRemoteCantidadIngredie
     public CantidadIngrediente obtenerCantidadIngrediente(Long id) {
         return cantidadIngredienteService.obtenerCantidadIngrediente(id);
     }
-
-    @Override
-    public List<CantidadIngrediente> obtenerTodasCantidadIngredientesPorPlato(Long Platoid) {
-        Plato plato = platoService.obtenerPlato(Platoid);
-        return cantidadIngredienteService.obtenerTodasCantidadIngredientesPorPlato(plato);
-    }
 }

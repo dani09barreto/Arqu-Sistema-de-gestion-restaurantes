@@ -36,6 +36,13 @@ public class EstadoEnvioService implements IEstadoEnvioService {
     }
 
     @Override
+    public EstadoEnvio obtenerEstadoEnvioPorNombre(String nombre) {
+        return entityManager.createQuery("SELECT e FROM EstadoEnvio e WHERE e.estado = :nombre", EstadoEnvio.class)
+                .setParameter("nombre", nombre)
+                .getSingleResult();
+    }
+
+    @Override
     public List<EstadoEnvio> obtenerTodosEstadosEnvio() {
         return entityManager.createQuery("SELECT e FROM EstadoEnvio e", EstadoEnvio.class)
                 .getResultList();

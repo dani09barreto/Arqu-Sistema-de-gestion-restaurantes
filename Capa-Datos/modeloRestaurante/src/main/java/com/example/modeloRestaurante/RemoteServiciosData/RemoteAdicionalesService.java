@@ -4,9 +4,11 @@ import com.example.IRemoteServiciosDatos.IRemoteAdicionalesService;
 import com.example.entidades.Adicionales;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IAdicionalesService;
 import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 
 import java.util.List;
 
+@Stateless
 public class RemoteAdicionalesService implements IRemoteAdicionalesService {
 
     @EJB
