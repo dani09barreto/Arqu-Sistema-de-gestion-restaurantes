@@ -9,6 +9,8 @@ import java.rmi.server.ExportException;
 
 @Service
 public interface IServiceLocator {
+    IRemotePlatoService getRemotePlatoService() throws Exception;
+    IRemoteIngredientePlatoService getRemoteIngredientePlatoService() throws Exception;
     IRemoteAdicionalesService getRemoteAdicionalesService() throws Exception;
     IRemoteClienteService getRemoteClienteService() throws Exception;
     IRemoteDescuentoFidelidadService getRemoteDescuentoFidelidadService() throws Exception;
@@ -23,4 +25,5 @@ public interface IServiceLocator {
     IRemoteTipoIngredienteService getRemoteTipoIngredienteService() throws Exception;
     IRemoteTipoPagoService getRemoteTipoPagoService()throws Exception;
     IRemoteUsuarioService getRemoteUsuarioService() throws NamingException, IOException;
+
 }
