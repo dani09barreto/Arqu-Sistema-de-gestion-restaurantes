@@ -6,6 +6,7 @@ import { PlaceSelectorComponent } from './pages/place-selector/place-selector.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 
 
@@ -18,6 +19,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     MatDialogModule
   ],
   exports: [

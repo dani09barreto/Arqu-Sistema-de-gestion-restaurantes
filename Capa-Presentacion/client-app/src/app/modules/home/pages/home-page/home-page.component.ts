@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PlaceSelectorComponent } from '../place-selector/place-selector.component';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { LoginPopupComponent } from '../../../auth/pages/login-popup/login-popup.component';
-
+import { HomeService } from '../../services/home.service';
 
 
 @Component({
@@ -10,14 +10,17 @@ import { LoginPopupComponent } from '../../../auth/pages/login-popup/login-popup
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit{
   dialogRefLogin: MatDialogRef<LoginPopupComponent> | undefined;
 
   reloadPage() {
     location.reload();
   }
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,private myService: HomeService) {}
+  ngOnInit(): void {
+    this.myService.getData();
+  }
 
   openPopup(): void {
     if (this.dialogRefLogin && this.dialogRefLogin.componentInstance) {
