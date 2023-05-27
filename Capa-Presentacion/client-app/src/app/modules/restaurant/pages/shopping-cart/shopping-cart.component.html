@@ -1,1 +1,19 @@
-<p>shopping-cart works!</p>
+<div class="shopping-cart">
+  <h2>Shopping Cart</h2>
+  <div *ngIf="cartItems.length === 0">Your cart is empty.</div>
+  <div *ngFor="let item of cartItems">
+    <div class="product">
+      <div class="product-info">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+      <div class="product-price">
+        ${{ item.price }}
+      </div>
+      <button (click)="removeFromCart(item)">Remove</button>
+    </div>
+  </div>
+  <div class="total">
+    <h4>Total: ${{ getTotalPrice() }}</h4>
+  </div>
+</div>

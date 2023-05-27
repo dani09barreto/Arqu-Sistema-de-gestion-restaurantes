@@ -12,7 +12,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     PlaceSelectorComponent,
-    LoginPopupComponent,
     HomePageComponent
   ],
   imports: [
