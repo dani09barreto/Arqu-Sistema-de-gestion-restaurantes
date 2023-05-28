@@ -11,11 +11,11 @@
         <class>com.example.entidades.DescuentoFidelidad</class>
         <class>com.example.entidades.Ingrediente</class>
         <class>com.example.entidades.IngredientePlato</class>
-        <class>com.example.entidades.Inventario</class>
+        <class>com.example.entidades.InventarioR</class>
         <class>com.example.entidades.Mesa</class>
         <class>com.example.entidades.Pago</class>
         <class>com.example.entidades.Pedido</class>
-        <class>com.example.entidades.Plato</class>
+        <class>com.example.entidades.PlatoR</class>
         <class>com.example.entidades.PlatoPedido</class>
         <class>com.example.entidades.RegistroPago</class>
         <class>com.example.entidades.TipoIngrediente</class>

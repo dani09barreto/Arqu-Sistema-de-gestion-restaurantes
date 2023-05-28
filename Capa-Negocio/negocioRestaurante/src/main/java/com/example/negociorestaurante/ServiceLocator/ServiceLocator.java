@@ -21,7 +21,7 @@ public class ServiceLocator implements IServiceLocator {
     private final Map<String, IRemoteDescuentoFidelidadService> cacheRemoteDescuentoFidelidadService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteEstadoPedidoService> cacheRemoteEstadoPedidoService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteIngredienteService> cacheRemoteIngredienteService = new ConcurrentHashMap<>();
-    private final Map<String, IRemoteInventarioService> cacheRemoteInventarioService = new ConcurrentHashMap<>();
+    private final Map<String, IRemoteInventarioRService> cacheRemoteInventarioService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteMesaService> cacheRemoteMesaService = new ConcurrentHashMap<>();
     private final Map<String, IRemotePagoService> cacheRemotePagoService = new ConcurrentHashMap<>();
     private final Map<String, IRemotePedidoService> cacheRemotePedidoService = new ConcurrentHashMap<>();
@@ -29,7 +29,7 @@ public class ServiceLocator implements IServiceLocator {
     private final Map<String, IRemoteRegistroPagoService> cacheRemoteRegistroPagoService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteTipoIngredienteService> cacheRemoteTipoIngredienteService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteTipoPagoService> cacheRemoteTipoPagoService = new ConcurrentHashMap<>();
-    private final Map<String, IRemotePlatoService> cacheRemotePlatoService = new ConcurrentHashMap<>();
+    private final Map<String, IRemotePlatoRService> cacheRemotePlatoService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteIngredientePlatoService> cacheRemoteIngredientePlatoService = new ConcurrentHashMap<>();
 
     public ServiceLocator(@Qualifier("responseLB") IResponseLB restClient) {
@@ -37,7 +37,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemotePlatoService getRemotePlatoService() throws Exception {
+    public IRemotePlatoRService getRemotePlatoService() throws Exception {
         String uri = restClient.getResponse();
         if(cacheRemotePlatoService.containsKey(uri)){
             return cacheRemotePlatoService.get(uri);
@@ -47,8 +47,8 @@ public class ServiceLocator implements IServiceLocator {
         jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
         jndiProperties.put("jboss.naming.client.ejb.context", true);
         Context context = new InitialContext(jndiProperties);
-        String name = "ejb:/modeloRestaurante/RemotePlatoService!com.example.IRemoteServiciosDatos.IRemotePlatoService";
-        IRemotePlatoService iRemotePlatoService = (IRemotePlatoService) context.lookup(name);
+        String name = "ejb:/modeloRestaurante/RemotePlatoService!com.example.IRemoteServiciosDatos.IRemotePlatoRService";
+        IRemotePlatoRService iRemotePlatoService = (IRemotePlatoRService) context.lookup(name);
         cacheRemotePlatoService.put(uri,iRemotePlatoService);
         return iRemotePlatoService;
     }
@@ -156,7 +156,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteInventarioService getRemoteInventarioService() throws Exception {
+    public IRemoteInventarioRService getRemoteInventarioService() throws Exception {
         String uri = restClient.getResponse();
         if(cacheRemoteInventarioService.containsKey(uri)){
             return cacheRemoteInventarioService.get(uri);
@@ -166,8 +166,8 @@ public class ServiceLocator implements IServiceLocator {
         jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
         jndiProperties.put("jboss.naming.client.ejb.context", true);
         Context context = new InitialContext(jndiProperties);
-        String name = "ejb:/modeloRestaurante/RemoteInventarioService!com.example.IRemoteServiciosDatos.IRemoteInventarioService";
-        IRemoteInventarioService remoteInventarioService = (IRemoteInventarioService) context.lookup(name);
+        String name = "ejb:/modeloRestaurante/RemoteInventarioService!com.example.IRemoteServiciosDatos.IRemoteInventarioRService";
+        IRemoteInventarioRService remoteInventarioService = (IRemoteInventarioRService) context.lookup(name);
         cacheRemoteInventarioService.put(uri,remoteInventarioService);
         return remoteInventarioService;
     }

@@ -27,5 +27,8 @@ public class Pedido implements Serializable {
     @ManyToOne
     @JoinColumn(name = "Clienteid",nullable = false,unique = true)
     private Cliente Clienteid;
+    @ManyToOne
+    @JoinColumn(name = "EstadoPedidoid",nullable = false)
+    private EstadoPedido EstadoPedidoid;
 
 }

@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
-import com.example.entidades.Inventario;
+import com.example.entidades.InventarioR;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IInventarioService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -13,31 +13,31 @@ public class InventarioService implements IInventarioService {
     private EntityManager entityManager;
 
     @Override
-    public void agregarInventario(Inventario inventario) {
+    public void agregarInventario(InventarioR inventario) {
         entityManager.persist(inventario);
     }
 
     @Override
-    public void actualizarInventario(Inventario inventario) {
+    public void actualizarInventario(InventarioR inventario) {
         entityManager.merge(inventario);
     }
 
     @Override
     public void eliminarInventario(Long id) {
-        Inventario inventario = obtenerInventario(id);
+        InventarioR inventario = obtenerInventario(id);
         if (inventario != null) {
             entityManager.remove(inventario);
         }
     }
 
     @Override
-    public Inventario obtenerInventario(Long id) {
-        return entityManager.find(Inventario.class, id);
+    public InventarioR obtenerInventario(Long id) {
+        return entityManager.find(InventarioR.class, id);
     }
 
     @Override
-    public List<Inventario> obtenerTodosInventarios() {
-        return entityManager.createQuery("SELECT i FROM Inventario i", Inventario.class).getResultList();
+    public List<InventarioR> obtenerTodosInventarios() {
+        return entityManager.createQuery("SELECT i FROM InventarioR i", InventarioR.class).getResultList();
     }
 
 }

@@ -24,9 +24,9 @@ public class PlatoPedido implements Serializable {
     @ManyToOne
     @JoinColumn(name = "Pedidoid",nullable = false,unique = true)
     private Pedido Pedidoid;
-    @ManyToOne
-    @JoinColumn(name = "Platoid",nullable = false,unique = true)
-    private Plato Platoid;
+
+    @Column(name = "Platoid",nullable = false,unique = true)
+    private Integer Platoid;
 
 
 }
