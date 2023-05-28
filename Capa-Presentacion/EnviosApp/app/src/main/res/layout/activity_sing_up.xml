@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="100dp"
-        android:text="Mi Cuenta"
+        android:text="Crear Cuenta"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         android:id="@+id/view2"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="10dp"
         android:background="@color/blue_grey_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -33,18 +33,57 @@
         app:layout_constraintTop_toBottomOf="@+id/label_myAccount" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/SingUpUsername"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:hint="Usuario"
+        android:minHeight="48dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        tools:layout_editor_absoluteX="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:textColorHint="@color/black"
+            tools:ignore="TextContrastCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/singUpPass"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintTop_toBottomOf="@+id/SingUpUsername"
+        app:startIconDrawable="@drawable/ic_baseline_password_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/userName"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:hint="Nombre"
         android:minHeight="48dp"
-        android:enabled="false"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/singUpPass"
         app:startIconDrawable="@drawable/ic_baseline_person_24">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -63,7 +102,7 @@
         android:layout_marginTop="12dp"
         android:hint="Correro"
         android:minHeight="48dp"
-        android:enabled="false"
+
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +125,6 @@
         android:layout_marginTop="12dp"
         android:hint="Telefono"
         android:minHeight="48dp"
-        android:enabled="false"
         app:counterMaxLength="10"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,25 +153,15 @@
         app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnCrear"
         android:layout_width="200dp"
         android:layout_height="53dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/orange_A200"
-        android:text="Guardar"
+        android:text="Crear Cuenta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userPhone" />
-
-    <Switch
-        android:id="@+id/switchEditar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:text="Editar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
