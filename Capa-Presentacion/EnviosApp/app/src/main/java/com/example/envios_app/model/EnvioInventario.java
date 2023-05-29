@@ -1,5 +1,6 @@
 package com.example.envios_app.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class EnvioInventario {
+public class EnvioInventario implements Serializable {
     private Long id;
     private Restaurante restaurante;
     private Usuario usuario;

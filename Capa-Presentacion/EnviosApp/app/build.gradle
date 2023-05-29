@@ -56,7 +56,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
 
 
-
     def lombokVer = "1.18.24"
     compileOnly "org.projectlombok:lombok:$lombokVer"
     annotationProcessor "org.projectlombok:lombok:$lombokVer"

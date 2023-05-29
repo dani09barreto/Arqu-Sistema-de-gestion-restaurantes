@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="@drawable/dialog_rounded_background">
+
+
+    <TextView
+        android:id="@+id/textBodega"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewPedido"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:text="Bodega" />
+
+    <TextView
+        android:id="@+id/textDireccionBodega"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textBodega"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:text="Direccion" />
+
+    <TextView
+        android:id="@+id/textViewPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:text="Pedido" />
+
+    <TextView
+        android:id="@+id/textDistancia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textDireccionBodega"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:text="Distancia" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="73dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/baseline_home_work_24" />
+
+    <Button
+        android:id="@+id/buttonRecoger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textDistancia"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:text="Recoger" />
+
+    <Button
+        android:id="@+id/buttonIr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonRecoger"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:backgroundTint="@color/yellow_900"
+        android:text="Ir" />
+</RelativeLayout>

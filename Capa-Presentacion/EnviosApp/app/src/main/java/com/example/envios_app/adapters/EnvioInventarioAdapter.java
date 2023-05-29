@@ -1,6 +1,7 @@
 package com.example.envios_app.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +10,22 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.envios_app.activities.MainActivity;
+import com.example.envios_app.activities.MapActivity;
 import com.example.envios_app.databinding.EnvioInventarioAdapterBinding;
 import com.example.envios_app.model.EnvioInventario;
-import com.example.envios_app.utils.DistanceUtils;
 
 import java.util.List;
 
 public class EnvioInventarioAdapter extends ArrayAdapter <EnvioInventario> {
 
+    private Context context;
+    private MainActivity mainActivity;
 
-    public EnvioInventarioAdapter(@NonNull Context context, int resource, @NonNull List<EnvioInventario> objects) {
+    public EnvioInventarioAdapter(@NonNull Context context, int resource, @NonNull List<EnvioInventario> objects, MainActivity mainActivity) {
         super(context, resource, objects);
+        this.context = context;
+        this.mainActivity = mainActivity;
     }
 
     @NonNull
@@ -37,6 +43,9 @@ public class EnvioInventarioAdapter extends ArrayAdapter <EnvioInventario> {
         binding.textDireccionBodega.setText(String.format("Dirección: %s", envioInventario.getBodega().getDireccion()));
         binding.textBodega.setText(String.format("Bodega: %s", envioInventario.getBodega().getNombre()));
         binding.textDireccionRestaurante.setText(String.format("Dirección: %s", envioInventario.getRestaurante().getDireccion()));
+        binding.buttonIr.setOnClickListener(v -> {
+            mainActivity.getUrlGeneral(envioInventario);
+        });
 
         return binding.getRoot();
     }

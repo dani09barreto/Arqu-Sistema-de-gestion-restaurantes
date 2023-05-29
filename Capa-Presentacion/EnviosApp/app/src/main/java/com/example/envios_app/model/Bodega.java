@@ -1,12 +1,14 @@
 package com.example.envios_app.model;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Bodega {
+public class Bodega implements Serializable {
     private Long id;
     private String nombre;
     private String direccion;

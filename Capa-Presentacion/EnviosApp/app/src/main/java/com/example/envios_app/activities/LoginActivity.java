@@ -97,6 +97,7 @@ public class LoginActivity extends BasicActivity {
     }
 
     private void getUrlAuth(){
+        loadingDialog.show();
         responseLB.getResponse(getDestinoAuth(), new ResponseLB.ResponseCallback() {
             @Override
             public void onResponse(String headerValue) {
@@ -111,7 +112,7 @@ public class LoginActivity extends BasicActivity {
     }
 
     private void doLogin(String urlAuth) {
-
+        loadingDialog.show();
         String user = Objects.requireNonNull(binding.loginUsername.getEditText()).getText().toString();
         String pass = Objects.requireNonNull(binding.loginPass.getEditText()).getText().toString();
 
@@ -130,7 +131,6 @@ public class LoginActivity extends BasicActivity {
         }
 
         userService = RetrofitClient.getRetrofitInstance(urlAuth).create(IUsuarioService.class);
-        loadingDialog.show();
         LoginUser loginUser = new LoginUser(user, pass);
         Call<AuthToken> call = userService.login(loginUser);
         call.enqueue(new Callback<AuthToken>() {

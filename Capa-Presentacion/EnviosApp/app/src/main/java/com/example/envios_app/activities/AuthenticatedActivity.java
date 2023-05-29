@@ -24,6 +24,7 @@ import retrofit2.Response;
 
 public class AuthenticatedActivity extends BasicActivity{
 
+    private IDespachadorService despachadorService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,5 +101,46 @@ public class AuthenticatedActivity extends BasicActivity{
 
     private void infoUser() {
         startActivity(UserActivity.createIntent(this));
+    }
+
+    protected void getUrlDespachador() {
+        responseLB.getResponse(ServicesRoutes.getUrlLbDespachador(), new ResponseLB.ResponseCallback() {
+            @Override
+            public void onResponse(String headerValue) {
+                getUrlLBGeneal(ServicesRoutes.getServerDespachador(headerValue));
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                alertsHelper.shortToast(getApplicationContext(), errorMessage);
+            }
+        });
+    }
+
+    protected void getUrlLBGeneal(String serverDespachador) {
+        despachadorService = RetrofitClient.getRetrofitInstance(serverDespachador).create(IDespachadorService.class);
+
+        Call<DestServer> call = despachadorService.obtenerDestino(ServicesRoutes.getDestinoGeneral());
+        call.enqueue(new Callback<DestServer>() {
+            @Override
+            public void onResponse(Call<DestServer> call, Response<DestServer> response) {
+                if (response.isSuccessful()){
+                    runOnUiThread(() -> {
+                        DestServer destServer = response.body();
+                        if (destServer != null) {
+                            SharedPreferences sharedPref = getSharedPreferences("session", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("direccionGeneral", destServer.getDireccion());
+                            editor.apply();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DestServer> call, Throwable t) {
+                alertsHelper.shortToast(getApplicationContext(), t.getMessage());
+            }
+        });
     }
 }

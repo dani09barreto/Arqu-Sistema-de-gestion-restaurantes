@@ -1,9 +1,7 @@
 package com.example.envios_app.webSocket;
 
 import android.app.Activity;
-import android.content.Context;
 
-import com.example.envios_app.R;
 import com.example.envios_app.activities.MainActivity;
 import com.example.envios_app.activities.dialog.LoadingDialog;
 import com.example.envios_app.adapters.EnvioInventarioAdapter;
@@ -20,15 +18,12 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-public class WebSocketClientImpl extends WebSocketClient {
+public class WebSocketClientEnvios extends WebSocketClient {
 
     private List <EnvioInventario> enviosInventario;
 
@@ -42,7 +37,7 @@ public class WebSocketClientImpl extends WebSocketClient {
 
     private Gson gson;
 
-    public WebSocketClientImpl(String serverUrl, String token, ActivityMainBinding binding, LoadingDialog loadingDialog, Activity activity, AlertsHelper alertsHelper, List <EnvioInventario> enviosInventario, EnvioInventarioAdapter adapter) throws URISyntaxException {
+    public WebSocketClientEnvios(String serverUrl, String token, ActivityMainBinding binding, LoadingDialog loadingDialog, Activity activity, AlertsHelper alertsHelper, List <EnvioInventario> enviosInventario, EnvioInventarioAdapter adapter) throws URISyntaxException {
         super(new URI(serverUrl), new Draft_6455(), createHeaders(token));
         this.binding = binding;
         this.loadingDialog = loadingDialog;
@@ -82,8 +77,7 @@ public class WebSocketClientImpl extends WebSocketClient {
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
-        System.out.println("closed with exit code " + code + " additional info: " + reason);
-        if (code == 401){
+        if (hasStatusCode401(reason)){
             activity.runOnUiThread(() -> {
                 alertsHelper.shortToast(activity.getApplicationContext(), "Sesion expirada");
                 MainActivity mainActivity = (MainActivity) activity;
@@ -95,6 +89,10 @@ public class WebSocketClientImpl extends WebSocketClient {
             alertsHelper.shortToast(activity.getApplicationContext(), "closed with exit code " + code + " additional info: " + reason);
             loadingDialog.dismissDialog();
         });
+    }
+
+    public boolean hasStatusCode401(String message) {
+        return message.contains("401");
     }
 
     @Override

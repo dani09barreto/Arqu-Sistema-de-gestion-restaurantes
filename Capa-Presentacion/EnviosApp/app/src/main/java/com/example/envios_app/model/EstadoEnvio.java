@@ -1,13 +1,15 @@
 package com.example.envios_app.model;
 
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class EstadoEnvio {
+public class EstadoEnvio implements Serializable {
     private Long id;
     private String estado;
 

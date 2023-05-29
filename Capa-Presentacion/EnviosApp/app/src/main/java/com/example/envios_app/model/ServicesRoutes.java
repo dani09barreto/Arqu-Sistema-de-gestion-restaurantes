@@ -2,7 +2,7 @@ package com.example.envios_app.model;
 
 public class ServicesRoutes {
 
-    private static final String URL_LB_DESPACHADOR = "http://172.20.10.4:100/";
+    private static final String URL_LB_DESPACHADOR = "http://192.168.10.8:100/";
     private static final String DESTINO_AUTH = "auth";
     private static final String DESTINO_GENERAL = "general";
 
@@ -25,7 +25,10 @@ public class ServicesRoutes {
     public static String getServerGeneral(String serverIp){
         return String.format("http://%s/api/general/", serverIp);
     }
-    public static String getServerGeneralWebSocket(String serverIp){
+    public static String getServerGeneralWebSocketEnvios(String serverIp){
         return String.format("ws://%s/websocket-path", serverIp);
+    }
+    public static String getServerGeneralWebSocketPos(String serverIp){
+        return String.format("ws://%s/mobile-websocket-path", serverIp);
     }
 }

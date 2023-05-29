@@ -2,6 +2,7 @@ package com.example.envios_app.activities;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -9,15 +10,17 @@ import androidx.annotation.NonNull;
 
 import com.example.envios_app.R;
 import com.example.envios_app.REST.IDespachadorService;
+import com.example.envios_app.REST.IInventarioService;
 import com.example.envios_app.adapters.EnvioInventarioAdapter;
 import com.example.envios_app.databinding.ActivityMainBinding;
 import com.example.envios_app.model.DestServer;
 import com.example.envios_app.model.EnvioInventario;
+import com.example.envios_app.model.Mensaje;
 import com.example.envios_app.model.ServicesRoutes;
 import com.example.envios_app.utils.PermissionHelper;
 import com.example.envios_app.utils.ResponseLB;
 import com.example.envios_app.utils.RetrofitClient;
-import com.example.envios_app.webSocket.WebSocketClientImpl;
+import com.example.envios_app.webSocket.WebSocketClientEnvios;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -30,10 +33,10 @@ import retrofit2.Response;
 public class MainActivity extends AuthenticatedActivity {
 
     private ActivityMainBinding binding;
-    private WebSocketClientImpl webSocketClient;
-    private IDespachadorService despachadorService;
+    private WebSocketClientEnvios webSocketClient;
     private List<EnvioInventario> enviosInventario = new ArrayList<>();
     private EnvioInventarioAdapter adapter;
+    private IInventarioService inventarioService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,7 @@ public class MainActivity extends AuthenticatedActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        adapter = new EnvioInventarioAdapter(this, R.id.listViewEnvioInventario, enviosInventario);
+        adapter = new EnvioInventarioAdapter(this, R.id.listViewEnvioInventario, enviosInventario, this);
 
         if (isAuthenticated()){
             if (!existeDestinoGeneral()){
@@ -51,17 +54,21 @@ public class MainActivity extends AuthenticatedActivity {
 
         binding.button.setOnClickListener(v -> {
             loadingDialog.show();
-            getUrlGeneral();
+            getUrlGeneral(null);
         });
 
         binding.listViewEnvioInventario.setAdapter(adapter);
     }
 
-    private void getUrlGeneral(){
+    public void getUrlGeneral(EnvioInventario en){
         responseLB.getResponse(getDestinoGeneral(), new ResponseLB.ResponseCallback() {
             @Override
             public void onResponse(String headerValue) {
-                conectarWebSocket(headerValue);
+                if (en == null){
+                    conectarWebSocket(headerValue);
+                    return;
+                }
+                cambiarEstadoEnvio(headerValue, en);
             }
 
             @Override
@@ -71,11 +78,40 @@ public class MainActivity extends AuthenticatedActivity {
         });
     }
 
+    private void cambiarEstadoEnvio(String ipGeneral, EnvioInventario en) {
+        String token = getTokenUser();
+        loadingDialog.show();
+        inventarioService = RetrofitClient.getRetrofitInstance(ServicesRoutes.getServerGeneral(ipGeneral), token).create(IInventarioService.class);
+
+        Call <Mensaje> call = inventarioService.cambiarEstado(en.getId(), "En_Camino");
+        call.enqueue(new Callback<Mensaje>() {
+            @Override
+            public void onResponse(Call<Mensaje> call, Response<Mensaje> response) {
+                if (!response.isSuccessful()){
+                    alertsHelper.shortToast(getApplicationContext(), "Error al cambiar el estado del pedido intentelo de nuevo");
+                    loadingDialog.dismiss();
+                    return;
+                }
+                loadingDialog.dismiss();
+                alertsHelper.shortToast(getApplicationContext(), String.format("Se asigno el pedido a %s", en.getUsuario().getNombre()));
+                Intent intent = new Intent(MainActivity.this , MapActivity.class);
+                intent.putExtra("ENVIO_INVENTARIO", en);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<Mensaje> call, Throwable t) {
+                alertsHelper.shortToast(getApplicationContext(), "Error al cambiar el estado del pedido");
+                loadingDialog.dismiss();
+            }
+        });
+    }
+
     private void conectarWebSocket(String ipGeneral) {
 
         String token = getTokenUser();
         try {
-            webSocketClient = new WebSocketClientImpl(ServicesRoutes.getServerGeneralWebSocket(ipGeneral), token, binding, loadingDialog, this, alertsHelper, enviosInventario, adapter);
+            webSocketClient = new WebSocketClientEnvios(ServicesRoutes.getServerGeneralWebSocketEnvios(ipGeneral), token, binding, loadingDialog, this, alertsHelper, enviosInventario, adapter);
             webSocketClient.connect();
         } catch (URISyntaxException e) {
             alertsHelper.shortToast(getApplicationContext(), "Error al conectar con el servidor");
@@ -109,46 +145,5 @@ public class MainActivity extends AuthenticatedActivity {
                 locationService.startLocation();
             }
         }
-    }
-
-    protected void getUrlDespachador() {
-        responseLB.getResponse(ServicesRoutes.getUrlLbDespachador(), new ResponseLB.ResponseCallback() {
-            @Override
-            public void onResponse(String headerValue) {
-                getUrlLBGeneal(ServicesRoutes.getServerDespachador(headerValue));
-            }
-
-            @Override
-            public void onError(String errorMessage) {
-                alertsHelper.shortToast(getApplicationContext(), errorMessage);
-            }
-        });
-    }
-
-    protected void getUrlLBGeneal(String serverDespachador) {
-        despachadorService = RetrofitClient.getRetrofitInstance(serverDespachador).create(IDespachadorService.class);
-
-        Call<DestServer> call = despachadorService.obtenerDestino(ServicesRoutes.getDestinoGeneral());
-        call.enqueue(new Callback<DestServer>() {
-            @Override
-            public void onResponse(Call<DestServer> call, Response<DestServer> response) {
-                if (response.isSuccessful()){
-                    runOnUiThread(() -> {
-                        DestServer destServer = response.body();
-                        if (destServer != null) {
-                            SharedPreferences sharedPref = getSharedPreferences("session", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putString("direccionGeneral", destServer.getDireccion());
-                            editor.apply();
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DestServer> call, Throwable t) {
-                alertsHelper.shortToast(getApplicationContext(), t.getMessage());
-            }
-        });
     }
 }
