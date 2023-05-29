@@ -7,6 +7,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { LoginPopupComponent } from '../auth/pages/login-popup/login-popup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { PaymentGatewayComponent } from './pages/payment-gateway/payment-gateway.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     PrincipalPageComponent,
     MenuComponent,
     ShoppingCartComponent,
-    LoginPopupComponent
+    LoginPopupComponent,
+    PaymentGatewayComponent
   ],
   imports: [
     CommonModule,

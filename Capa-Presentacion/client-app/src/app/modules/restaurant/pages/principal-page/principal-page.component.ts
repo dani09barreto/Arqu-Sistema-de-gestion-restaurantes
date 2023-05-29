@@ -29,6 +29,13 @@ export class PrincipalPageComponent implements OnInit{
 
   reloadPage() {
     console.log("Navegando...");
+    if (this.dialogRef && this.dialogRef.componentInstance) {
+      // El carrito ya está abierto, forzar cierre}
+      this.abrirCarrito();
+    }
+    if (this.dialogRefLogin && this.dialogRefLogin.componentInstance) {
+      this.openPopup();
+    }
     this.router.navigate(['']);
   }
 
