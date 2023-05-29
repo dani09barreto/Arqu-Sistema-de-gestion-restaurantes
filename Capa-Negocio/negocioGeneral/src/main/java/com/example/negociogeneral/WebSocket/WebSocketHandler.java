@@ -1,6 +1,7 @@
 package com.example.negociogeneral.WebSocket;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -13,10 +14,19 @@ import java.util.Set;
 public class WebSocketHandler extends TextWebSocketHandler {
     private static final Set<WebSocketSession> sessions = new HashSet<>();
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final Set<Object> objetosCola = new HashSet<>();
+    private static final Gson gson = new Gson();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
         sessions.add(session);
+        if (!objetosCola.isEmpty()) {
+            System.out.println("Hay objetos en la cola, se envían");
+            for (Object objeto : objetosCola) {
+                enviarActualizacion(objeto);
+            }
+            objetosCola.clear();
+        }
         System.out.println("Nueva conexión: " + session.getId());
     }
 
@@ -28,7 +38,12 @@ public class WebSocketHandler extends TextWebSocketHandler {
     public static void enviarActualizacion(Object objeto) {
         String json;
         try {
-            json = objectMapper.writeValueAsString(objeto);
+            if (sessions.isEmpty()) {
+                System.out.println("No hay sesiones activas, se agrega a la cola");
+                objetosCola.add(objeto);
+                return;
+            }
+            json = gson.toJson(objeto);
             for (WebSocketSession session : sessions) {
                 session.sendMessage(new TextMessage(json));
             }

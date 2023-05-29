@@ -19,42 +19,52 @@ public class ServicioInventario implements IServicioInventario {
     private IServiceLocator serviceLocator;
 
     @Override
-    public void agregarInventario(Inventario inventario) throws NamingException, IOException {
-        serviceLocator.getRemoteInventarioService().agregarInventario(inventario);
+    public void agregarInventario(Inventario inventario, String uri) throws NamingException, IOException {
+        serviceLocator.getRemoteInventarioService(uri).agregarInventario(inventario);
     }
 
     @Override
-    public void actualizarInventario(Inventario inventario) throws NamingException, IOException {
-        serviceLocator.getRemoteInventarioService().actualizarInventario(inventario);
+    public void actualizarInventario(Inventario inventario, String uri) throws NamingException, IOException {
+        serviceLocator.getRemoteInventarioService(uri).actualizarInventario(inventario);
     }
 
     @Override
-    public void eliminarInventario(Long id) throws NamingException, IOException {
-        serviceLocator.getRemoteInventarioService().eliminarInventario(id);
+    public void eliminarInventario(Long id, String uri) throws NamingException, IOException {
+        serviceLocator.getRemoteInventarioService(uri).eliminarInventario(id);
     }
 
     @Override
-    public Inventario obtenerInventario(Long id) throws NamingException, IOException {
-        return serviceLocator.getRemoteInventarioService().obtenerInventario(id);
+    public Inventario obtenerInventario(Long id, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteInventarioService(uri).obtenerInventario(id);
     }
 
     @Override
-    public List<Inventario> obtenerTodosInventarioPorBodega(Bodega bodega, int page, int pageSize) throws NamingException, IOException {
-        return serviceLocator.getRemoteInventarioService().obtenerTodosInventarioPorBodega(bodega, page, pageSize);
+    public List<Inventario> obtenerTodosInventarioPorBodega(Bodega bodega, int page, int pageSize, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteInventarioService(uri).obtenerTodosInventarioPorBodega(bodega, page, pageSize);
     }
 
     @Override
-    public Inventario obtenerTodosInventarioPorBodegaPorIngrediente(Bodega bodega, Ingrediente ingrediente) throws NamingException, IOException {
-        return serviceLocator.getRemoteInventarioService().obtenerTodosInventarioPorBodegaPorIngrediente(bodega, ingrediente);
+    public Inventario obtenerTodosInventarioPorBodegaPorIngrediente(Bodega bodega, Ingrediente ingrediente, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteInventarioService(uri).obtenerTodosInventarioPorBodegaPorIngrediente(bodega, ingrediente);
     }
 
     @Override
-    public EnvioInventario agregarEnvioInventario(EnvioInventario envioInventario, List<CantidadIngrediente> ingredientesInventario) throws NamingException, IOException {
-        EnvioInventario en = serviceLocator.getRemoteEnvioInventarioService().agregarEnvioInventario(envioInventario);
+    public EnvioInventario agregarEnvioInventario(EnvioInventario envioInventario, List<CantidadIngrediente> ingredientesInventario, String uri) throws NamingException, IOException {
+        EnvioInventario en = serviceLocator.getRemoteEnvioInventarioService(uri).agregarEnvioInventario(envioInventario);
         for (CantidadIngrediente cantidadIngrediente : ingredientesInventario) {
             cantidadIngrediente.setEnvioInventario(en);
-            serviceLocator.getRemoteCantidadIngredienteService().agregarCantidadIngrediente(cantidadIngrediente);
+            serviceLocator.getRemoteCantidadIngredienteService(uri).agregarCantidadIngrediente(cantidadIngrediente);
         }
         return en;
+    }
+
+    @Override
+    public EnvioInventario obtenerEnvioInventario(Long id, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteEnvioInventarioService(uri).obtenerEnvioInventario(id);
+    }
+
+    @Override
+    public void actualizarEnvioInventario(Long idInventario, String nameEstado, String uri) throws NamingException, IOException {
+        serviceLocator.getRemoteEnvioInventarioService(uri).actualizarEnvioInventario(idInventario, nameEstado);
     }
 }

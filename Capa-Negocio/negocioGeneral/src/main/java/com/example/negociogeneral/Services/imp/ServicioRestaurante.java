@@ -19,27 +19,27 @@ public class ServicioRestaurante implements IServicioRestaurante {
     private IServiceLocator serviceLocator;
 
     @Override
-    public void agregarRestaurante(Restaurante restaurante) {
+    public void agregarRestaurante(Restaurante restaurante, String uri) {
 
     }
 
     @Override
-    public void actualizarRestaurante(Restaurante restaurante) {
+    public void actualizarRestaurante(Restaurante restaurante, String uri) {
 
     }
 
     @Override
-    public void eliminarRestaurante(Long id) {
+    public void eliminarRestaurante(Long id, String uri) {
 
     }
 
     @Override
-    public Restaurante obtenerRestaurante(Long id) throws NamingException, IOException {
-        return serviceLocator.getRemoteRestauranteService().obtenerRestaurante(id);
+    public Restaurante obtenerRestaurante(Long id, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteRestauranteService(uri).obtenerRestaurante(id);
     }
 
     @Override
-    public List<Restaurante> obtenerTodosRestaurantes() throws NamingException, IOException {
-        return serviceLocator.getRemoteRestauranteService().obtenerTodosRestaurantes();
+    public List<Restaurante> obtenerTodosRestaurantes(String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteRestauranteService(uri).obtenerTodosRestaurantes();
     }
 }

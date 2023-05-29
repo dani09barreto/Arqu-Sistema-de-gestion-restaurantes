@@ -1,7 +1,6 @@
 package com.example.negociogeneral.ServiceLocator;
 
 import com.example.IRemoteServiciosDatos.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class ServiceLocator implements IServiceLocator {
-    private final IResponseLB restClient;
-
     private final Map<String, IRemoteUsuarioService> cacheRemoteUsuarioService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteRoleService> cacheRemoteRoleService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteBodegaService> cacheRemoteBodegaService = new ConcurrentHashMap<>();
@@ -31,13 +28,8 @@ public class ServiceLocator implements IServiceLocator {
     private final Map<String, IRemoteRestauranteService> cacheRemoteRestauranteService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteEnvioInventarioService> cacheRemoteEnvioInventarioService = new ConcurrentHashMap<>();
 
-    public ServiceLocator(@Qualifier("responseLB") IResponseLB restClient) {
-        this.restClient = restClient;
-    }
-
     @Override
-    public IRemoteBodegaService getRemoteBodegaService() throws Exception {
-        String uri = restClient.getResponse();
+    public IRemoteBodegaService getRemoteBodegaService(String uri) throws Exception {
         if (cacheRemoteBodegaService.containsKey(uri)) {
             return cacheRemoteBodegaService.get(uri);
         }
@@ -53,8 +45,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteCantidadIngredienteService getRemoteCantidadIngredienteService() throws IOException, NamingException {
-        String uri = restClient.getResponse();
+    public IRemoteCantidadIngredienteService getRemoteCantidadIngredienteService(String uri) throws IOException, NamingException {
         if (cacheRemoteCantidadIngredienteService.containsKey(uri)) {
             return cacheRemoteCantidadIngredienteService.get(uri);
         }
@@ -70,8 +61,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteComentarioRestauranteService getRemoteComentarioRestauranteService() throws IOException, NamingException {
-        String uri = restClient.getResponse();
+    public IRemoteComentarioRestauranteService getRemoteComentarioRestauranteService(String uri) throws IOException, NamingException {
         if (cacheRemoteComentarioRestauranteService.containsKey(uri)) {
             return cacheRemoteComentarioRestauranteService.get(uri);
         }
@@ -87,8 +77,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteEstadoEnvioService getRemoteEstadoEnvioService() throws IOException, NamingException {
-        String uri = restClient.getResponse();
+    public IRemoteEstadoEnvioService getRemoteEstadoEnvioService(String uri) throws IOException, NamingException {
         if (cacheRemoteEstadoEnvioService.containsKey(uri)) {
             return cacheRemoteEstadoEnvioService.get(uri);
         }
@@ -104,8 +93,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteIngredientePlatoService getRemoteIngredientePlatoService() throws NamingException, IOException {
-        String uri = restClient.getResponse();
+    public IRemoteIngredientePlatoService getRemoteIngredientePlatoService(String uri) throws NamingException, IOException {
         if (cacheRemoteIngredientePlatoService.containsKey(uri)) {
             return cacheRemoteIngredientePlatoService.get(uri);
         }
@@ -121,8 +109,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteUsuarioService getRemoteUsuarioService() throws NamingException, IOException {
-        String uri = restClient.getResponse();
+    public IRemoteUsuarioService getRemoteUsuarioService(String uri) throws NamingException, IOException {
         if (cacheRemoteUsuarioService.containsKey(uri)) {
             return cacheRemoteUsuarioService.get(uri);
         }
@@ -138,8 +125,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteRoleService getRemoteRoleService() throws NamingException, IOException {
-        String uri = restClient.getResponse();
+    public IRemoteRoleService getRemoteRoleService(String uri) throws NamingException, IOException {
         if (cacheRemoteRoleService.containsKey(uri)) {
             return cacheRemoteRoleService.get(uri);
         }
@@ -155,8 +141,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteMenuService getRemoteMenuService() throws NamingException, IOException {
-        String uri = restClient.getResponse();
+    public IRemoteMenuService getRemoteMenuService(String uri) throws NamingException, IOException {
         if (cacheRemoteMenuService.containsKey(uri)) {
             return cacheRemoteMenuService.get(uri);
         }
@@ -172,8 +157,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemotePlatoService getRemotePlatoService() throws NamingException, IOException {
-        String uri = restClient.getResponse();
+    public IRemotePlatoService getRemotePlatoService(String uri) throws NamingException, IOException {
         if (cacheRemotePlatoService.containsKey(uri)) {
             return cacheRemotePlatoService.get(uri);
         }
@@ -189,8 +173,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteIngredienteService getRemoteIngredienteService() throws NamingException, IOException {
-        String uri = restClient.getResponse();
+    public IRemoteIngredienteService getRemoteIngredienteService(String uri) throws NamingException, IOException {
         if (cacheRemoteIngredienteService.containsKey(uri)) {
             return cacheRemoteIngredienteService.get(uri);
         }
@@ -206,8 +189,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteInventarioService getRemoteInventarioService() throws NamingException, IOException {
-        String uri = restClient.getResponse();
+    public IRemoteInventarioService getRemoteInventarioService(String uri) throws NamingException, IOException {
         if (cacheRemoteInventarioService.containsKey(uri)) {
             return cacheRemoteInventarioService.get(uri);
         }
@@ -223,8 +205,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteRestauranteService getRemoteRestauranteService() throws NamingException, IOException {
-        String uri = restClient.getResponse();
+    public IRemoteRestauranteService getRemoteRestauranteService(String uri) throws NamingException, IOException {
         if (cacheRemoteRestauranteService.containsKey(uri)) {
             return cacheRemoteRestauranteService.get(uri);
         }
@@ -240,8 +221,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteEnvioInventarioService getRemoteEnvioInventarioService() throws NamingException, IOException {
-        String uri = restClient.getResponse();
+    public IRemoteEnvioInventarioService getRemoteEnvioInventarioService(String uri) throws NamingException, IOException {
         if (cacheRemoteEnvioInventarioService.containsKey(uri)) {
             return cacheRemoteEnvioInventarioService.get(uri);
         }

@@ -1,6 +1,7 @@
 package com.example.negociogeneral.Controller;
 
 import com.example.entidades.Restaurante;
+import com.example.negociogeneral.ServiceLocator.IResponseLB;
 import com.example.negociogeneral.Services.intf.IServicioRestaurante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,10 +22,16 @@ public class ControllerRestaurante {
     @Autowired
     @Qualifier("servicioRestaurante")
     IServicioRestaurante servicioRestaurante;
+
+    @Autowired
+    @Qualifier("responseLB")
+    IResponseLB restClient;
+
     @GetMapping("/listar/nombres")
     public ResponseEntity <?> listarRestaurantes(){
         try {
-            List < Restaurante> restaurantes = servicioRestaurante.obtenerTodosRestaurantes();
+            String uri = restClient.getResponse();
+            List < Restaurante> restaurantes = servicioRestaurante.obtenerTodosRestaurantes(uri);
             List<String> nombresRestaurantes = new ArrayList<>();
             for (Restaurante restaurante: restaurantes) {
                 nombresRestaurantes.add(restaurante.getNombre());
