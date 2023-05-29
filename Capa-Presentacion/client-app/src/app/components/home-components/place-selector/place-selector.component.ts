@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HomeService } from '../../services/home.service';
+import { HomeService } from 'src/app/services/service-home/home.service';
 @Component({
   selector: 'app-place-selector',
   templateUrl: './place-selector.component.html',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import { LoginPopupComponent } from '../../../auth/pages/login-popup/login-popup.component';
 import { Router } from '@angular/router';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
-import { CartService } from '../../services/cart.service';
+import { CartService } from 'src/app/services/services-restaurant/cart.service';
+import { LoginPopupComponent } from '../../auth-components/login-popup/login-popup.component';
 
 @Component({
   selector: 'app-principal-page',
