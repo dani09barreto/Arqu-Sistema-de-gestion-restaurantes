@@ -16,8 +16,8 @@ public class ServicePedido implements IServicePedido {
     private IServiceLocator serviceLocator;
 
     @Override
-    public void agregarPedido(Pedido pedido) throws Exception {
-        serviceLocator.getRemotePedidoService().agregarPedido(pedido);
+    public Pedido agregarPedido(Pedido pedido) throws Exception {
+        return serviceLocator.getRemotePedidoService().agregarPedido(pedido);
     }
 
     @Override

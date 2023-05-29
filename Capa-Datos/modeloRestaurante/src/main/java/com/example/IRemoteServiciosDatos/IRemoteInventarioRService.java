@@ -11,4 +11,5 @@ public interface IRemoteInventarioRService {
     void eliminarInventario(Long id);
     InventarioR obtenerInventario(Long id);
     List<InventarioR> obtenerTodosInventarios();
+    InventarioR obtenerInvetarioporIngrediente(Long id);
 }

@@ -37,4 +37,9 @@ public class RemoteInventarioService implements IRemoteInventarioRService {
     public List<InventarioR> obtenerTodosInventarios() {
         return inventarioService.obtenerTodosInventarios();
     }
+
+    @Override
+    public InventarioR obtenerInvetarioporIngrediente(Long id) {
+        return inventarioService.obtenerInvetarioporIngrediente(id);
+    }
 }

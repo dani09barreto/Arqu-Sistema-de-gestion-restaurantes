@@ -11,4 +11,5 @@ public interface IRemoteTipoPagoService {
     void eliminarTipoPago(Long id);
     TipoPago obtenerTipoPago(Long id);
     List<TipoPago> obtenerTodosTipoPagos();
+    TipoPago obtenerTipoPagoPorNombre(String nombre);
 }

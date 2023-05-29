@@ -12,4 +12,5 @@ public interface IServiceInventario {
     void eliminarInventario(Long id) throws Exception;
     InventarioR obtenerInventario(Long id) throws Exception;
     List<InventarioR> obtenerTodosInventarios() throws Exception;
+    InventarioR obtenerInvetarioporIngrediente(Long id) throws Exception;
 }

@@ -22,6 +22,6 @@ public class InventarioR implements Serializable {
     private long cantidad;
     @ManyToOne
     @JoinColumn(name = "Ingredienteid",nullable = false,unique = true)
-    private Ingrediente Ingredienteid;
+    private IngredienteR Ingredienteid;
 
 }

@@ -41,4 +41,9 @@ public class ServiceInventario implements IServiceInventario {
     public List<InventarioR> obtenerTodosInventarios() throws Exception {
         return serviceLocator.getRemoteInventarioService().obtenerTodosInventarios();
     }
+
+    @Override
+    public InventarioR obtenerInvetarioporIngrediente(Long id) throws Exception {
+        return serviceLocator.getRemoteInventarioService().obtenerInvetarioporIngrediente(id);
+    }
 }

@@ -11,4 +11,5 @@ public interface IInventarioService {
     void eliminarInventario(Long id);
     InventarioR obtenerInventario(Long id);
     List<InventarioR> obtenerTodosInventarios();
+    InventarioR obtenerInvetarioporIngrediente(Long id);
 }

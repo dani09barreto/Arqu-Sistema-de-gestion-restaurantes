@@ -6,7 +6,7 @@ import jakarta.ejb.Remote;
 import java.util.List;
 @Remote
 public interface IRemotePedidoService {
-    void agregarPedido(Pedido pedido);
+    Pedido agregarPedido(Pedido pedido);
     void actualizarPedido(Pedido pedido);
     void eliminarPedido(Long id);
     Pedido obtenerPedido(Long id);

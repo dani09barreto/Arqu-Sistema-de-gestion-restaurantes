@@ -14,8 +14,8 @@ public class RemotePedidoService implements IRemotePedidoService {
     IPedidoService pedidoService;
 
     @Override
-    public void agregarPedido(Pedido pedido) {
-        pedidoService.agregarPedido(pedido);
+    public Pedido agregarPedido(Pedido pedido) {
+        return pedidoService.agregarPedido(pedido);
     }
 
     @Override

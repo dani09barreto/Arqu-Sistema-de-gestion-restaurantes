@@ -8,29 +8,36 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class ServiceCliente implements IServiceCliente {
     @Autowired
     @Qualifier("serviceLocator")
     private IServiceLocator serviceLocator;
+
     @Override
-    public void agregarCliente(Cliente cliente) throws Exception {
-        serviceLocator.getRemoteClienteService().agregarCliente(cliente);
+    public Cliente agregarCliente(Cliente cliente) throws Exception {
+        return serviceLocator.getRemoteClienteService().agregarCliente(cliente);
     }
 
     @Override
-    public void actualizarCliente(Cliente cliente) {
-
+    public void actualizarCliente(Cliente cliente) throws Exception {
+        serviceLocator.getRemoteClienteService().actualizarCliente(cliente);
     }
 
     @Override
-    public void eliminarCliente(Long id) {
-
+    public void eliminarCliente(Long id) throws Exception {
+        serviceLocator.getRemoteClienteService().eliminarCliente(id);
     }
 
     @Override
     public Cliente obtenerCliente(Long id) throws Exception {
         return serviceLocator.getRemoteClienteService().obtenerCliente(id);
+    }
+
+    @Override
+    public Cliente obtenerClientePorEmail(String email) throws Exception {
+        return serviceLocator.getRemoteClienteService().obtenerClientePorEmail(email);
     }
 
     @Override

@@ -40,4 +40,9 @@ public class InventarioService implements IInventarioService {
         return entityManager.createQuery("SELECT i FROM InventarioR i", InventarioR.class).getResultList();
     }
 
+    @Override
+    public InventarioR obtenerInvetarioporIngrediente(Long id) {
+        return entityManager.createQuery("SELECT i FROM InventarioR i WHERE i.Ingredienteid = :id", InventarioR.class).setParameter("id", id).getSingleResult();
+    }
+
 }

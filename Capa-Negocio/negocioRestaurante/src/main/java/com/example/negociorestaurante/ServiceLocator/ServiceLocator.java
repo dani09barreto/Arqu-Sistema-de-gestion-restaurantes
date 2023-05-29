@@ -14,7 +14,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class ServiceLocator implements IServiceLocator {
-    private final IResponseLB restClient;
+    private final IResponseLB restClientRest;
+    private final IResponseLB restClientGeneral;
     private final Map<String, IRemoteUsuarioService> cacheRemoteUsuarioService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteAdicionalesService> cacheRemoteAdicionalesService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteClienteService> cacheRemoteClienteService = new ConcurrentHashMap<>();
@@ -29,17 +30,19 @@ public class ServiceLocator implements IServiceLocator {
     private final Map<String, IRemoteRegistroPagoService> cacheRemoteRegistroPagoService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteTipoIngredienteService> cacheRemoteTipoIngredienteService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteTipoPagoService> cacheRemoteTipoPagoService = new ConcurrentHashMap<>();
-    private final Map<String, IRemotePlatoService> cacheRemotePlatoService = new ConcurrentHashMap<>();
+    private final Map<String, IRemoteIngredientePlatoService> cacheRemoteIngredientePlatoService = new ConcurrentHashMap<>();
+    private final Map<String, IRemoteRoleService> cacheRemoteRoleService = new ConcurrentHashMap<>();
 
-    public ServiceLocator(@Qualifier("responseLBRest") IResponseLB restClient) {
-        this.restClient = restClient;
+    public ServiceLocator(@Qualifier("responseLBRest") IResponseLB restClientRest, @Qualifier("responseLBGeneral") IResponseLB restClientGeneral) {
+        this.restClientRest = restClientRest;
+        this.restClientGeneral = restClientGeneral;
     }
 
 
 
     @Override
     public IRemoteAdicionalesService getRemoteAdicionalesService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemoteAdicionalesService.containsKey(uri)){
             return cacheRemoteAdicionalesService.get(uri);
         }
@@ -56,7 +59,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemoteClienteService getRemoteClienteService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemoteClienteService.containsKey(uri)){
             return cacheRemoteClienteService.get(uri);
         }
@@ -73,7 +76,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemoteDescuentoFidelidadService getRemoteDescuentoFidelidadService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemoteDescuentoFidelidadService.containsKey(uri)){
             return cacheRemoteDescuentoFidelidadService.get(uri);
         }
@@ -90,7 +93,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemoteEstadoPedidoService getRemoteEstadoPedidoService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemoteEstadoPedidoService.containsKey(uri)){
             return cacheRemoteEstadoPedidoService.get(uri);
         }
@@ -107,7 +110,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemoteIngredienteService getRemoteIngredienteService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemoteIngredienteService.containsKey(uri)){
             return cacheRemoteIngredienteService.get(uri);
         }
@@ -124,7 +127,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemoteInventarioRService getRemoteInventarioService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemoteInventarioService.containsKey(uri)){
             return cacheRemoteInventarioService.get(uri);
         }
@@ -141,7 +144,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemoteMesaService getRemoteMesaService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemoteMesaService.containsKey(uri)){
             return cacheRemoteMesaService.get(uri);
         }
@@ -158,7 +161,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemotePagoService getRemotePagoService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemotePagoService.containsKey(uri)){
             return cacheRemotePagoService.get(uri);
         }
@@ -175,7 +178,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemotePedidoService getRemotePedidoService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemotePedidoService.containsKey(uri)){
             return cacheRemotePedidoService.get(uri);
         }
@@ -192,7 +195,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemotePlatoPedidoService getRemotePlatoPedidoService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemotePlatoPedidoService.containsKey(uri)){
             return cacheRemotePlatoPedidoService.get(uri);
         }
@@ -209,7 +212,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemoteRegistroPagoService getRemoteRegistroPagoService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemoteRegistroPagoService.containsKey(uri)){
             return cacheRemoteRegistroPagoService.get(uri);
         }
@@ -227,7 +230,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemoteTipoIngredienteService getRemoteTipoIngredienteService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemoteTipoIngredienteService.containsKey(uri)){
             return cacheRemoteTipoIngredienteService.get(uri);
         }
@@ -244,7 +247,7 @@ public class ServiceLocator implements IServiceLocator {
 
     @Override
     public IRemoteTipoPagoService getRemoteTipoPagoService() throws Exception {
-        String uri = restClient.getResponse();
+        String uri = restClientRest.getResponse();
         if(cacheRemoteTipoPagoService.containsKey(uri)){
             return cacheRemoteTipoPagoService.get(uri);
         }
@@ -261,7 +264,7 @@ public class ServiceLocator implements IServiceLocator {
  //Servicio remoto de usuario
     @Override
     public IRemoteUsuarioService getRemoteUsuarioService() throws NamingException, IOException {
-        String uri = restClient.getResponse();
+        String uri = restClientGeneral.getResponse();
         if (cacheRemoteUsuarioService.containsKey(uri)) {
             return cacheRemoteUsuarioService.get(uri);
         }
@@ -275,22 +278,39 @@ public class ServiceLocator implements IServiceLocator {
         cacheRemoteUsuarioService.put(uri, remoteUsuarioService);
         return remoteUsuarioService;
     }
-
     @Override
-    public IRemotePlatoService getRemotePlatoService() throws Exception {
-        String uri = restClient.getResponse();
-        if(cacheRemotePlatoService.containsKey(uri)){
-            return cacheRemotePlatoService.get(uri);
+    public IRemoteRoleService getRemoteRoleService() throws NamingException, IOException {
+        String uri = restClientGeneral.getResponse();
+        if (cacheRemoteRoleService.containsKey(uri)) {
+            return cacheRemoteRoleService.get(uri);
         }
         Properties jndiProperties = new Properties();
         jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
         jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
         jndiProperties.put("jboss.naming.client.ejb.context", true);
         Context context = new InitialContext(jndiProperties);
-        String name = "ejb:/modeloCadena/RemotePlatoService!com.example.IRemoteServiciosDatos.IRemotePlatoService";
-        IRemotePlatoService remotePlatoService = (IRemotePlatoService) context.lookup(name);
-        cacheRemotePlatoService.put(uri,remotePlatoService);
-        return remotePlatoService;
+        String name = "ejb:/modeloCadena/RemoteRoleService!com.example.IRemoteServiciosDatos.IRemoteRoleService";
+        IRemoteRoleService remoteRoleService = (IRemoteRoleService) context.lookup(name);
+        cacheRemoteRoleService.put(uri, remoteRoleService);
+        return remoteRoleService;
     }
+
+    @Override
+    public IRemoteIngredientePlatoService getRemoteIngredientePlatoService() throws NamingException, IOException {
+        String uri = restClientGeneral.getResponse();
+        if (cacheRemoteIngredientePlatoService.containsKey(uri)) {
+            return cacheRemoteIngredientePlatoService.get(uri);
+        }
+        Properties jndiProperties = new Properties();
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
+        jndiProperties.put("jboss.naming.client.ejb.context", true);
+        Context context = new InitialContext(jndiProperties);
+        String name = "ejb:/modeloCadena/RemoteIngredientePlatoService!com.example.IRemoteServiciosDatos.IRemoteIngredientePlatoService";
+        IRemoteIngredientePlatoService remoteIngredientePlatoService = (IRemoteIngredientePlatoService) context.lookup(name);
+        cacheRemoteIngredientePlatoService.put(uri, remoteIngredientePlatoService);
+        return remoteIngredientePlatoService;
+    }
+
 
 }

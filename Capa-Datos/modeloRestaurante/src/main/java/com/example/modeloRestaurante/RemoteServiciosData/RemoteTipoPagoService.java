@@ -37,4 +37,9 @@ public class RemoteTipoPagoService implements IRemoteTipoPagoService {
     public List<TipoPago> obtenerTodosTipoPagos() {
         return tipoPagoService.obtenerTodosTipoPagos();
     }
+
+    @Override
+    public TipoPago obtenerTipoPagoPorNombre(String nombre) {
+        return tipoPagoService.obtenerTipoPagoPorNombre(nombre);
+    }
 }
