@@ -9,8 +9,8 @@ import java.io.IOException;
 
 @Service
 public interface IServicioUsuario {
-    Usuario obtenerUsuario(String username) throws NamingException, IOException;
-    Usuario actualizarUsuario(Usuario usuario) throws NamingException, IOException;
-    void EliminarUsuario(String username) throws NamingException, IOException;
-    UsuarioRolesResponse obtenerUsuarioRoles(String username) throws NamingException, IOException;
+    Usuario obtenerUsuario(String username, String uri) throws NamingException, IOException;
+    Usuario actualizarUsuario(Usuario usuario, String uri) throws NamingException, IOException;
+    void EliminarUsuario(String username, String uri) throws NamingException, IOException;
+    UsuarioRolesResponse obtenerUsuarioRoles(String username, String uri) throws NamingException, IOException;
 }

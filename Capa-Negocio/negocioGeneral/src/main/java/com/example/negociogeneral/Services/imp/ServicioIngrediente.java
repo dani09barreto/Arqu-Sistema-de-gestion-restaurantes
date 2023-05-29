@@ -20,27 +20,27 @@ public class ServicioIngrediente implements IServicioIngrediente {
     private IServiceLocator serviceLocator;
 
     @Override
-    public void agregarIngrediente(Ingrediente ingrediente) {
+    public void agregarIngrediente(Ingrediente ingrediente, String uri) {
 
     }
 
     @Override
-    public Ingrediente obtenerIngrediente(Long id) throws NamingException, IOException {
-        return serviceLocator.getRemoteIngredienteService().obtenerIngrediente(id);
+    public Ingrediente obtenerIngrediente(Long id, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteIngredienteService(uri).obtenerIngrediente(id);
     }
 
     @Override
-    public void actualizarIngrediente(Ingrediente ingrediente) {
-
-    }
-
-    @Override
-    public void eliminarIngrediente(Long id) {
+    public void actualizarIngrediente(Ingrediente ingrediente, String uri) {
 
     }
 
     @Override
-    public List<Ingrediente> obtenerIngredientesPorTipo(TipoIngrediente tipoIngrediente) {
+    public void eliminarIngrediente(Long id, String uri) {
+
+    }
+
+    @Override
+    public List<Ingrediente> obtenerIngredientesPorTipo(TipoIngrediente tipoIngrediente, String uri) {
         return null;
     }
 }

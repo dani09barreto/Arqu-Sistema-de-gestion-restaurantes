@@ -8,17 +8,17 @@ import java.io.IOException;
 
 @Service
 public interface IServiceLocator {
-    IRemoteBodegaService getRemoteBodegaService() throws Exception;
-    IRemoteCantidadIngredienteService getRemoteCantidadIngredienteService() throws IOException, NamingException;
-    IRemoteComentarioRestauranteService getRemoteComentarioRestauranteService() throws IOException, NamingException;
-    IRemoteEstadoEnvioService getRemoteEstadoEnvioService() throws IOException, NamingException;
-    IRemoteIngredientePlatoService getRemoteIngredientePlatoService() throws NamingException, IOException;
-    IRemoteUsuarioService getRemoteUsuarioService() throws NamingException, IOException;
-    IRemoteRoleService getRemoteRoleService() throws NamingException, IOException;
-    IRemoteMenuService getRemoteMenuService() throws NamingException, IOException;
-    IRemotePlatoService getRemotePlatoService() throws NamingException, IOException;
-    IRemoteIngredienteService getRemoteIngredienteService() throws NamingException, IOException;
-    IRemoteInventarioService getRemoteInventarioService() throws NamingException, IOException;
-    IRemoteRestauranteService getRemoteRestauranteService() throws NamingException, IOException;
-    IRemoteEnvioInventarioService getRemoteEnvioInventarioService() throws NamingException, IOException;
+    IRemoteBodegaService getRemoteBodegaService(String uri) throws Exception;
+    IRemoteCantidadIngredienteService getRemoteCantidadIngredienteService(String uri) throws IOException, NamingException;
+    IRemoteComentarioRestauranteService getRemoteComentarioRestauranteService(String uri) throws IOException, NamingException;
+    IRemoteEstadoEnvioService getRemoteEstadoEnvioService(String uri) throws IOException, NamingException;
+    IRemoteIngredientePlatoService getRemoteIngredientePlatoService(String uri) throws NamingException, IOException;
+    IRemoteUsuarioService getRemoteUsuarioService(String uri) throws NamingException, IOException;
+    IRemoteRoleService getRemoteRoleService(String uri) throws NamingException, IOException;
+    IRemoteMenuService getRemoteMenuService(String uri) throws NamingException, IOException;
+    IRemotePlatoService getRemotePlatoService(String uri) throws NamingException, IOException;
+    IRemoteIngredienteService getRemoteIngredienteService(String uri) throws NamingException, IOException;
+    IRemoteInventarioService getRemoteInventarioService(String uri) throws NamingException, IOException;
+    IRemoteRestauranteService getRemoteRestauranteService(String uri) throws NamingException, IOException;
+    IRemoteEnvioInventarioService getRemoteEnvioInventarioService(String uri) throws NamingException, IOException;
 }

@@ -9,9 +9,9 @@ import java.util.List;
 
 @Service
 public interface IServicioMenu {
-    Menu agregarMenu(Menu menu) throws NamingException, IOException;
-    void actualizarMenu(Menu menu) throws NamingException, IOException;
-    void eliminarMenu(Long id) throws NamingException, IOException;
-    Menu obtenerMenu(Long id) throws NamingException, IOException;
-    List<Menu> obtenerTodosMenus() throws NamingException, IOException;
+    Menu agregarMenu(Menu menu, String uri) throws NamingException, IOException;
+    void actualizarMenu(Menu menu, String uri) throws NamingException, IOException;
+    void eliminarMenu(Long id, String uri) throws NamingException, IOException;
+    Menu obtenerMenu(Long id, String uri) throws NamingException, IOException;
+    List<Menu> obtenerTodosMenus(String uri) throws NamingException, IOException;
 }
