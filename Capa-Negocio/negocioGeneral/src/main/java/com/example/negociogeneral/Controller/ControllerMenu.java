@@ -9,6 +9,7 @@ import com.example.negociogeneral.Payload.Request.NuevoMenuRequest;
 import com.example.negociogeneral.Payload.Request.NuevoPlatoRequest;
 import com.example.negociogeneral.Payload.Response.MenuResponse;
 import com.example.negociogeneral.Payload.Response.PlatoResponse;
+import com.example.negociogeneral.ServiceLocator.IResponseLB;
 import com.example.negociogeneral.Services.intf.IServicioIngrediente;
 import com.example.negociogeneral.Services.intf.IServicioMenu;
 import com.example.negociogeneral.Services.intf.IServicioPlato;
@@ -39,14 +40,19 @@ public class ControllerMenu {
     @Qualifier("servicioIngrediente")
     IServicioIngrediente servicioIngrediente;
 
+    @Autowired
+    @Qualifier("responseLB")
+    IResponseLB restClient;
+
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     public ResponseEntity <?> crearMenu(@RequestBody NuevoMenuRequest nuevoMenu){
         try {
+            String uri = restClient.getResponse();
             Menu menuTemp = Menu.builder()
                     .nombre(nuevoMenu.getNombre())
                     .build();
-            Menu menu = servicioMenu.agregarMenu(menuTemp);
+            Menu menu = servicioMenu.agregarMenu(menuTemp, uri);
 
             for (NuevoPlatoRequest plato: nuevoMenu.getPlatos()) {
                 Plato platoTemp = Plato.builder()
@@ -56,16 +62,16 @@ public class ControllerMenu {
                         .img(plato.getImagen())
                         .menu(menu)
                         .build();
-                Plato p = servicioPlato.agregarPlato(platoTemp);
+                Plato p = servicioPlato.agregarPlato(platoTemp, uri);
 
                 for (IngredienteRequest ingrediente: plato.getIngredientes()) {
-                    Ingrediente ingredienteTemp = servicioIngrediente.obtenerIngrediente(ingrediente.getIngredienteId());
+                    Ingrediente ingredienteTemp = servicioIngrediente.obtenerIngrediente(ingrediente.getIngredienteId(), uri);
                     IngredientePlato ingredientePlato = IngredientePlato.builder()
                             .ingrediente(ingredienteTemp)
                             .plato(p)
                             .cantidad(ingrediente.getCantidad())
                             .build();
-                    servicioPlato.agregarIngredienteAPlato(ingredientePlato);
+                    servicioPlato.agregarIngredienteAPlato(ingredientePlato, uri);
                 }
             }
             return ResponseEntity.ok("Menu creado correctamente");
@@ -79,9 +85,10 @@ public class ControllerMenu {
         List<MenuResponse> menusResponse = new ArrayList<>();
 
         try {
-            List<Menu> menus = servicioMenu.obtenerTodosMenus();
+            String uri = restClient.getResponse();
+            List<Menu> menus = servicioMenu.obtenerTodosMenus(uri);
             for (Menu menu: menus) {
-                List<Plato> platos = servicioPlato.obtenerTodosPlatosPorMenu(menu);
+                List<Plato> platos = servicioPlato.obtenerTodosPlatosPorMenu(menu, uri);
                 List<PlatoResponse> platoResponses = new ArrayList<>();
                 for (Plato plato: platos) {
                     PlatoResponse platoTemp = PlatoResponse.builder()

@@ -21,32 +21,37 @@ public class ServicioPlato implements IServicioPlato {
     private IServiceLocator serviceLocator;
 
     @Override
-    public Plato agregarPlato(Plato plato) throws NamingException, IOException {
-        return serviceLocator.getRemotePlatoService().agregarPlato(plato);
+    public Plato agregarPlato(Plato plato, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemotePlatoService(uri).agregarPlato(plato);
     }
 
     @Override
-    public void actualizarPlato(Plato plato) {
-
-    }
-
-    @Override
-    public void eliminarPlato(Long id) {
+    public void actualizarPlato(Plato plato, String uri) {
 
     }
 
     @Override
-    public Plato obtenerPlato(Long id) {
-        return null;
+    public void eliminarPlato(Long id, String uri) {
+
     }
 
     @Override
-    public List<Plato> obtenerTodosPlatosPorMenu(Menu menu) throws NamingException, IOException {
-        return serviceLocator.getRemotePlatoService().obtenerTodosPlatosPorMenu(menu.getId());
+    public Plato obtenerPlato(Long id, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemotePlatoService(uri).obtenerPlato(id);
     }
 
     @Override
-    public void agregarIngredienteAPlato(IngredientePlato ingredientePlato) throws NamingException, IOException {
-        serviceLocator.getRemoteIngredientePlatoService().agregarIngredientePlato(ingredientePlato);
+    public List<Plato> obtenerTodosPlatosPorMenu(Menu menu, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemotePlatoService(uri).obtenerTodosPlatosPorMenu(menu.getId());
+    }
+
+    @Override
+    public void agregarIngredienteAPlato(IngredientePlato ingredientePlato, String uri) throws NamingException, IOException {
+        serviceLocator.getRemoteIngredientePlatoService(uri).agregarIngredientePlato(ingredientePlato);
+    }
+
+    @Override
+    public List<IngredientePlato> obtenerIngredientesPorPlato(Long idPlato, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteIngredientePlatoService(uri).obtenerIngredientesPlato(idPlato);
     }
 }

@@ -16,7 +16,7 @@ public class ServicioEstadoEnvio implements IServicioEstadoEnvio {
     private IServiceLocator serviceLocator;
 
     @Override
-    public com.example.entidades.EstadoEnvio obtenerEstadoEnvioPorNombre(String nombre) throws NamingException, IOException {
-        return serviceLocator.getRemoteEstadoEnvioService().obtenerEstadoEnvioPorNombre(nombre);
+    public com.example.entidades.EstadoEnvio obtenerEstadoEnvioPorNombre(String nombre, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteEstadoEnvioService(uri).obtenerEstadoEnvioPorNombre(nombre);
     }
 }

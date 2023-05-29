@@ -1,6 +1,7 @@
 package com.example.negociogeneral.Controller;
 
 import com.example.entidades.Bodega;
+import com.example.negociogeneral.ServiceLocator.IResponseLB;
 import com.example.negociogeneral.Services.intf.IServicioBodega;
 import com.example.negociogeneral.WebSocket.WebSocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ public class ControllerBodega {
     @Autowired
     IServicioBodega servicioBodega;
 
+    @Autowired
+    @Qualifier("responseLB")
+    IResponseLB restClient;
+
     @PostMapping("/mensaje")
     public ResponseEntity<?> mensaje(){
         WebSocketHandler.enviarActualizacion("hola");
@@ -31,7 +36,8 @@ public class ControllerBodega {
     public ResponseEntity<List<Bodega>> listarBodegas(){
         List <Bodega> bodegas = null;
         try {
-            bodegas = servicioBodega.obtenerTodasBodegas();
+            String uri = restClient.getResponse();
+            bodegas = servicioBodega.obtenerTodasBodegas(uri);
             return ResponseEntity.ok().body(bodegas);
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,7 +49,8 @@ public class ControllerBodega {
     @GetMapping("/bodega={id}")
     public ResponseEntity <?> obtenerBodega(@PathVariable Long id){
         try {
-            Bodega bodega = servicioBodega.obtenerBodega(id);
+            String uri = restClient.getResponse();
+            Bodega bodega = servicioBodega.obtenerBodega(id, uri);
             return ResponseEntity.ok().body(bodega);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error al obtener bodega");
@@ -54,7 +61,8 @@ public class ControllerBodega {
     @PostMapping("/crear")
     public ResponseEntity<?> crearBodega(@RequestBody Bodega bodega){
         try {
-            servicioBodega.agregarBodega(bodega);
+            String uri = restClient.getResponse();
+            servicioBodega.agregarBodega(bodega, uri);
             return ResponseEntity.ok().body("Bodega creada exitosamente");
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,7 +75,8 @@ public class ControllerBodega {
     public ResponseEntity<?> acualizarBodega(@RequestBody Bodega bodega){
         Bodega bodegaActualizar = null;
         try {
-            bodegaActualizar = servicioBodega.obtenerBodega(bodega.getId());
+            String uri = restClient.getResponse();
+            bodegaActualizar = servicioBodega.obtenerBodega(bodega.getId(), uri);
             bodegaActualizar.setDireccion(bodega.getDireccion());
             bodegaActualizar.setNombre(bodega.getNombre());
             bodegaActualizar.setLat(bodega.getLat());
@@ -84,7 +93,8 @@ public class ControllerBodega {
     @DeleteMapping("/eliminar/bodega={id}")
     public ResponseEntity<?> eliminarBodega(@PathVariable("id") Long id){
         try {
-            servicioBodega.eliminarBodega(id);
+            String uri = restClient.getResponse();
+            servicioBodega.eliminarBodega(id, uri);
             return ResponseEntity.ok().body("Bodega eliminada exitosamente");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error al elimnar la bodega");
