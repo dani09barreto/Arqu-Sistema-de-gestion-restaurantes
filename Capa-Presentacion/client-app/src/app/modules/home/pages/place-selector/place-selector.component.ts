@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HomeService } from '../../services/home.service';
 @Component({
   selector: 'app-place-selector',
   templateUrl: './place-selector.component.html',
   styleUrls: ['./place-selector.component.css']
 })
-export class PlaceSelectorComponent {
-  lugares: string[] = ["Villa Lucero","La Colina","Fontanar","Salitre"];
+export class PlaceSelectorComponent implements OnInit{
+  restaurantes: string[] = ["Villa Lucero","La Colina","Fontanar","Salitre"];
   selectedPlace: string = "";
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private homeService: HomeService ) {}
+  ngOnInit(): void {
+    //this.readAvailableRestaurants();
+  }
 
   agregarLugar() {
     if (this.selectedPlace) {
@@ -22,6 +26,10 @@ export class PlaceSelectorComponent {
   onPlaceSelected(){
     console.log("Navegando...");
     this.router.navigate(['principal']);
+  }
 
+  readAvailableRestaurants(){
+    this.homeService.loadRestaurantes();
+    this.restaurantes = this.homeService.getRestaurantes();
   }
 }

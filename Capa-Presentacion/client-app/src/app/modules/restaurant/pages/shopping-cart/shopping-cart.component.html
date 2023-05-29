@@ -4,11 +4,11 @@
   <div *ngFor="let item of cartItems">
     <div class="product">
       <div class="product-info">
-        <h3>{{ item.name }}</h3>
-        <p>{{ item.description }}</p>
+        <h3>{{ item.nombre }}</h3>
+        <p>{{ item.descripcion }}</p>
       </div>
       <div class="product-price">
-        ${{ item.price }}
+        ${{ item.precio }}
       </div>
       <button (click)="removeFromCart(item)">Remove</button>
     </div>
@@ -16,4 +16,5 @@
   <div class="total">
     <h4>Total: ${{ getTotalPrice() }}</h4>
   </div>
+  <button (click)="goToPayment()">Go to Payment</button>
 </div>

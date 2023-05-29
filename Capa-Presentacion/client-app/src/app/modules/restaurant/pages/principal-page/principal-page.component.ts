@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { LoginPopupComponent } from '../../../auth/pages/login-popup/login-popup.component';
 import { Router } from '@angular/router';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-principal-page',
@@ -10,15 +11,19 @@ import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component'
   styleUrls: ['./principal-page.component.css']
 })
 export class PrincipalPageComponent implements OnInit{
+
   dialogRef: MatDialogRef<ShoppingCartComponent> | undefined;
   dialogRefLogin: MatDialogRef<LoginPopupComponent> | undefined;
 
   isCartOpen: boolean = false;
   cantidadProductos: number = 0;
-  constructor(public dialog: MatDialog, private router: Router) {}
+  constructor(public dialog: MatDialog, private router: Router,private cartService: CartService) {}
 
 
   ngOnInit(){
+    this.cartService.cantidadProductosSubject.subscribe(cantidad => {
+      this.cantidadProductos = cantidad;
+    });
     console.log("Que pasaa");
   }
 

@@ -1,0 +1,7 @@
+{
+  "/api*":{
+    "tarjet":"http://localhost:8190",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

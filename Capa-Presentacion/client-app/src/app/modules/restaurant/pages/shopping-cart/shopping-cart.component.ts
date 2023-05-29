@@ -1,52 +1,34 @@
 import { Component, EventEmitter, OnInit, Output, Inject } from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import { Router } from '@angular/router';
-
-
-interface Product {
-  name: string;
-  description: string;
-  price: number;
-}
+import { Plato } from 'src/app/core/models/plato.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent {
+export class ShoppingCartComponent implements OnInit{
+
+  cantidadProductos = 0;
 
   @Output() private update = new EventEmitter<string>();
   constructor(
     //private service:ServicioService,
      public dialogRef: MatDialogRef<ShoppingCartComponent>
      //private authService: AuthService,
-     ,
-      private router: Router
+     ,private router: Router,private cartService: CartService
+     ){}
+  ngOnInit(): void {
+    this.cartService.cantidadProductosSubject.subscribe(cantidad => {
+      this.cantidadProductos = cantidad;
+    });
+  }
 
-     ) { }
+  cartItems: Plato[] = [];
 
-
-
-  cartItems: Product[] = [
-    {
-      name: 'Product 1',
-      description: 'Description of Product 1',
-      price: 10.99
-    },
-    {
-      name: 'Product 2',
-      description: 'Description of Product 2',
-      price: 19.99
-    },
-    {
-      name: 'Product 3',
-      description: 'Description of Product 3',
-      price: 8.99
-    }
-  ];
-
-  removeFromCart(item: Product): void {
+  removeFromCart(item: Plato): void {
     const index = this.cartItems.indexOf(item);
     if (index !== -1) {
       this.cartItems.splice(index, 1);
@@ -54,6 +36,14 @@ export class ShoppingCartComponent {
   }
 
   getTotalPrice(): number {
-    return this.cartItems.reduce((total, item) => total + item.price, 0);
+    return this.cartItems.reduce((total, item) => total + item.precio, 0);
   }
+
+  goToPayment(){}
+
+  agregarAlCarrito(plato: Plato): void {
+    this.cartItems.push(plato);
+    // Opcionalmente, puedes realizar otras acciones relacionadas con agregar el plato al carrito
+  }
+
 }

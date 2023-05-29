@@ -3,6 +3,5 @@ export interface Plato {
   nombre: string;
   descripcion: string;
   precio: number;
-  img: string;
-  menuId: number;
+  imagen: string;
 }
