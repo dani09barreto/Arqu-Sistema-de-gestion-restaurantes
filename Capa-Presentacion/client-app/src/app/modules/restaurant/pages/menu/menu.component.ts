@@ -48,7 +48,7 @@ export class MenuComponent {
 
   agregarAlCarrito(plato: Plato): void {
     this.agregarAlCarritoEvent.emit(plato);
-    this.cartService.agregarProducto();
+    this.cartService.agregarProducto(plato);
     console.log('Plato agregado al carrito:', plato);
 
   }

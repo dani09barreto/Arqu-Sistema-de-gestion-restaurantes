@@ -33,6 +33,8 @@ export class PrincipalPageComponent implements OnInit{
   }
 
   abrirCarrito(){
+    this.cartService.update();
+    this.ngOnInit();
     if (this.dialogRef && this.dialogRef.componentInstance) {
       // El carrito ya está abierto, forzar cierre
       this.dialogRef.close();

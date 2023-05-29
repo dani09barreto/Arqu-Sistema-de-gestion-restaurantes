@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Plato } from 'src/app/core/models/plato.model';
@@ -11,20 +11,26 @@ import { CartService } from '../../services/cart.service';
 })
 export class ShoppingCartComponent implements OnInit{
 
-  cantidadProductos = 0;
+  cantidadProductos=0;
 
-  @Output() private update = new EventEmitter<string>();
+  ngOnInit(): void {
+    this.cartService.cantidadProductosSubject.subscribe(cantidad => {
+      this.cantidadProductos = cantidad;
+    });
+
+    this.cartService.platosEnCarritoSubject.subscribe(platos => {
+      this.cartItems = platos;
+    });
+    this.cartService.update();
+  }
+
   constructor(
     //private service:ServicioService,
      public dialogRef: MatDialogRef<ShoppingCartComponent>
      //private authService: AuthService,
      ,private router: Router,private cartService: CartService
-     ){}
-  ngOnInit(): void {
-    this.cartService.cantidadProductosSubject.subscribe(cantidad => {
-      this.cantidadProductos = cantidad;
-    });
-  }
+     ){    this.cartService.update();
+     }
 
   cartItems: Plato[] = [];
 
@@ -33,6 +39,9 @@ export class ShoppingCartComponent implements OnInit{
     if (index !== -1) {
       this.cartItems.splice(index, 1);
     }
+    this.cantidadProductos--;
+    this.cartService.removeProducto();
+    this.ngOnInit();
   }
 
   getTotalPrice(): number {
@@ -40,10 +49,5 @@ export class ShoppingCartComponent implements OnInit{
   }
 
   goToPayment(){}
-
-  agregarAlCarrito(plato: Plato): void {
-    this.cartItems.push(plato);
-    // Opcionalmente, puedes realizar otras acciones relacionadas con agregar el plato al carrito
-  }
 
 }
