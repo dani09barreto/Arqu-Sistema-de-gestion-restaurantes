@@ -2,7 +2,7 @@ import { Component,Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Menu } from 'src/app/core/models/menu.model';
 import { Plato } from 'src/app/core/models/plato.model';
-import { CartService } from '../../services/cart.service';
+import { CartService } from 'src/app/services/services-restaurant/cart.service';
 
 
 

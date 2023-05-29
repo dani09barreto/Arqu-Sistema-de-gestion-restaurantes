@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Plato } from 'src/app/core/models/plato.model';
-import { CartService } from '../../services/cart.service';
+import { CartService } from 'src/app/services/services-restaurant/cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
