@@ -26,7 +26,7 @@ public class PlatoPedido implements Serializable {
     private Pedido Pedidoid;
 
     @Column(name = "Platoid",nullable = false,unique = true)
-    private Integer Platoid;
+    private long Platoid;
 
 
 }

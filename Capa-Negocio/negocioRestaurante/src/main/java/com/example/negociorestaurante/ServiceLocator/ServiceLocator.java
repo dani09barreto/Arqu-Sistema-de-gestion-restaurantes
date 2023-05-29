@@ -29,46 +29,13 @@ public class ServiceLocator implements IServiceLocator {
     private final Map<String, IRemoteRegistroPagoService> cacheRemoteRegistroPagoService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteTipoIngredienteService> cacheRemoteTipoIngredienteService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteTipoPagoService> cacheRemoteTipoPagoService = new ConcurrentHashMap<>();
-    private final Map<String, IRemotePlatoRService> cacheRemotePlatoService = new ConcurrentHashMap<>();
-    private final Map<String, IRemoteIngredientePlatoService> cacheRemoteIngredientePlatoService = new ConcurrentHashMap<>();
+    private final Map<String, IRemotePlatoService> cacheRemotePlatoService = new ConcurrentHashMap<>();
 
-    public ServiceLocator(@Qualifier("responseLB") IResponseLB restClient) {
+    public ServiceLocator(@Qualifier("responseLBRest") IResponseLB restClient) {
         this.restClient = restClient;
     }
 
-    @Override
-    public IRemotePlatoRService getRemotePlatoService() throws Exception {
-        String uri = restClient.getResponse();
-        if(cacheRemotePlatoService.containsKey(uri)){
-            return cacheRemotePlatoService.get(uri);
-        }
-        Properties jndiProperties = new Properties();
-        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
-        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
-        jndiProperties.put("jboss.naming.client.ejb.context", true);
-        Context context = new InitialContext(jndiProperties);
-        String name = "ejb:/modeloRestaurante/RemotePlatoService!com.example.IRemoteServiciosDatos.IRemotePlatoRService";
-        IRemotePlatoRService iRemotePlatoService = (IRemotePlatoRService) context.lookup(name);
-        cacheRemotePlatoService.put(uri,iRemotePlatoService);
-        return iRemotePlatoService;
-    }
 
-    @Override
-    public IRemoteIngredientePlatoService getRemoteIngredientePlatoService() throws Exception {
-        String uri = restClient.getResponse();
-        if(cacheRemoteIngredientePlatoService.containsKey(uri)){
-            return cacheRemoteIngredientePlatoService.get(uri);
-        }
-        Properties jndiProperties = new Properties();
-        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
-        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
-        jndiProperties.put("jboss.naming.client.ejb.context", true);
-        Context context = new InitialContext(jndiProperties);
-        String name = "ejb:/modeloRestaurante/RemoteIngredientePlato!com.example.IRemoteServiciosDatos.IRemoteIngredientePlatoService";
-        IRemoteIngredientePlatoService iRemoteIngredientePlatoService = (IRemoteIngredientePlatoService) context.lookup(name);
-        cacheRemoteIngredientePlatoService.put(uri,iRemoteIngredientePlatoService);
-        return iRemoteIngredientePlatoService;
-    }
 
     @Override
     public IRemoteAdicionalesService getRemoteAdicionalesService() throws Exception {
@@ -307,6 +274,23 @@ public class ServiceLocator implements IServiceLocator {
         IRemoteUsuarioService remoteUsuarioService = (IRemoteUsuarioService) context.lookup(name);
         cacheRemoteUsuarioService.put(uri, remoteUsuarioService);
         return remoteUsuarioService;
+    }
+
+    @Override
+    public IRemotePlatoService getRemotePlatoService() throws Exception {
+        String uri = restClient.getResponse();
+        if(cacheRemotePlatoService.containsKey(uri)){
+            return cacheRemotePlatoService.get(uri);
+        }
+        Properties jndiProperties = new Properties();
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
+        jndiProperties.put("jboss.naming.client.ejb.context", true);
+        Context context = new InitialContext(jndiProperties);
+        String name = "ejb:/modeloCadena/RemotePlatoService!com.example.IRemoteServiciosDatos.IRemotePlatoService";
+        IRemotePlatoService remotePlatoService = (IRemotePlatoService) context.lookup(name);
+        cacheRemotePlatoService.put(uri,remotePlatoService);
+        return remotePlatoService;
     }
 
 }

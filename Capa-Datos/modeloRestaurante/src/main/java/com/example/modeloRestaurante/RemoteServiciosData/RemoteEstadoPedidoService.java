@@ -37,4 +37,11 @@ public class RemoteEstadoPedidoService implements IRemoteEstadoPedidoService {
     public List<EstadoPedido> obtenerTodosEstadosPedido() {
         return estadoPedidoService.obtenerTodosEstadosPedido();
     }
+
+    @Override
+    public EstadoPedido obtenerEstadoPedidoPorEstado(String estado) {
+        return estadoPedidoService.obtenerEstadoPedidoPorEstado(estado);
+    }
+
+
 }

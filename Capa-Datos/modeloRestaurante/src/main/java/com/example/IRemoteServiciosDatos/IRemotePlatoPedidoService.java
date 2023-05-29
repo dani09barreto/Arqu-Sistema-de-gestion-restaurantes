@@ -11,4 +11,5 @@ public interface IRemotePlatoPedidoService {
     void eliminarPlatoPedido(Long id);
     PlatoPedido obtenerPlatoPedido(Long id);
     List<PlatoPedido> obtenerTodosPlatoPedidos();
+    List<PlatoPedido> obtenerTodosPlatoPorPedido(long id);
 }

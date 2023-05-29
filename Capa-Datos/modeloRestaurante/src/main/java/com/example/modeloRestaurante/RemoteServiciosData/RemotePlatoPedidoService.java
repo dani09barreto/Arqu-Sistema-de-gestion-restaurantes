@@ -37,4 +37,9 @@ public class RemotePlatoPedidoService implements IRemotePlatoPedidoService {
     public List<PlatoPedido> obtenerTodosPlatoPedidos() {
         return platoPedidoService.obtenerTodosPlatoPedidos();
     }
+
+    @Override
+    public List<PlatoPedido> obtenerTodosPlatoPorPedido(long id) {
+        return platoPedidoService.obtenerTodosPlatoPorPedido(id);
+    }
 }
