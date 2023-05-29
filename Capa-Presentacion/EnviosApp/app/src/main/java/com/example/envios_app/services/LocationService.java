@@ -29,7 +29,7 @@ public class LocationService {
     //Location variables
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationRequest locationRequest;
-    @Setter
+
     LocationCallback locationCallback;
 
     public LocationService(Context context) {
@@ -67,5 +67,9 @@ public class LocationService {
         Log.d(TAG, "stopLocation: Stopping location updates.");
         if (fusedLocationProviderClient != null)
             fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+    }
+
+    public void setLocationCallback(LocationCallback locationCallback) {
+        this.locationCallback = locationCallback;
     }
 }

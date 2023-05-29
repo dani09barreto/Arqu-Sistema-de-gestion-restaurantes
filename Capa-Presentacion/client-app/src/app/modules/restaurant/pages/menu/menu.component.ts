@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component,Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { Menu } from 'src/app/core/models/menu.model';
+import { Plato } from 'src/app/core/models/plato.model';
+import { CartService } from '../../services/cart.service';
+
 
 
 @Component({
@@ -9,39 +13,43 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private cartService: CartService) {}
 
-  platos = [
+  menus: Menu[] = [
     {
-      nombre: 'Plato 1',
-      imagen: 'https://salcedocatering.com/wp-content/uploads/2019/05/3341-1080x675.jpg',
-      descripcion: 'Descripción del plato 1',
-      precio: 9.99
+      id: 1,
+      nombre: 'Desayunos',
+      platos: [
+        {
+          id: 1,
+          nombre: 'Huevos Pericos',
+          descripcion: 'Dos Huevos con Cebolla y Tomate',
+          precio: 10.99,
+          imagen: 'https://salcedocatering.com/wp-content/uploads/2019/05/3341-1080x675.jpg'
+        }
+      ]
     },
     {
-      nombre: 'Plato 2',
-      imagen: 'https://thumbs.dreamstime.com/b/un-plato-de-comida-sobre-una-mesa-madera-foto-alta-calidad-186030752.jpg',
-      descripcion: 'Descripción del plato 2',
-      precio: 12.99
-    },
-    {
-      nombre: 'Plato 3',
-      imagen: 'https://jumboalacarta.com.ar/wp-content/uploads/2019/06/shutterstock_521741356.jpg',
-      descripcion: 'Descripción del plato 3',
-      precio: 8.99
-    },
-    {
-      nombre: 'Plato 4',
-      imagen: 'https://cdn.colombia.com/gastronomia/2011/08/25/pizza-margarita-3684.jpg',
-      descripcion: 'Descripción del plato 4',
-      precio: 50.000
+      id: 2,
+      nombre: 'Almuerzos',
+      platos: [
+        {
+          id: 2,
+          nombre: 'Pastas Yakisova',
+          descripcion: 'Pasticas al estilo más Afroasitico',
+          precio: 12.99,
+          imagen: 'https://thumbs.dreamstime.com/b/un-plato-de-comida-sobre-una-mesa-madera-foto-alta-calidad-186030752.jpg'
+        }
+      ]
     }
-    // Agrega más objetos de platos si es necesario
   ];
 
-  agregarAlCarrito(plato: any) {
-    // Lógica para agregar el plato al carrito
-    console.log('Plato agregado al carrito:', plato);
-  }
+  @Output() agregarAlCarritoEvent = new EventEmitter<Plato>();
 
+  agregarAlCarrito(plato: Plato): void {
+    this.agregarAlCarritoEvent.emit(plato);
+    this.cartService.agregarProducto(plato);
+    console.log('Plato agregado al carrito:', plato);
+
+  }
 }

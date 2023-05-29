@@ -1,6 +1,9 @@
 package com.example.envios_app.utils;
 
 import android.os.AsyncTask;
+
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -28,7 +31,12 @@ public class ResponseLB {
         @Override
         protected String doInBackground(String... urls) {
             String url = urls[0];
-            OkHttpClient client = new OkHttpClient();
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(300, TimeUnit.SECONDS) // Timeout para establecer la conexión
+                    .readTimeout(300, TimeUnit.SECONDS) // Timeout para leer la respuesta
+                    .writeTimeout(300, TimeUnit.SECONDS) // Timeout para escribir la solicitud
+                    .hostnameVerifier((hostname, session) -> true)
+                    .build();
 
             Request request = new Request.Builder()
                     .url(url)
