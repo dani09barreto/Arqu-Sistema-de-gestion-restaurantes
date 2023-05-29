@@ -1,0 +1,113 @@
+.shopping-cart {
+  position: fixed;
+  top: 120px; /* Ajusta la distancia desde la parte superior según tus necesidades */
+  right: -90px; /* Ajusta la distancia desde el borde derecho según tus necesidades */
+  transform: translate(-50%, 0);
+  padding: 12px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  color: #ffff;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 290px; /* Ajusta el ancho según tus necesidades */
+}
+
+.shopping-cart h2 {
+  margin: 6px 0;
+}
+
+.shopping-cart .product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.shopping-cart .product-info {
+  text-align: left;
+}
+
+.shopping-cart .product h3 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.shopping-cart .product p {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.shopping-cart .product-price {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.shopping-cart button {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+}
+
+.shopping-cart button:hover {
+  background-color: #fdd10a;
+  color: #000000;
+}
+
+
+
+
+.shopping-cart h2 {
+  margin: 8px 0;
+}
+
+.shopping-cart form {
+  margin-top: 16px;
+}
+
+.shopping-cart form div {
+  margin-bottom: 16px;
+}
+
+.shopping-cart label {
+  margin-right: 8px;
+}
+
+.shopping-cart input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.shopping-cart button {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.shopping-cart button:hover {
+  background-color: #fdd10a;
+  color: #000000;
+}
+
+.shopping-cart .label-align {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  margin-right: 10px;
+}
