@@ -5,4 +5,5 @@
     <string name="error_last_label">el apellido no puede estar vacio</string>
     <string name="mail_error_label">El email no puede estar vacio.</string>
     <string name="error_pass_label">El password no puede estar vacio.</string>
+    <string name="map_id">a7e31d7ef602eb98</string>
 </resources>

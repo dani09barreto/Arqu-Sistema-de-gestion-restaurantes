@@ -14,8 +14,8 @@ public class BitmapUtils {
     //workaround from https://code.google.com/p/gmaps-api-issues/issues/detail?id=9011
     public static BitmapDescriptor getBitmapDescriptor(Context ctx, int id) {
         Drawable vectorDrawable = ContextCompat.getDrawable(ctx, id);
-        int h = vectorDrawable.getIntrinsicHeight();
-        int w = vectorDrawable.getIntrinsicWidth();
+        int h = 64;
+        int w = 64;
         vectorDrawable.setBounds(0, 0, w, h);
         Bitmap bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bm);

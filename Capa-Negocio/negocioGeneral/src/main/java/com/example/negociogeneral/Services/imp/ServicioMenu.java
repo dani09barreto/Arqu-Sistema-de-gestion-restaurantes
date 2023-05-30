@@ -18,27 +18,27 @@ public class ServicioMenu implements IServicioMenu {
     private IServiceLocator serviceLocator;
 
     @Override
-    public Menu agregarMenu(Menu menu) throws NamingException, IOException {
-        return serviceLocator.getRemoteMenuService().agregarMenu(menu);
+    public Menu agregarMenu(Menu menu, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteMenuService(uri).agregarMenu(menu);
     }
 
     @Override
-    public void actualizarMenu(Menu menu) throws NamingException, IOException {
-        serviceLocator.getRemoteMenuService().actualizarMenu(menu);
+    public void actualizarMenu(Menu menu, String uri) throws NamingException, IOException {
+        serviceLocator.getRemoteMenuService(uri).actualizarMenu(menu);
     }
 
     @Override
-    public void eliminarMenu(Long id) throws NamingException, IOException {
-        serviceLocator.getRemoteMenuService().eliminarMenu(id);
+    public void eliminarMenu(Long id, String uri) throws NamingException, IOException {
+        serviceLocator.getRemoteMenuService(uri).eliminarMenu(id);
     }
 
     @Override
-    public Menu obtenerMenu(Long id) throws NamingException, IOException {
-        return serviceLocator.getRemoteMenuService().obtenerMenu(id);
+    public Menu obtenerMenu(Long id, String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteMenuService(uri).obtenerMenu(id);
     }
 
     @Override
-    public List<Menu> obtenerTodosMenus() throws NamingException, IOException {
-        return serviceLocator.getRemoteMenuService().obtenerTodosMenus();
+    public List<Menu> obtenerTodosMenus(String uri) throws NamingException, IOException {
+        return serviceLocator.getRemoteMenuService(uri).obtenerTodosMenus();
     }
 }

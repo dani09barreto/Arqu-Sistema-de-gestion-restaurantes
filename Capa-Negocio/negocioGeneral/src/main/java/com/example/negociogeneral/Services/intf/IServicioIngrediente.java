@@ -10,9 +10,9 @@ import java.util.List;
 
 @Service
 public interface IServicioIngrediente {
-    void agregarIngrediente(Ingrediente ingrediente);
-    Ingrediente obtenerIngrediente(Long id) throws NamingException, IOException;
-    void actualizarIngrediente(Ingrediente ingrediente);
-    void eliminarIngrediente(Long id);
-    List <Ingrediente> obtenerIngredientesPorTipo(TipoIngrediente tipoIngrediente);
+    void agregarIngrediente(Ingrediente ingrediente, String uri);
+    Ingrediente obtenerIngrediente(Long id, String uri) throws NamingException, IOException;
+    void actualizarIngrediente(Ingrediente ingrediente, String uri);
+    void eliminarIngrediente(Long id, String uri);
+    List <Ingrediente> obtenerIngredientesPorTipo(TipoIngrediente tipoIngrediente, String uri);
 }

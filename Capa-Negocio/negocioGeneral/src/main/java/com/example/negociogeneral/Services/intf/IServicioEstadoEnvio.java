@@ -8,5 +8,5 @@ import java.io.IOException;
 
 @Service
 public interface IServicioEstadoEnvio {
-    EstadoEnvio obtenerEstadoEnvioPorNombre(String nombre) throws NamingException, IOException;
+    EstadoEnvio obtenerEstadoEnvioPorNombre(String nombre, String uri) throws NamingException, IOException;
 }

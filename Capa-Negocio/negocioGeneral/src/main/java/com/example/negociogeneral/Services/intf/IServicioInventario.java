@@ -9,11 +9,13 @@ import java.util.List;
 
 @Service
 public interface IServicioInventario {
-    void agregarInventario(Inventario inventario) throws NamingException, IOException;
-    void actualizarInventario(Inventario inventario) throws NamingException, IOException;
-    void eliminarInventario(Long id) throws NamingException, IOException;
-    Inventario obtenerInventario(Long id) throws NamingException, IOException;
-    List<Inventario> obtenerTodosInventarioPorBodega(Bodega bodega, int page, int pageSize) throws NamingException, IOException;
-    Inventario obtenerTodosInventarioPorBodegaPorIngrediente(Bodega bodega, Ingrediente ingrediente) throws NamingException, IOException;
-    EnvioInventario agregarEnvioInventario(EnvioInventario envioInventario, List <CantidadIngrediente> ingredientesInventario) throws NamingException, IOException;
+    void agregarInventario(Inventario inventario, String uri) throws NamingException, IOException;
+    void actualizarInventario(Inventario inventario, String uri) throws NamingException, IOException;
+    void eliminarInventario(Long id, String uri) throws NamingException, IOException;
+    Inventario obtenerInventario(Long id, String uri) throws NamingException, IOException;
+    List<Inventario> obtenerTodosInventarioPorBodega(Bodega bodega, int page, int pageSize, String uri) throws NamingException, IOException;
+    Inventario obtenerTodosInventarioPorBodegaPorIngrediente(Bodega bodega, Ingrediente ingrediente, String uri) throws NamingException, IOException;
+    EnvioInventario agregarEnvioInventario(EnvioInventario envioInventario, List <CantidadIngrediente> ingredientesInventario, String uri) throws NamingException, IOException;
+    EnvioInventario obtenerEnvioInventario(Long id, String uri) throws NamingException, IOException;
+    void actualizarEnvioInventario(Long idInventario, String nameEstado, String uri) throws NamingException, IOException;
 }

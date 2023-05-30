@@ -2,6 +2,7 @@ package com.example.negociogeneral.Security.service;
 
 
 import com.example.entidades.RolUsuario;
+import com.example.negociogeneral.ServiceLocator.IResponseLB;
 import com.example.negociogeneral.ServiceLocator.IServiceLocator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,6 +25,9 @@ public class ServicioUsuario implements UserDetailsService{
     @Autowired
     @Qualifier("serviceLocator")
     private IServiceLocator serviceLocator;
+    @Autowired
+    @Qualifier("responseLB")
+    IResponseLB restClient;
 
     private Set<SimpleGrantedAuthority> getAuthority(List<RolUsuario> rolesUsuario){
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
@@ -36,7 +40,8 @@ public class ServicioUsuario implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         try {
-            List <RolUsuario> rolesUsuario = serviceLocator.getRemoteUsuarioService().obtenerRolUsuarioPorNombreUsuario(s);
+            String uri = restClient.getResponse();
+            List <RolUsuario> rolesUsuario = serviceLocator.getRemoteUsuarioService(uri).obtenerRolUsuarioPorNombreUsuario(s);
             if (rolesUsuario == null) {
                 throw new UsernameNotFoundException("Invalid username or password.");
             }

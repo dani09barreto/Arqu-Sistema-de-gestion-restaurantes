@@ -1,5 +1,6 @@
 package com.example.envios_app.activities;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -35,5 +36,15 @@ public abstract class BasicActivity extends AppCompatActivity {
         ((App) getApplicationContext()).getAppComponent().inject(this);
         super.onCreate(savedInstanceState);
         loadingDialog = new LoadingDialog(this);
+    }
+
+    protected boolean existeDestinoAuth(){
+        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("direccionAuth", null) != null;
+    }
+
+    protected String getDestinoAuth(){
+        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("direccionAuth", null);
     }
 }

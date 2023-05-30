@@ -1,5 +1,7 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DespachadorServicesService } from 'src/app/services/despachador-services.service';
 import { HomeService } from 'src/app/services/service-home/home.service';
 @Component({
   selector: 'app-place-selector',
@@ -9,10 +11,17 @@ import { HomeService } from 'src/app/services/service-home/home.service';
 export class PlaceSelectorComponent implements OnInit{
   restaurantes: string[] = ["Restaurante 1","Restaurante 2"];
   selectedPlace: string = "";
+  xUpstreamValue: string = '';
 
-  constructor(private router: Router, private homeService: HomeService ) {}
+  constructor(private router: Router, private homeService: HomeService, private servicioDespacher : DespachadorServicesService ) {}
   ngOnInit(): void {
     //this.readAvailableRestaurants();
+    console.log("Iniciando...");
+    this.obtenerValorXUpstream();
+  }
+  obtenerValorXUpstream(): void{
+    console.log('Obteniendo URL del despachador');
+    this.servicioDespacher.getUrlDespachador('auth');
   }
 
   agregarLugar() {
