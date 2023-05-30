@@ -27,16 +27,12 @@ public class ControllerRestaurante {
     @Qualifier("responseLB")
     IResponseLB restClient;
 
-    @GetMapping("/listar/nombres")
+    @GetMapping("/listar")
     public ResponseEntity <?> listarRestaurantes(){
         try {
             String uri = restClient.getResponse();
             List < Restaurante> restaurantes = servicioRestaurante.obtenerTodosRestaurantes(uri);
-            List<String> nombresRestaurantes = new ArrayList<>();
-            for (Restaurante restaurante: restaurantes) {
-                nombresRestaurantes.add(restaurante.getNombre());
-            }
-            return ResponseEntity.ok(nombresRestaurantes);
+            return ResponseEntity.ok(restaurantes);
         } catch (NamingException | IOException e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("Error al obtener restaurantes");

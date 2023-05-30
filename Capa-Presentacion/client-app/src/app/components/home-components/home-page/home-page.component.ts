@@ -4,6 +4,7 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { HttpResponse } from '@angular/common/http';
 import { HomeService } from 'src/app/services/service-home/home.service';
 import { LoginPopupComponent } from '../../auth-components/login-popup/login-popup.component';
+import { DespachadorServicesService } from 'src/app/services/despachador-services.service';
 
 
 
@@ -14,8 +15,13 @@ import { LoginPopupComponent } from '../../auth-components/login-popup/login-pop
   providers: [HomeService]
 })
 export class HomePageComponent{
+
   dialogRefLogin: MatDialogRef<LoginPopupComponent> | undefined;
   constructor(public dialog: MatDialog,private servicio: HomeService) {}
+  onInit(): void {
+    console.log('Iniciando... a');
+  }
+
 
   obtenerDatos(): void {
     this.servicio.getDatos().subscribe(

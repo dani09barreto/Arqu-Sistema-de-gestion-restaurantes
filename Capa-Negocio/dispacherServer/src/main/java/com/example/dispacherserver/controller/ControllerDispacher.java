@@ -1,9 +1,13 @@
 package com.example.dispacherserver.controller;
 
+import com.example.dispacherserver.ResponseLB.IResponseLB;
 import com.example.dispacherserver.payload.DestServer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,6 +25,10 @@ import java.util.concurrent.TimeUnit;
 @Controller
 @RequestMapping("/api/dispatcher")
 public class ControllerDispacher {
+
+    @Autowired
+    @Qualifier("responseLB")
+    private IResponseLB responseLB;
 
     private ConcurrentHashMap<String, String> serverMap;
     @Value("${server.configurations}")
@@ -91,13 +99,25 @@ public class ControllerDispacher {
     }
 
 
-    @GetMapping(value = "/dest={destination}", produces = "application/json")
+    @GetMapping(value = "/dest={destination}")
     public ResponseEntity<?> dispatcher(@PathVariable String destination) {
         String server = serverMap.get(destination);
         if (server == null){
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(new DestServer(server));
+        }
+    }
+    @GetMapping("/dest={destination}/server")
+    public ResponseEntity<?> dispatcherServer(@PathVariable String destination) {
+        System.out.println("se recibe destino :"  + destination);
+        String server = serverMap.get(destination);
+        if (server == null){
+            return ResponseEntity.notFound().build();
+        } else {
+            String uriDest = responseLB.getResponse(server);
+            System.out.println("Se devuelve ruta de conexion: " + uriDest);
+            return ResponseEntity.ok(new DestServer(uriDest));
         }
     }
 }
