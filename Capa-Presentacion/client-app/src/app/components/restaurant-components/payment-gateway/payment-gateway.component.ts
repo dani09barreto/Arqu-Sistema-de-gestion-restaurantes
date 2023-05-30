@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './payment-gateway.component.html',
   styleUrls: ['./payment-gateway.component.css']
 })
-export class PaymentGatewayComponent {
+export class PaymentGatewayComponent{
 
   constructor(private router: Router){}
 

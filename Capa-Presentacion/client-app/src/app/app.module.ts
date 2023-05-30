@@ -13,6 +13,8 @@ import { PaymentGatewayComponent } from './components/restaurant-components/paym
 import { PlaceSelectorComponent } from './components/home-components/place-selector/place-selector.component';
 import { LoginPopupComponent } from './components/auth-components/login-popup/login-popup.component';
 import { HomePageComponent } from './components/home-components/home-page/home-page.component';
+import { PrincipalGeneralComponent } from './components/general-components/principal-general/principal-general.component';
+import { PrincipalLocalComponent } from './components/restaurantAdmin-components/principal-local/principal-local.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { HomePageComponent } from './components/home-components/home-page/home-p
     PlaceSelectorComponent,
     LoginPopupComponent,
     HomePageComponent,
+    PrincipalGeneralComponent,
+    PrincipalLocalComponent,
   ],
   imports: [
     BrowserModule,

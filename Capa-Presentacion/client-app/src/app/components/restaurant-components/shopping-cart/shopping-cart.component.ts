@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Plato } from 'src/app/core/models/plato.model';
-import { CartService } from 'src/app/services/services-restaurant/cart.service';
-
+import { CartService } from 'src/app/shared/cart.service';
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
@@ -28,8 +27,10 @@ export class ShoppingCartComponent implements OnInit{
     //private service:ServicioService,
      public dialogRef: MatDialogRef<ShoppingCartComponent>
      //private authService: AuthService,
-     ,private router: Router,private cartService: CartService
-     ){    this.cartService.update();
+     ,private router: Router,private cartService: CartService,
+
+     )
+     {    this.cartService.update();
      }
 
   cartItems: Plato[] = [];
@@ -48,6 +49,13 @@ export class ShoppingCartComponent implements OnInit{
     return this.cartItems.reduce((total, item) => total + item.precio, 0);
   }
 
-  goToPayment(){}
+  goToPayment(): void {
+    // Realizar la navegación hacia el componente de pago
+   // Emitir evento para mostrar el contenido de pago
+    this.cartService.mostrarContenidoPago(true);
+    this.dialogRef.close();
+    console.log("Cierra Carrito")
 
+
+  }
 }

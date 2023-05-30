@@ -1,8 +1,9 @@
 .pago-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alinear a la izquierda */
-  width: 100%; /* Ocupar el 100% del ancho horizontal */
+  align-items: center;
+  justify-content: center; /* Alinear al inicio verticalmente */
+  width: 40%;
   margin: 0 auto;
   padding: 16px;
   background-color: rgba(0, 0, 0, 0.6);
@@ -15,25 +16,14 @@
 .usuario,
 .metodo-pago {
   margin-bottom: 16px;
+  text-align: left; /* Alinear a la izquierda */
 }
 
 .usuario {
   text-align: center;
 }
 
-.registro-btn {
-  background-color: #fdd10a;
-  color: #000000;
-  padding: 8px 16px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-}
-
-.registro-btn:hover {
-  background-color: #f9c200;
-}
-
+.registro-btn,
 .pago-btn {
   background-color: #fdd10a;
   color: #000000;
@@ -43,6 +33,7 @@
   cursor: pointer;
 }
 
+.registro-btn:hover,
 .pago-btn:hover {
   background-color: #f9c200;
 }

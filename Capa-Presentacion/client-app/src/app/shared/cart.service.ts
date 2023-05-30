@@ -9,6 +9,13 @@ export class CartService {
   private cantidadProductos = 0;
   cantidadProductosSubject = new Subject<number>();
 
+  private mostrarContenidoPagoSubject = new Subject<boolean>();
+  mostrarContenidoPago$ = this.mostrarContenidoPagoSubject.asObservable();
+
+  mostrarContenidoPago(mostrar: boolean): void {
+    this.mostrarContenidoPagoSubject.next(mostrar);
+  }
+
   getCantidadProducto(): number {
     return this.cantidadProductos;
   }

@@ -7,7 +7,7 @@ import { HomeService } from 'src/app/services/service-home/home.service';
   styleUrls: ['./place-selector.component.css']
 })
 export class PlaceSelectorComponent implements OnInit{
-  restaurantes: string[] = ["Villa Lucero","La Colina","Fontanar","Salitre"];
+  restaurantes: string[] = ["Restaurante 1","Restaurante 2"];
   selectedPlace: string = "";
 
   constructor(private router: Router, private homeService: HomeService ) {}
