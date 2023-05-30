@@ -10,7 +10,7 @@ import { LocalStorageService } from 'angular-web-storage';
 })
 export class DespachadorServicesService {
 
-  urlDespachador = 'http://localhost:8280/api/dispatcher';
+  urlDespachador = 'http://localhost:1000/api/dispatcher';
 
   constructor(private http: HttpClient,private localStorage: LocalStorageService) { }
 
