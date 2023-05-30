@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
-import com.example.entidades.Cliente;
+import com.example.modeloRestaurante.entidades.Cliente;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IClienteService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;

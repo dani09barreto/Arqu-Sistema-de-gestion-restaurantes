@@ -1,6 +1,10 @@
 package com.example.negociorestaurante.ServiceLocator;
 
-import com.example.IRemoteServiciosDatos.*;
+
+import com.example.IRemoteServiciosDatos.IRemoteIngredientePlatoService;
+import com.example.IRemoteServiciosDatos.IRemoteRoleService;
+import com.example.IRemoteServiciosDatos.IRemoteUsuarioService;
+import com.example.modeloRestaurante.IRemoteServiciosDatos.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +26,7 @@ public class ServiceLocator implements IServiceLocator {
     private final Map<String, IRemoteDescuentoFidelidadService> cacheRemoteDescuentoFidelidadService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteEstadoPedidoService> cacheRemoteEstadoPedidoService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteIngredienteService> cacheRemoteIngredienteService = new ConcurrentHashMap<>();
-    private final Map<String, IRemoteInventarioRService> cacheRemoteInventarioService = new ConcurrentHashMap<>();
+    private final Map<String, IRemoteInventarioService> cacheRemoteInventarioService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteMesaService> cacheRemoteMesaService = new ConcurrentHashMap<>();
     private final Map<String, IRemotePagoService> cacheRemotePagoService = new ConcurrentHashMap<>();
     private final Map<String, IRemotePedidoService> cacheRemotePedidoService = new ConcurrentHashMap<>();
@@ -126,7 +130,7 @@ public class ServiceLocator implements IServiceLocator {
     }
 
     @Override
-    public IRemoteInventarioRService getRemoteInventarioService() throws Exception {
+    public IRemoteInventarioService getRemoteInventarioService() throws Exception {
         String uri = restClientRest.getResponse();
         if(cacheRemoteInventarioService.containsKey(uri)){
             return cacheRemoteInventarioService.get(uri);
@@ -136,8 +140,8 @@ public class ServiceLocator implements IServiceLocator {
         jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
         jndiProperties.put("jboss.naming.client.ejb.context", true);
         Context context = new InitialContext(jndiProperties);
-        String name = "ejb:/modeloRestaurante/RemoteInventarioService!com.example.IRemoteServiciosDatos.IRemoteInventarioRService";
-        IRemoteInventarioRService remoteInventarioService = (IRemoteInventarioRService) context.lookup(name);
+        String name = "ejb:/modeloRestaurante/RemoteInventarioService!com.example.modeloRestaurante.IRemoteServiciosDatos.IRemoteInventarioService";
+        IRemoteInventarioService remoteInventarioService = (IRemoteInventarioService) context.lookup(name);
         cacheRemoteInventarioService.put(uri,remoteInventarioService);
         return remoteInventarioService;
     }

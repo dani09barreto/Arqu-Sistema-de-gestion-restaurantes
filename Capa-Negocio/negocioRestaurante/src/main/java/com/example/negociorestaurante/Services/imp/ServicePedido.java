@@ -1,6 +1,6 @@
 package com.example.negociorestaurante.Services.imp;
 
-import com.example.entidades.Pedido;
+import com.example.modeloRestaurante.entidades.Pedido;
 import com.example.negociorestaurante.ServiceLocator.IServiceLocator;
 import com.example.negociorestaurante.Services.intf.IServicePedido;
 import org.springframework.beans.factory.annotation.Autowired;

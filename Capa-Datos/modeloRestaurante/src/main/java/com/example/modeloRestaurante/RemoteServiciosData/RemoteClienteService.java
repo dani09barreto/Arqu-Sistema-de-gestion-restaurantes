@@ -1,7 +1,7 @@
 package com.example.modeloRestaurante.RemoteServiciosData;
 
-import com.example.IRemoteServiciosDatos.IRemoteClienteService;
-import com.example.entidades.Cliente;
+import com.example.modeloRestaurante.IRemoteServiciosDatos.IRemoteClienteService;
+import com.example.modeloRestaurante.entidades.Cliente;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IClienteService;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;

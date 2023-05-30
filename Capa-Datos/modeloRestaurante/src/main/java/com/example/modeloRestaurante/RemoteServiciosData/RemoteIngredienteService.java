@@ -1,7 +1,7 @@
 package com.example.modeloRestaurante.RemoteServiciosData;
 
-import com.example.IRemoteServiciosDatos.IRemoteIngredienteRService;
-import com.example.entidades.IngredienteR;
+import com.example.modeloRestaurante.IRemoteServiciosDatos.IRemoteIngredienteService;
+import com.example.modeloRestaurante.entidades.Ingrediente;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IIngredienteService;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
@@ -9,17 +9,17 @@ import jakarta.ejb.Stateless;
 import java.util.List;
 
 @Stateless
-public class RemoteIngredienteService implements IRemoteIngredienteRService {
+public class RemoteIngredienteService implements IRemoteIngredienteService {
     @EJB
     IIngredienteService iIngredienteService;
 
     @Override
-    public void agregarIngrediente(IngredienteR ingrediente) {
+    public void agregarIngrediente(Ingrediente ingrediente) {
         iIngredienteService.agregarIngrediente(ingrediente);
     }
 
     @Override
-    public void actualizarIngrediente(IngredienteR ingrediente) {
+    public void actualizarIngrediente(Ingrediente ingrediente) {
         iIngredienteService.actualizarIngrediente(ingrediente);
 
     }
@@ -30,12 +30,12 @@ public class RemoteIngredienteService implements IRemoteIngredienteRService {
     }
 
     @Override
-    public IngredienteR obtenerIngrediente(Long id) {
+    public Ingrediente obtenerIngrediente(Long id) {
         return iIngredienteService.obtenerIngrediente(id);
     }
 
     @Override
-    public List<IngredienteR> obtenerTodosIngredientes() {
+    public List<Ingrediente> obtenerTodosIngredientes() {
         return iIngredienteService.obtenerTodosIngredientes();
     }
 }

@@ -1,6 +1,6 @@
 package com.example.negociorestaurante.Services.intf;
 
-import com.example.entidades.EstadoPedido;
+import com.example.modeloRestaurante.entidades.EstadoPedido;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

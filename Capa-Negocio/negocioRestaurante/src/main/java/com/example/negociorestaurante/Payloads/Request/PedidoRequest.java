@@ -1,6 +1,7 @@
 package com.example.negociorestaurante.Payloads.Request;
 
-import com.example.entidades.Cliente;
+
+import com.example.modeloRestaurante.entidades.Cliente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

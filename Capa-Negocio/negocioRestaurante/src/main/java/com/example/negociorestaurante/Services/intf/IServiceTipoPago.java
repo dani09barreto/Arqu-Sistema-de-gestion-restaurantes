@@ -1,7 +1,7 @@
 package com.example.negociorestaurante.Services.intf;
 
-import com.example.entidades.TipoPago;
-import jakarta.ejb.Remote;
+
+import com.example.modeloRestaurante.entidades.TipoPago;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
