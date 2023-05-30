@@ -10,12 +10,14 @@ import com.example.envios_app.R;
 import com.example.envios_app.REST.IDespachadorService;
 import com.example.envios_app.REST.IUsuarioService;
 import com.example.envios_app.model.DestServer;
+import com.example.envios_app.model.ServicesRoutes;
 import com.example.envios_app.utils.ResponseLB;
 import com.example.envios_app.databinding.ActivityLoginBinding;
 import com.example.envios_app.model.AuthToken;
 import com.example.envios_app.model.LoginUser;
 import com.example.envios_app.utils.RetrofitClient;
 
+import java.math.BigInteger;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -31,8 +33,6 @@ public class LoginActivity extends BasicActivity {
     private ActivityLoginBinding binding;
     private IUsuarioService userService;
     private IDespachadorService despachadorService;
-    private static final String URL_DESPACHADOR = "http://192.168.10.8:100/";
-    private static final String DESTINO_AUTH = "auth";
 
 
     @Override
@@ -43,17 +43,21 @@ public class LoginActivity extends BasicActivity {
         getSupportActionBar().hide();
 
         if (!existeDestinoAuth()){
-            getUrlDespachador(URL_DESPACHADOR);
+            getUrlDespachador();
         }
 
         binding.loginButton.setOnClickListener(view -> getUrlAuth());
+        binding.singUpButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), SingUpActivity.class);
+            startActivity(intent);
+        });
     }
 
-    private void getUrlDespachador(String urlDespachador) {
-        responseLB.getResponse(URL_DESPACHADOR, new ResponseLB.ResponseCallback() {
+    private void getUrlDespachador() {
+        responseLB.getResponse(ServicesRoutes.getUrlLbDespachador(), new ResponseLB.ResponseCallback() {
             @Override
             public void onResponse(String headerValue) {
-                getUrlLBAuth(String.format("http://%s/api/dispatcher/", headerValue));
+                getUrlLBAuth(ServicesRoutes.getServerDespachador(headerValue));
             }
 
             @Override
@@ -67,7 +71,7 @@ public class LoginActivity extends BasicActivity {
 
         despachadorService = RetrofitClient.getRetrofitInstance(urlDespachador).create(IDespachadorService.class);
 
-        Call<DestServer> call = despachadorService.obtenerDestino(DESTINO_AUTH);
+        Call<DestServer> call = despachadorService.obtenerDestino(ServicesRoutes.getDestinoAuth());
         call.enqueue(new Callback<DestServer>() {
             @Override
             public void onResponse(Call<DestServer> call, Response<DestServer> response) {
@@ -75,9 +79,9 @@ public class LoginActivity extends BasicActivity {
                     runOnUiThread(() -> {
                         DestServer destServer = response.body();
                         if (destServer != null) {
-                            SharedPreferences sharedPref = getSharedPreferences("auth", Context.MODE_PRIVATE);
+                            SharedPreferences sharedPref = getSharedPreferences("session", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putString("direccion", destServer.getDireccion());
+                            editor.putString("direccionAuth", destServer.getDireccion());
                             editor.apply();
                         }
                     });
@@ -93,10 +97,11 @@ public class LoginActivity extends BasicActivity {
     }
 
     private void getUrlAuth(){
+        loadingDialog.show();
         responseLB.getResponse(getDestinoAuth(), new ResponseLB.ResponseCallback() {
             @Override
             public void onResponse(String headerValue) {
-                doLogin(String.format("http://%s/api/auth/", headerValue));
+                doLogin(ServicesRoutes.getServerAuth(headerValue));
             }
 
             @Override
@@ -107,7 +112,7 @@ public class LoginActivity extends BasicActivity {
     }
 
     private void doLogin(String urlAuth) {
-
+        loadingDialog.show();
         String user = Objects.requireNonNull(binding.loginUsername.getEditText()).getText().toString();
         String pass = Objects.requireNonNull(binding.loginPass.getEditText()).getText().toString();
 
@@ -126,7 +131,6 @@ public class LoginActivity extends BasicActivity {
         }
 
         userService = RetrofitClient.getRetrofitInstance(urlAuth).create(IUsuarioService.class);
-        loadingDialog.show();
         LoginUser loginUser = new LoginUser(user, pass);
         Call<AuthToken> call = userService.login(loginUser);
         call.enqueue(new Callback<AuthToken>() {
@@ -138,7 +142,9 @@ public class LoginActivity extends BasicActivity {
                         SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("token", token.getToken());
+                        editor.putString("username", loginUser.getUsername());
                         editor.apply();
+
                         loadingDialog.dismissDialog();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     });
@@ -158,17 +164,6 @@ public class LoginActivity extends BasicActivity {
         });
 
 
-    }
-
-
-    private boolean existeDestinoAuth(){
-        sharedPreferences = getSharedPreferences("auth", Context.MODE_PRIVATE);
-        return sharedPreferences.getString("direccion", null) != null;
-    }
-
-    private String getDestinoAuth(){
-        sharedPreferences = getSharedPreferences("auth", Context.MODE_PRIVATE);
-        return sharedPreferences.getString("direccion", null);
     }
 
     public static Intent createIntent(Activity activity) {
