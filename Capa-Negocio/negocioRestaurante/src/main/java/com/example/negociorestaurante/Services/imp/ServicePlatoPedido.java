@@ -1,10 +1,6 @@
 package com.example.negociorestaurante.Services.imp;
 
-<<<<<<< HEAD
-import com.example.entidades.PlatoPedido;
-=======
 import com.example.modeloRestaurante.entidades.PlatoPedido;
->>>>>>> develop
 import com.example.negociorestaurante.ServiceLocator.IServiceLocator;
 import com.example.negociorestaurante.Services.intf.IServicePlatoPedido;
 import org.springframework.beans.factory.annotation.Autowired;

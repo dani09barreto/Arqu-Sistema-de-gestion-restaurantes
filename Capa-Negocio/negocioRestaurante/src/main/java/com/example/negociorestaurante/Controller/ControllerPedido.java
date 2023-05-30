@@ -1,12 +1,11 @@
 package com.example.negociorestaurante.Controller;
 
 import com.example.entidades.*;
-<<<<<<< HEAD
-=======
+
 import com.example.entidades.Ingrediente;
 import com.example.modeloRestaurante.entidades.*;
 import com.example.modeloRestaurante.entidades.Inventario;
->>>>>>> develop
+
 import com.example.negociorestaurante.Payloads.Request.PedidoRequest;
 import com.example.negociorestaurante.Payloads.Request.PlatoRequest;
 import com.example.negociorestaurante.Payloads.Response.PedidoResponse;
@@ -122,11 +121,7 @@ public class ControllerPedido {
             for (PlatoIngredientesResponse p : pedido.getLista_plato()) {
                 List<IngredientePlato> ingredientesPlato = serviceIngredientePlato.obtenerIngredientesPlato(p.getPlato().getId());
                 for (IngredientePlato ip : ingredientesPlato) {
-<<<<<<< HEAD
-                    InventarioR inven = serviceInventario.obtenerInvetarioporIngrediente(ip.getIngrediente().getId());
-=======
                     Inventario inven = serviceInventario.obtenerInvetarioporIngrediente(ip.getIngrediente().getId());
->>>>>>> develop
                     inven.setCantidad(inven.getCantidad() - ip.getCantidad());
                     serviceInventario.actualizarInventario(inven);
                 }

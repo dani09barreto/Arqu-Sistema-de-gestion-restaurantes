@@ -1,10 +1,7 @@
 package com.example.negociorestaurante.Services.intf;
 
-<<<<<<< HEAD
-import com.example.entidades.Pedido;
-=======
 import com.example.modeloRestaurante.entidades.Pedido;
->>>>>>> develop
+
 
 import java.util.List;
 
