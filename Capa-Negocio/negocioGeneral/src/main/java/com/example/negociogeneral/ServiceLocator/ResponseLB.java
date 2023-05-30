@@ -10,7 +10,7 @@ import java.io.IOException;
 
 @Service
 public class ResponseLB implements IResponseLB{
-    private final static String URL = "http://192.168.10.8/";
+    private final static String URL = "http://localhost:81/";
     private final static String HEADER_NAME = "X-Upstream";
     @Override
     public String getResponse() throws IOException {

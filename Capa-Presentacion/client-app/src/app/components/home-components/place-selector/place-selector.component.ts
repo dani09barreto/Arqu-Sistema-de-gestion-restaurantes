@@ -1,44 +1,57 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DespachadorServicesService } from 'src/app/services/despachador-services.service';
-import { HomeService } from 'src/app/services/service-home/home.service';
+import { GeneralService } from 'src/app/services/service-general/general.service';
+import { DespachadorServicesService } from 'src/app/services/service-despachador/despachador.service';
+import { Restaurante } from 'src/app/core/models/restaurante.model';
+import { LocalStorageService } from 'angular-web-storage';
 @Component({
   selector: 'app-place-selector',
   templateUrl: './place-selector.component.html',
   styleUrls: ['./place-selector.component.css']
 })
 export class PlaceSelectorComponent implements OnInit{
-  restaurantes: string[] = ["Restaurante 1","Restaurante 2"];
+  nombresRestaurantes: string[] = [];
   selectedPlace: string = "";
   xUpstreamValue: string = '';
+  restaurantes: Restaurante[] = [];
 
-  constructor(private router: Router, private homeService: HomeService, private servicioDespacher : DespachadorServicesService ) {}
+
+  constructor(
+    private router: Router, private generalService: GeneralService
+    , private servicioDespacher : DespachadorServicesService
+    , private localStorage: LocalStorageService
+  ) {}
   ngOnInit(): void {
-    //this.readAvailableRestaurants();
     console.log("Iniciando...");
     this.obtenerValorXUpstream();
+
+    this.generalService.getRestaurantes().subscribe(
+      (restaurantes) => {
+        this.restaurantes = restaurantes;
+        this.nombresRestaurantes = this.restaurantes.map((restaurante) => restaurante.nombre);
+      },
+      (error) => {
+        console.error('Error al obtener los restaurantes', error);
+      }
+    );
+
   }
   obtenerValorXUpstream(): void{
     console.log('Obteniendo URL del despachador');
-    this.servicioDespacher.getUrlDespachador('auth');
+    this.servicioDespacher.getUrlDespachador('general');
   }
 
   agregarLugar() {
     if (this.selectedPlace) {
       alert(this.selectedPlace);
-      //this.lugares.push({ nombre: this.selectedPlace });
       this.selectedPlace = '';
     }
   }
 
   onPlaceSelected(){
+    console.log(this.selectedPlace);
+    this.localStorage.set('restauranteSesion',this.selectedPlace)
     console.log("Navegando...");
     this.router.navigate(['principal']);
-  }
-
-  readAvailableRestaurants(){
-    this.homeService.loadRestaurantes();
-    this.restaurantes = this.homeService.getRestaurantes();
   }
 }

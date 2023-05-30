@@ -2,8 +2,8 @@ import { Component,Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Menu } from 'src/app/core/models/menu.model';
 import { Plato } from 'src/app/core/models/plato.model';
+import { GeneralService } from 'src/app/services/service-general/general.service';
 import { CartService } from 'src/app/shared/cart.service';
-import { RestaurantService } from 'src/app/services/services-restaurant/restaurant.service';
 
 
 
@@ -14,14 +14,23 @@ import { RestaurantService } from 'src/app/services/services-restaurant/restaura
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private router: Router,private menuService: RestaurantService ,private cartService: CartService) {}
+  constructor(private router: Router,private menuService: GeneralService ,private cartService: CartService) {}
   ngOnInit(): void {
-    this.menus = this.menuService.getMenus();
+    this.menuService.getMenus().subscribe(
+      (menus) => {
+        this.menus = menus;
+      },
+      (error) => {
+        console.error('Error al obtener los restaurantes', error);
+      }
+    )
+  };
+
 /*
     this.menuService.getMenus().subscribe(menus => {
       this.menus = menus;
     });*/
-  }
+
 
   menus: Menu[] = [];
 
