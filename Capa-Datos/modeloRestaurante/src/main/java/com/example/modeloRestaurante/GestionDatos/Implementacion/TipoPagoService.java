@@ -40,4 +40,11 @@ public class TipoPagoService implements ITipoPagoService {
         return entityManager.createQuery("SELECT t FROM TipoPago t", TipoPago.class).getResultList();
     }
 
+    @Override
+    public TipoPago obtenerTipoPagoPorNombre(String nombre) {
+        return entityManager.createQuery("SELECT t FROM TipoPago t WHERE t.nombre = :nombre", TipoPago.class)
+                .setParameter("nombre", nombre)
+                .getSingleResult();
+    }
+
 }

@@ -6,9 +6,10 @@ import jakarta.ejb.Remote;
 import java.util.List;
 @Remote
 public interface IRemoteClienteService {
-    void agregarCliente(Cliente cliente);
+    Cliente agregarCliente(Cliente cliente);
     void actualizarCliente(Cliente cliente);
     void eliminarCliente(Long id);
     Cliente obtenerCliente(Long id);
+    Cliente obtenerClientePorEmail(String email);
     List<Cliente> obtenerTodosClientes();
 }

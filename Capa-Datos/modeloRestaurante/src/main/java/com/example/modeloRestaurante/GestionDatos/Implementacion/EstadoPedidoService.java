@@ -38,4 +38,12 @@ public class EstadoPedidoService implements IEstadoPedidoService {
     public List<EstadoPedido> obtenerTodosEstadosPedido() {
         return entityManager.createQuery("SELECT e FROM EstadoPedido e", EstadoPedido.class).getResultList();
     }
+
+    @Override
+    public EstadoPedido obtenerEstadoPedidoPorEstado(String estado) {
+        return entityManager.createQuery("SELECT e FROM EstadoPedido e WHERE e.estado = :estado", EstadoPedido.class)
+                .setParameter("estado", estado).getSingleResult();
+    }
+
+
 }

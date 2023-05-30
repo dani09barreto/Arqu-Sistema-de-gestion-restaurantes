@@ -6,7 +6,7 @@ import jakarta.ejb.Local;
 import java.util.List;
 @Local
 public interface IPedidoService {
-    void agregarPedido(Pedido pedido);
+    Pedido agregarPedido(Pedido pedido);
     void actualizarPedido(Pedido pedido);
     void eliminarPedido(Long id);
     Pedido obtenerPedido(Long id);

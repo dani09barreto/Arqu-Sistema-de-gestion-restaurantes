@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -20,12 +21,15 @@ public class Pedido implements Serializable {
     private long id;
 
     @Column(name = "tiempoestado",nullable = false)
-    private String tiempoestado;
+    private Date tiempoestado;
     @ManyToOne
     @JoinColumn(name = "Mesaid",nullable = false,unique = true)
     private Mesa Mesaid;
     @ManyToOne
     @JoinColumn(name = "Clienteid",nullable = false,unique = true)
     private Cliente Clienteid;
+    @ManyToOne
+    @JoinColumn(name = "EstadoPedidoid",nullable = false)
+    private EstadoPedido EstadoPedidoid;
 
 }

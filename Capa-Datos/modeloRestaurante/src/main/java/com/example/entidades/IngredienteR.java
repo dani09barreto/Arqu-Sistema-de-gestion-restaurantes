@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Entity
 @Builder
 @Table(name = "Ingrediente")
-public class Ingrediente implements Serializable {
+public class IngredienteR implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
