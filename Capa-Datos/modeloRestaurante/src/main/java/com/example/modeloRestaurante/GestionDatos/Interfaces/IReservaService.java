@@ -1,13 +1,11 @@
-package com.example.modeloRestaurante.IRemoteServiciosDatos;
+package com.example.modeloRestaurante.GestionDatos.Interfaces;
 
 import com.example.modeloRestaurante.entidades.Reserva;
-import com.example.modeloRestaurante.entidades.TipoIngrediente;
-import jakarta.ejb.Remote;
+import jakarta.ejb.Local;
 
 import java.util.List;
-
-@Remote
-public interface IRemoteReservaService {
+@Local
+public interface IReservaService {
     Reserva agregarReserva(Reserva reserva);
     void actualizarReserva(Reserva reserva);
     void eliminarReserva(Long id);

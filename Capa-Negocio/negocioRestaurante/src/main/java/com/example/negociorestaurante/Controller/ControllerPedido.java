@@ -64,6 +64,7 @@ public class ControllerPedido {
                 cliente = serviceCliente.agregarCliente(cliente);
             }
             EstadoPedido estadoPedido = serviceEstadoPedido.obtenerEstadoPedidoPorEstado("RECIBIDO");
+
             Pedido pedido1 = Pedido.builder()
                     .tiempoestado(new java.util.Date())
                     .Mesaid(mesa)

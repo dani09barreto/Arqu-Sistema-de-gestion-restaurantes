@@ -36,6 +36,7 @@ public class ServiceLocator implements IServiceLocator {
     private final Map<String, IRemoteTipoPagoService> cacheRemoteTipoPagoService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteIngredientePlatoService> cacheRemoteIngredientePlatoService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteRoleService> cacheRemoteRoleService = new ConcurrentHashMap<>();
+    private final Map<String, IRemoteReservaService> cacheRemoteReservaService = new ConcurrentHashMap<>();
 
     public ServiceLocator(@Qualifier("responseLBRest") IResponseLB restClientRest, @Qualifier("responseLBGeneral") IResponseLB restClientGeneral) {
         this.restClientRest = restClientRest;
@@ -265,6 +266,22 @@ public class ServiceLocator implements IServiceLocator {
         cacheRemoteTipoPagoService.put(uri,remoteTipoPagoService);
         return remoteTipoPagoService;
     }
+    @Override
+    public IRemoteReservaService getRemoteReservaService() throws Exception {
+        String uri = restClientRest.getResponse();
+        if(cacheRemoteReservaService.containsKey(uri)){
+            return cacheRemoteReservaService.get(uri);
+        }
+        Properties jndiProperties = new Properties();
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
+        jndiProperties.put("jboss.naming.client.ejb.context", true);
+        Context context = new InitialContext(jndiProperties);
+        String name = "ejb:/modeloRestaurante/RemoteReservaService!com.example.IRemoteServiciosDatos.IRemoteReservaService";
+        IRemoteReservaService remoteReservaService = (IRemoteReservaService) context.lookup(name);
+        cacheRemoteReservaService.put(uri,remoteReservaService);
+        return remoteReservaService;
+    }
  //Servicio remoto de usuario
     @Override
     public IRemoteUsuarioService getRemoteUsuarioService() throws NamingException, IOException {
@@ -298,6 +315,8 @@ public class ServiceLocator implements IServiceLocator {
         cacheRemoteRoleService.put(uri, remoteRoleService);
         return remoteRoleService;
     }
+
+
 
     @Override
     public IRemoteIngredientePlatoService getRemoteIngredientePlatoService() throws NamingException, IOException {
