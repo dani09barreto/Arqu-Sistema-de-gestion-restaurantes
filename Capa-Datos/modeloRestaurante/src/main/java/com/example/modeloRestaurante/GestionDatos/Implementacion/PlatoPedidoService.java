@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
-import com.example.entidades.PlatoPedido;
+import com.example.modeloRestaurante.entidades.PlatoPedido;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IPlatoPedidoService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -38,6 +38,11 @@ public class PlatoPedidoService implements IPlatoPedidoService {
     @Override
     public List<PlatoPedido> obtenerTodosPlatoPedidos() {
         return entityManager.createQuery("SELECT p FROM PlatoPedido p", PlatoPedido.class).getResultList();
+    }
+
+    @Override
+    public List<PlatoPedido> obtenerTodosPlatoPorPedido(long id) {
+        return entityManager.createQuery("SELECT P FROM PlatoPedido  p WHERE P.Pedidoid = :id",PlatoPedido.class).setParameter("id",id).getResultList();
     }
 
 }

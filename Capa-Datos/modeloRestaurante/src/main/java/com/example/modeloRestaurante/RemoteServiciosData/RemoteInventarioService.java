@@ -1,7 +1,7 @@
 package com.example.modeloRestaurante.RemoteServiciosData;
 
-import com.example.IRemoteServiciosDatos.IRemoteInventarioService;
-import com.example.entidades.Inventario;
+import com.example.modeloRestaurante.IRemoteServiciosDatos.IRemoteInventarioService;
+import com.example.modeloRestaurante.entidades.Inventario;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IInventarioService;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
@@ -36,5 +36,10 @@ public class RemoteInventarioService implements IRemoteInventarioService {
     @Override
     public List<Inventario> obtenerTodosInventarios() {
         return inventarioService.obtenerTodosInventarios();
+    }
+
+    @Override
+    public Inventario obtenerInvetarioporIngrediente(Long id) {
+        return inventarioService.obtenerInvetarioporIngrediente(id);
     }
 }

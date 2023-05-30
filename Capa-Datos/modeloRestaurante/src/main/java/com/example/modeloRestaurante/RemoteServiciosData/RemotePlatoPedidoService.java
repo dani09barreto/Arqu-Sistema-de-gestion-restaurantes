@@ -1,7 +1,7 @@
 package com.example.modeloRestaurante.RemoteServiciosData;
 
-import com.example.IRemoteServiciosDatos.IRemotePlatoPedidoService;
-import com.example.entidades.PlatoPedido;
+import com.example.modeloRestaurante.IRemoteServiciosDatos.IRemotePlatoPedidoService;
+import com.example.modeloRestaurante.entidades.PlatoPedido;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IPlatoPedidoService;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
@@ -36,5 +36,10 @@ public class RemotePlatoPedidoService implements IRemotePlatoPedidoService {
     @Override
     public List<PlatoPedido> obtenerTodosPlatoPedidos() {
         return platoPedidoService.obtenerTodosPlatoPedidos();
+    }
+
+    @Override
+    public List<PlatoPedido> obtenerTodosPlatoPorPedido(long id) {
+        return platoPedidoService.obtenerTodosPlatoPorPedido(id);
     }
 }

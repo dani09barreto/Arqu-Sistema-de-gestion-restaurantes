@@ -5,22 +5,22 @@
              version="3.0">
     <persistence-unit name="myPersistenceUnit">
         <jta-data-source>java:/MySqlDS</jta-data-source>
-        <class>com.example.entidades.Adicionales</class>
-        <class>com.example.entidades.AdicionalesPago</class>
-        <class>com.example.entidades.Cliente</class>
-        <class>com.example.entidades.DescuentoFidelidad</class>
-        <class>com.example.entidades.Ingrediente</class>
-        <class>com.example.entidades.IngredientePlato</class>
-        <class>com.example.entidades.Inventario</class>
-        <class>com.example.entidades.Mesa</class>
-        <class>com.example.entidades.Pago</class>
-        <class>com.example.entidades.Pedido</class>
-        <class>com.example.entidades.Plato</class>
-        <class>com.example.entidades.PlatoPedido</class>
-        <class>com.example.entidades.RegistroPago</class>
-        <class>com.example.entidades.TipoIngrediente</class>
-        <class>com.example.entidades.TipoPago</class>
-        <class>com.example.entidades.EstadoPedido</class>
+        <class>com.example.modeloRestaurante.entidades.Adicionales</class>
+        <class>com.example.modeloRestaurante.entidades.AdicionalesPago</class>
+        <class>com.example.modeloRestaurante.entidades.Cliente</class>
+        <class>com.example.modeloRestaurante.entidades.DescuentoFidelidad</class>
+        <class>com.example.modeloRestaurante.entidades.Ingrediente</class>
+        <class>com.example.modeloRestaurante.entidades.IngredientePlato</class>
+        <class>com.example.modeloRestaurante.entidades.Inventario</class>
+        <class>com.example.modeloRestaurante.entidades.Mesa</class>
+        <class>com.example.modeloRestaurante.entidades.Pago</class>
+        <class>com.example.modeloRestaurante.entidades.Pedido</class>
+        <class>com.example.modeloRestaurante.entidades.PlatoR</class>
+        <class>com.example.modeloRestaurante.entidades.PlatoPedido</class>
+        <class>com.example.modeloRestaurante.entidades.RegistroPago</class>
+        <class>com.example.modeloRestaurante.entidades.TipoIngrediente</class>
+        <class>com.example.modeloRestaurante.entidades.TipoPago</class>
+        <class>com.example.modeloRestaurante.entidades.EstadoPedido</class>
         <properties>
         </properties>
     </persistence-unit>

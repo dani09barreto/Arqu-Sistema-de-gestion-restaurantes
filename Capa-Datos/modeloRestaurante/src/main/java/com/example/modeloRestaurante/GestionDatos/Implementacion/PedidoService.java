@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
-import com.example.entidades.Pedido;
+import com.example.modeloRestaurante.entidades.Pedido;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IPedidoService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -13,8 +13,9 @@ public class PedidoService implements IPedidoService {
     private EntityManager entityManager;
 
     @Override
-    public void agregarPedido(Pedido pedido) {
+    public Pedido agregarPedido(Pedido pedido) {
         entityManager.persist(pedido);
+        return pedido;
     }
 
     @Override
