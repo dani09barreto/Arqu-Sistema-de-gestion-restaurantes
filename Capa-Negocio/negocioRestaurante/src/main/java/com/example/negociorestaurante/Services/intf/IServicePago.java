@@ -1,6 +1,5 @@
 package com.example.negociorestaurante.Services.intf;
 
-
 import com.example.modeloRestaurante.entidades.Pago;
 import org.springframework.stereotype.Service;
 

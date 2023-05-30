@@ -1,6 +1,6 @@
 <div class="menu-list">
   <div *ngFor="let menu of menus" class="menu">
-    <h2 style="color:white">{{ menu.nombre }}</h2>
+    <h2 style="color:white; margin-left: -11%;">{{ menu.nombre }}</h2>
     <div *ngFor="let plato of menu.platos" class="plato">
       <img [src]="plato.imagen" alt="Imagen del plato" class="imagen">
       <h3>{{ plato.nombre }}</h3>

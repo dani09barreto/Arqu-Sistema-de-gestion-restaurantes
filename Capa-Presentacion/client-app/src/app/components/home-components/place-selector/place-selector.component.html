@@ -1,4 +1,4 @@
 <span>Seleccionar Ubicación 🌎</span>
 <select class="custom-select" [(ngModel)]="selectedPlace" (change)="onPlaceSelected()">
-  <option *ngFor="let lugar of restaurantes" [value]="lugar">{{ lugar }}</option>
+  <option *ngFor="let lugar of nombresRestaurantes" [value]="lugar">{{ lugar }}</option>
 </select>

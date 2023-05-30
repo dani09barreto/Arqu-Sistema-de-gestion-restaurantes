@@ -2,6 +2,7 @@ package com.example.negociorestaurante.Services.intf;
 
 import com.example.modeloRestaurante.entidades.Pedido;
 
+
 import java.util.List;
 
 public interface IServicePedido {

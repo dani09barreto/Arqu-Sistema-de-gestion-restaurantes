@@ -2,6 +2,7 @@ package com.example.negociorestaurante.Controller;
 
 
 import com.example.modeloRestaurante.entidades.Inventario;
+
 import com.example.negociorestaurante.Services.intf.IServiceInventario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,9 +23,11 @@ public class ControllerInventario {
     @Qualifier("serviceInventario")
     IServiceInventario serviceInventario;
 
+
     @PreAuthorize("hasRole('ADMINRESTAURANTE')")
     @GetMapping("/listAll")
     public ResponseEntity<List<Inventario>> listarInventario() {
+
         try {
             return ResponseEntity.ok().body(serviceInventario.obtenerTodosInventarios());
         } catch (Exception e) {
@@ -32,6 +35,7 @@ public class ControllerInventario {
             return ResponseEntity.badRequest().build();
         }
     }
+
     @PostMapping("/agregar")
     public ResponseEntity<?> agregarInventario(@RequestBody Inventario inventario) throws Exception {
         try {
@@ -42,8 +46,10 @@ public class ControllerInventario {
             return ResponseEntity.badRequest().body("Error al agregar el inventario");
         }
     }
+
     @PostMapping("/actualizar")
     public ResponseEntity<?> actualizarInventario(@RequestBody Inventario inventario) throws Exception {
+
         try {
             serviceInventario.actualizarInventario(inventario);
             return ResponseEntity.ok().body("Inventario actualizado");

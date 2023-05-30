@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
-import { CartService } from 'src/app/services/services-restaurant/cart.service';
+import { CartService } from 'src/app/shared/cart.service';
 import { LoginPopupComponent } from '../../auth-components/login-popup/login-popup.component';
 
 @Component({
@@ -17,14 +17,26 @@ export class PrincipalPageComponent implements OnInit{
 
   isCartOpen: boolean = false;
   cantidadProductos: number = 0;
+  mostrarContenidoPago = false;
+
   constructor(public dialog: MatDialog, private router: Router,private cartService: CartService) {}
 
 
   ngOnInit(){
+
     this.cartService.cantidadProductosSubject.subscribe(cantidad => {
       this.cantidadProductos = cantidad;
     });
-    console.log("Que pasaa");
+
+    this.cartService.mostrarContenidoPago$.subscribe(mostrar => {
+      this.mostrarContenidoPago = mostrar;
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
+    });
+  }
+
+  scrollPlease(){
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }
 
   reloadPage() {
