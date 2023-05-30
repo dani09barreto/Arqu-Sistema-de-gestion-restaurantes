@@ -13,8 +13,9 @@ public class PedidoService implements IPedidoService {
     private EntityManager entityManager;
 
     @Override
-    public void agregarPedido(Pedido pedido) {
+    public Pedido agregarPedido(Pedido pedido) {
         entityManager.persist(pedido);
+        return pedido;
     }
 
     @Override

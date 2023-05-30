@@ -11,4 +11,5 @@ public interface IEstadoPedidoService {
     void eliminarEstadoPedido(Long id);
     EstadoPedido obtenerEstadoPedido(Long id);
     List<EstadoPedido> obtenerTodosEstadosPedido();
+    EstadoPedido obtenerEstadoPedidoPorEstado(String estado);
 }

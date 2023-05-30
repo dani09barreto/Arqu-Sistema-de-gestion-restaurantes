@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
-import com.example.entidades.Ingrediente;
+import com.example.entidades.IngredienteR;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IIngredienteService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -12,30 +12,30 @@ public class IngredienteService implements IIngredienteService {
     @PersistenceContext(name = "myPersistenceUnit")
     private EntityManager entityManager;
     @Override
-    public void agregarIngrediente(Ingrediente ingrediente) {
+    public void agregarIngrediente(IngredienteR ingrediente) {
         entityManager.persist(ingrediente);
     }
 
     @Override
-    public void actualizarIngrediente(Ingrediente ingrediente) {
+    public void actualizarIngrediente(IngredienteR ingrediente) {
         entityManager.merge(ingrediente);
     }
 
     @Override
     public void eliminarIngrediente(Long id) {
-        Ingrediente ingrediente = obtenerIngrediente(id);
+        IngredienteR ingrediente = obtenerIngrediente(id);
         if (ingrediente != null) {
             entityManager.remove(ingrediente);
         }
     }
 
     @Override
-    public Ingrediente obtenerIngrediente(Long id) {
-        return entityManager.find(Ingrediente.class, id);
+    public IngredienteR obtenerIngrediente(Long id) {
+        return entityManager.find(IngredienteR.class, id);
     }
 
     @Override
-    public List<Ingrediente> obtenerTodosIngredientes() {
-        return entityManager.createQuery("SELECT i FROM Ingrediente i", Ingrediente.class).getResultList();
+    public List<IngredienteR> obtenerTodosIngredientes() {
+        return entityManager.createQuery("SELECT i FROM IngredienteR i", IngredienteR.class).getResultList();
     }
 }

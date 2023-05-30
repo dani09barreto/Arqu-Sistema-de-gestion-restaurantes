@@ -40,4 +40,9 @@ public class PlatoPedidoService implements IPlatoPedidoService {
         return entityManager.createQuery("SELECT p FROM PlatoPedido p", PlatoPedido.class).getResultList();
     }
 
+    @Override
+    public List<PlatoPedido> obtenerTodosPlatoPorPedido(long id) {
+        return entityManager.createQuery("SELECT P FROM PlatoPedido  p WHERE P.Pedidoid = :id",PlatoPedido.class).setParameter("id",id).getResultList();
+    }
+
 }
