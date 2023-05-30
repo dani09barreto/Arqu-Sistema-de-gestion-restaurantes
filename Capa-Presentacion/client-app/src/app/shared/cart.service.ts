@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Plato } from 'src/app/core/models/plato.model';
 
+/**
+ * PENDIENTE CONVERTIR A PEDIDO RESPONSE
+ */
+
 @Injectable({
   providedIn: 'root'
 })
