@@ -7,9 +7,9 @@ import java.util.List;
 
 @Service
 public interface IServiceRegistroPago {
-    void agregarRegistroPago(RegistroPago registroPago);
-    void actualizarRegistroPago(RegistroPago registroPago);
-    void eliminarRegistroPago(Long id);
-    RegistroPago obtenerRegistroPago(Long id);
-    List<RegistroPago> obtenerTodosRegistroPagos();
+    void agregarRegistroPago(RegistroPago registroPago) throws Exception;
+    void actualizarRegistroPago(RegistroPago registroPago) throws Exception;
+    void eliminarRegistroPago(Long id) throws Exception;
+    RegistroPago obtenerRegistroPago(Long id) throws Exception;
+    List<RegistroPago> obtenerTodosRegistroPagos() throws Exception;
 }

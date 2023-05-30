@@ -14,28 +14,29 @@ public class ServiceRegistroPago implements IServiceRegistroPago {
     @Autowired
     @Qualifier("serviceLocator")
     private IServiceLocator serviceLocator;
-    @Override
-    public void agregarRegistroPago(RegistroPago registroPago) {
 
+    @Override
+    public void agregarRegistroPago(RegistroPago registroPago) throws Exception {
+        serviceLocator.getRemoteRegistroPagoService().agregarRegistroPago(registroPago);
     }
 
     @Override
-    public void actualizarRegistroPago(RegistroPago registroPago) {
-
+    public void actualizarRegistroPago(RegistroPago registroPago) throws Exception {
+        serviceLocator.getRemoteRegistroPagoService().actualizarRegistroPago(registroPago);
     }
 
     @Override
-    public void eliminarRegistroPago(Long id) {
-
+    public void eliminarRegistroPago(Long id) throws Exception {
+        serviceLocator.getRemoteRegistroPagoService().eliminarRegistroPago(id);
     }
 
     @Override
-    public RegistroPago obtenerRegistroPago(Long id) {
-        return null;
+    public RegistroPago obtenerRegistroPago(Long id) throws Exception {
+        return serviceLocator.getRemoteRegistroPagoService().obtenerRegistroPago(id);
     }
 
     @Override
-    public List<RegistroPago> obtenerTodosRegistroPagos() {
-        return null;
+    public List<RegistroPago> obtenerTodosRegistroPagos() throws Exception {
+        return serviceLocator.getRemoteRegistroPagoService().obtenerTodosRegistroPagos();
     }
 }

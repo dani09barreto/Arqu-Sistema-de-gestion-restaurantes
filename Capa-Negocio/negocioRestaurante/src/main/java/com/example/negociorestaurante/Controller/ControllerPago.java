@@ -2,9 +2,11 @@ package com.example.negociorestaurante.Controller;
 
 import com.example.entidades.Pago;
 import com.example.entidades.Pedido;
+import com.example.entidades.RegistroPago;
 import com.example.entidades.TipoPago;
 import com.example.negociorestaurante.Payloads.Request.PagoRequest;
 import com.example.negociorestaurante.Services.intf.IServicePago;
+import com.example.negociorestaurante.Services.intf.IServiceRegistroPago;
 import com.example.negociorestaurante.Services.intf.IServiceTipoPago;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Date;
 
 @Controller
 @RequestMapping("/api/restaurante/pago")
@@ -23,7 +27,9 @@ public class ControllerPago {
     @Autowired
     @Qualifier("serviceTipoPago")
     IServiceTipoPago serviceTipoPago;
-    private Pago pago;
+    @Autowired
+    @Qualifier("serviceRegistroPago")
+    IServiceRegistroPago serviceRegistroPago;
 
     @PostMapping("/agregar")
     public ResponseEntity<?> agregarPago(@RequestBody PagoRequest pagoRequest) throws Exception {
@@ -36,7 +42,8 @@ public class ControllerPago {
                     .valor(pagoRequest.getValor())
                     .build();
             servicePago.agregarPago(pago);
-
+            RegistroPago regis = RegistroPago.builder().fecha(new Date()).Pagoid(pago).build();
+            serviceRegistroPago.agregarRegistroPago(regis);
             return ResponseEntity.ok("Pago agregado");
 
         } catch (Exception e) {

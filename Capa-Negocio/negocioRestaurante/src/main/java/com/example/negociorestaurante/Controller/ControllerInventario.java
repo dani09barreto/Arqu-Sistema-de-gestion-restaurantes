@@ -21,8 +21,7 @@ public class ControllerInventario {
     public ResponseEntity<List<InventarioR>> listarInventario() {
         List<InventarioR> inventarios = null;
         try {
-            inventarios = serviceInventario.obtenerTodosInventarios();
-            return ResponseEntity.ok().body(inventarios);
+            return ResponseEntity.ok().body(serviceInventario.obtenerTodosInventarios());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();

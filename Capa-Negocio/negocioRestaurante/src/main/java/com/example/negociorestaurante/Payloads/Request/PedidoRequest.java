@@ -15,5 +15,5 @@ import java.util.List;
 public class PedidoRequest {
     private Long mesaId;
     private Cliente cliente;
-    private List <Long> platosId;
+    private List <PlatoRequest> platos;
 }

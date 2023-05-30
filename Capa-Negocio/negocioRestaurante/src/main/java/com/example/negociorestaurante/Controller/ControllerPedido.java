@@ -2,6 +2,7 @@ package com.example.negociorestaurante.Controller;
 
 import com.example.entidades.*;
 import com.example.negociorestaurante.Payloads.Request.PedidoRequest;
+import com.example.negociorestaurante.Payloads.Request.PlatoRequest;
 import com.example.negociorestaurante.Payloads.Response.PedidoResponse;
 import com.example.negociorestaurante.Payloads.Response.PlatoIngredientesResponse;
 import com.example.negociorestaurante.Payloads.Response.PlatoResponse;
@@ -65,25 +66,25 @@ public class ControllerPedido {
                     .EstadoPedidoid(estadoPedido)
                     .build();
             pedido1 = servicePedido.agregarPedido(pedido1);
-            for (Long platoId : pedido.getPlatosId()) {
+            for (PlatoRequest plato : pedido.getPlatos()) {
                 PlatoPedido platoPedido = PlatoPedido.builder()
                         .Pedidoid(pedido1)
-                        .cantidad(0)
-                        .Platoid(platoId)
+                        .cantidad(plato.getCantidad())
+                        .Platoid(plato.getId())
                         .build();
                 servicePlatoPedido.agregarPlatoPedido(platoPedido);
             }
 
             List<PlatoIngredientesResponse> platosIngredientes = new ArrayList<>();
-            for (Long platoId : pedido.getPlatosId()) {
-                List<IngredientePlato> ingredientesPlato = serviceIngredientePlato.obtenerIngredientesPlato(platoId);
-                Plato plato = ingredientesPlato.get(0).getPlato();
+            for (PlatoRequest plato : pedido.getPlatos()) {
+                List<IngredientePlato> ingredientesPlato = serviceIngredientePlato.obtenerIngredientesPlato(plato.getId());
+                Plato plato1 = ingredientesPlato.get(0).getPlato();
                 PlatoResponse platoResponse = PlatoResponse.builder()
-                        .id(plato.getId())
-                        .nombre(plato.getNombre())
-                        .precio(plato.getPrecio())
-                        .descripcion(plato.getDescripcion())
-                        .imagen(plato.getImg())
+                        .id(plato1.getId())
+                        .nombre(plato1.getNombre())
+                        .precio(plato1.getPrecio())
+                        .descripcion(plato1.getDescripcion())
+                        .imagen(plato1.getImg())
                         .build();
                 List<Ingrediente> ingredientes = new ArrayList<>();
                 for (IngredientePlato ingredientePlato : ingredientesPlato) {
