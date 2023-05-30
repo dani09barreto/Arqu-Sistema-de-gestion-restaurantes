@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Interfaces;
 
-import com.example.entidades.PlatoPedido;
+import com.example.modeloRestaurante.entidades.PlatoPedido;
 import jakarta.ejb.Local;
 
 import java.util.List;
@@ -11,4 +11,5 @@ public interface IPlatoPedidoService {
     void eliminarPlatoPedido(Long id);
     PlatoPedido obtenerPlatoPedido(Long id);
     List<PlatoPedido> obtenerTodosPlatoPedidos();
+    List<PlatoPedido> obtenerTodosPlatoPorPedido(long id);
 }

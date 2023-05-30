@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
-import com.example.entidades.EstadoPedido;
+import com.example.modeloRestaurante.entidades.EstadoPedido;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IEstadoPedidoService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -38,4 +38,12 @@ public class EstadoPedidoService implements IEstadoPedidoService {
     public List<EstadoPedido> obtenerTodosEstadosPedido() {
         return entityManager.createQuery("SELECT e FROM EstadoPedido e", EstadoPedido.class).getResultList();
     }
+
+    @Override
+    public EstadoPedido obtenerEstadoPedidoPorEstado(String estado) {
+        return entityManager.createQuery("SELECT e FROM EstadoPedido e WHERE e.estado = :estado", EstadoPedido.class)
+                .setParameter("estado", estado).getSingleResult();
+    }
+
+
 }

@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
-import com.example.entidades.RegistroPago;
+import com.example.modeloRestaurante.entidades.RegistroPago;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IRegistroPagoService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;

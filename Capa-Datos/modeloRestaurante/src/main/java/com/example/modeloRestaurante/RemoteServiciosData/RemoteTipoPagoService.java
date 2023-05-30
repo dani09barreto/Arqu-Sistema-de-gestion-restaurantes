@@ -1,7 +1,7 @@
 package com.example.modeloRestaurante.RemoteServiciosData;
 
-import com.example.IRemoteServiciosDatos.IRemoteTipoPagoService;
-import com.example.entidades.TipoPago;
+import com.example.modeloRestaurante.IRemoteServiciosDatos.IRemoteTipoPagoService;
+import com.example.modeloRestaurante.entidades.TipoPago;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.ITipoPagoService;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
@@ -36,5 +36,10 @@ public class RemoteTipoPagoService implements IRemoteTipoPagoService {
     @Override
     public List<TipoPago> obtenerTodosTipoPagos() {
         return tipoPagoService.obtenerTodosTipoPagos();
+    }
+
+    @Override
+    public TipoPago obtenerTipoPagoPorNombre(String nombre) {
+        return tipoPagoService.obtenerTipoPagoPorNombre(nombre);
     }
 }

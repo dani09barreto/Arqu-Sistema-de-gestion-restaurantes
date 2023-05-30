@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Interfaces;
 
-import com.example.entidades.TipoPago;
+import com.example.modeloRestaurante.entidades.TipoPago;
 import jakarta.ejb.Local;
 
 import java.util.List;
@@ -11,4 +11,5 @@ public interface ITipoPagoService {
     void eliminarTipoPago(Long id);
     TipoPago obtenerTipoPago(Long id);
     List<TipoPago> obtenerTodosTipoPagos();
+    TipoPago obtenerTipoPagoPorNombre(String nombre);
 }

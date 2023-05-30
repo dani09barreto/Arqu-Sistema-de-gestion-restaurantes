@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Interfaces;
 
-import com.example.entidades.EstadoPedido;
+import com.example.modeloRestaurante.entidades.EstadoPedido;
 import jakarta.ejb.Local;
 
 import java.util.List;
@@ -11,4 +11,5 @@ public interface IEstadoPedidoService {
     void eliminarEstadoPedido(Long id);
     EstadoPedido obtenerEstadoPedido(Long id);
     List<EstadoPedido> obtenerTodosEstadosPedido();
+    EstadoPedido obtenerEstadoPedidoPorEstado(String estado);
 }

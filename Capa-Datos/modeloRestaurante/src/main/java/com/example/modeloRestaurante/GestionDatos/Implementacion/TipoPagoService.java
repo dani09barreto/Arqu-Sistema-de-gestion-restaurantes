@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
-import com.example.entidades.TipoPago;
+import com.example.modeloRestaurante.entidades.TipoPago;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.ITipoPagoService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -38,6 +38,13 @@ public class TipoPagoService implements ITipoPagoService {
     @Override
     public List<TipoPago> obtenerTodosTipoPagos() {
         return entityManager.createQuery("SELECT t FROM TipoPago t", TipoPago.class).getResultList();
+    }
+
+    @Override
+    public TipoPago obtenerTipoPagoPorNombre(String nombre) {
+        return entityManager.createQuery("SELECT t FROM TipoPago t WHERE t.nombre = :nombre", TipoPago.class)
+                .setParameter("nombre", nombre)
+                .getSingleResult();
     }
 
 }

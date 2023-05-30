@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
-import com.example.entidades.Inventario;
+import com.example.modeloRestaurante.entidades.Inventario;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IInventarioService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -38,6 +38,11 @@ public class InventarioService implements IInventarioService {
     @Override
     public List<Inventario> obtenerTodosInventarios() {
         return entityManager.createQuery("SELECT i FROM Inventario i", Inventario.class).getResultList();
+    }
+
+    @Override
+    public Inventario obtenerInvetarioporIngrediente(Long id) {
+        return entityManager.createQuery("SELECT i FROM Inventario i WHERE i.Ingredienteid = :id", Inventario.class).setParameter("id", id).getSingleResult();
     }
 
 }

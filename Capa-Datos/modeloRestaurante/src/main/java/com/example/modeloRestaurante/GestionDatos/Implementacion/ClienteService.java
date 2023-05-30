@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
-import com.example.entidades.Cliente;
+import com.example.modeloRestaurante.entidades.Cliente;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IClienteService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -13,8 +13,9 @@ public class ClienteService implements IClienteService {
     private EntityManager entityManager;
 
     @Override
-    public void agregarCliente(Cliente cliente) {
+    public Cliente agregarCliente(Cliente cliente) {
         entityManager.persist(cliente);
+        return cliente;
     }
 
     @Override
@@ -33,6 +34,13 @@ public class ClienteService implements IClienteService {
     @Override
     public Cliente obtenerCliente(Long id) {
         return entityManager.find(Cliente.class, id);
+    }
+
+    @Override
+    public Cliente obtenerClientePorEmail(String email) {
+        return entityManager.createQuery("SELECT c FROM Cliente c WHERE c.email = :email", Cliente.class)
+                .setParameter("email", email)
+                .getSingleResult();
     }
 
     @Override
