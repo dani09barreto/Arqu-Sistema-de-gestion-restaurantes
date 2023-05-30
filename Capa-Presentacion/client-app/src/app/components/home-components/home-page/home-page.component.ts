@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaceSelectorComponent } from '../place-selector/place-selector.component';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import { LoginPopupComponent } from '../../../auth/pages/login-popup/login-popup.component';
-import { HomeService } from '../../services/home.service';
 import { HttpResponse } from '@angular/common/http';
+import { HomeService } from 'src/app/services/service-home/home.service';
+import { LoginPopupComponent } from '../../auth-components/login-popup/login-popup.component';
+import { DespachadorServicesService } from 'src/app/services/despachador-services.service';
 
 
 
@@ -14,8 +15,13 @@ import { HttpResponse } from '@angular/common/http';
   providers: [HomeService]
 })
 export class HomePageComponent{
+
   dialogRefLogin: MatDialogRef<LoginPopupComponent> | undefined;
   constructor(public dialog: MatDialog,private servicio: HomeService) {}
+  onInit(): void {
+    console.log('Iniciando... a');
+  }
+
 
   obtenerDatos(): void {
     this.servicio.getDatos().subscribe(
