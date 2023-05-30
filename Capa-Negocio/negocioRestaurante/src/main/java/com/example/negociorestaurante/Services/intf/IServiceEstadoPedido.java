@@ -1,6 +1,10 @@
 package com.example.negociorestaurante.Services.intf;
 
+<<<<<<< HEAD
 import com.example.entidades.EstadoPedido;
+=======
+import com.example.modeloRestaurante.entidades.EstadoPedido;
+>>>>>>> develop
 import org.springframework.stereotype.Service;
 
 import java.util.List;
