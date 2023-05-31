@@ -29,4 +29,7 @@ public class Restaurante implements Serializable {
     @Column(nullable = false)
     private double lng;
 
+    @Column(nullable = false)
+    private String path;
+
 }

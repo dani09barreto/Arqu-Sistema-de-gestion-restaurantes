@@ -26,6 +26,4 @@ public class AdicionalesPago implements Serializable {
     @JoinColumn(name = "Adicionalesid",nullable = false,unique = true)
     private Adicionales Adicionalesid;
 
-
-
 }

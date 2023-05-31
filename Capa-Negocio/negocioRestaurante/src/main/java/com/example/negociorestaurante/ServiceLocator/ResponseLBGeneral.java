@@ -1,5 +1,6 @@
 package com.example.negociorestaurante.ServiceLocator;
 
+import com.example.entidades.Restaurante;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ public class ResponseLBGeneral implements IResponseLB{
     private final static String HEADER_NAME = "X-Upstream";
     @Override
     public String getResponse() throws IOException {
+
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(URL, String.class);
         HttpHeaders headers = responseEntity.getHeaders();

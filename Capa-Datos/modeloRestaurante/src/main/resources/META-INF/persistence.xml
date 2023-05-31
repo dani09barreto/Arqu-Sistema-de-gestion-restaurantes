@@ -10,12 +10,10 @@
         <class>com.example.modeloRestaurante.entidades.Cliente</class>
         <class>com.example.modeloRestaurante.entidades.DescuentoFidelidad</class>
         <class>com.example.modeloRestaurante.entidades.Ingrediente</class>
-        <class>com.example.modeloRestaurante.entidades.IngredientePlato</class>
         <class>com.example.modeloRestaurante.entidades.Inventario</class>
         <class>com.example.modeloRestaurante.entidades.Mesa</class>
         <class>com.example.modeloRestaurante.entidades.Pago</class>
         <class>com.example.modeloRestaurante.entidades.Pedido</class>
-        <class>com.example.modeloRestaurante.entidades.PlatoR</class>
         <class>com.example.modeloRestaurante.entidades.PlatoPedido</class>
         <class>com.example.modeloRestaurante.entidades.RegistroPago</class>
         <class>com.example.modeloRestaurante.entidades.TipoIngrediente</class>

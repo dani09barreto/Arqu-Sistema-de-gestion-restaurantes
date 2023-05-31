@@ -43,5 +43,6 @@ public interface IServiceLocator {
     IRemoteIngredientePlatoService getRemoteIngredientePlatoService() throws NamingException, IOException;
     IRemoteRoleService getRemoteRoleService() throws NamingException, IOException;
     IRemoteReservaService getRemoteReservaService() throws Exception;
+    
 
 }
