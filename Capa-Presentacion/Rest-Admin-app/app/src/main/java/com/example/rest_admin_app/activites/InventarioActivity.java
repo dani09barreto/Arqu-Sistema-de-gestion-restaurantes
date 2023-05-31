@@ -103,29 +103,40 @@ public class InventarioActivity extends AuthenticatedActivity {
     }
 
     private void crearPedido(String headerValue) {
+        loadingDialog.show();
         inventarioService = RetrofitClient.getRetrofitInstance(ServicesRoutes.getServerGeneral(headerValue), getTokenUser()).create(IInventarioService.class);
         List <InventarioRequests> inventarioRequests = new ArrayList<>();
         for (Inventario in : ingredientes){
             inventarioRequests.add(new InventarioRequests(in.getIngrediente().getId(), in.getCantidad()));
         }
         SolicitudInventario solicitudInventario = new SolicitudInventario(headerValue, inventarioRequests);
-        Long id = Long.getLong(getIdRestaurante());
+        Long id = Long.valueOf(getIdRestaurante());
         Call <Mensaje> call = inventarioService.solicitarInventario(id, solicitudInventario);
         call.enqueue(new Callback<Mensaje>() {
             @Override
             public void onResponse(Call<Mensaje> call, Response<Mensaje> response) {
                 if (response.isSuccessful()){
+                    Mensaje mensaje = response.body();
+                    String idPedido = mensaje.getMensaje();
                     alertsHelper.shortToast(getApplicationContext(), "Pedido creado");
-                    Intent intent = new Intent(InventarioActivity.this, MainActivity.class);
+                    sharedPreferences = getSharedPreferences("session_rest", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("id_pedido", idPedido);
+                    editor.apply();
+                    loadingDialog.dismiss();
+                    Intent intent = new Intent(InventarioActivity.this , MapaActivity.class);
+                    intent.putExtra("ENVIO_INVENTARIO", solicitudInventario);
                     startActivity(intent);
                 }else{
                     alertsHelper.shortToast(getApplicationContext(), "Error al crear pedido");
+                    loadingDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<Mensaje> call, Throwable t) {
                 alertsHelper.shortToast(getApplicationContext(), "Error al crear pedido");
+                loadingDialog.dismiss();
             }
         });
 

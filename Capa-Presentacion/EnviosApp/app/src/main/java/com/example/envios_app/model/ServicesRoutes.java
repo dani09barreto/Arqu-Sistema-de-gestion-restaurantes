@@ -31,4 +31,7 @@ public class ServicesRoutes {
     public static String getServerGeneralWebSocketPos(String serverIp){
         return String.format("ws://%s/mobile-websocket-path", serverIp);
     }
+    public static String getServerGeneralWebSocketOrder(String serverIp){
+        return String.format("ws://%s/order-websocket-path", serverIp);
+    }
 }

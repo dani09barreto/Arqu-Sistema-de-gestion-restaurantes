@@ -82,7 +82,7 @@ public class MapActivity extends AuthenticatedActivity {
     }
 
     private void enviarPosPedido(LocationResult locationResult, EnvioInventario envioInventario) {
-        PosicionPedido pos = new PosicionPedido(envioInventario, locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
+        PosicionPedido pos = new PosicionPedido(envioInventario.getId(), locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
         webSocketClient.send(gson.toJson(pos));
     }
 

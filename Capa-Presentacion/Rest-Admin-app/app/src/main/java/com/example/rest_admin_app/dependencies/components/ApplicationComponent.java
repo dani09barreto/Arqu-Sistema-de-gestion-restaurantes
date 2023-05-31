@@ -2,6 +2,7 @@ package com.example.rest_admin_app.dependencies.components;
 
 
 import com.example.rest_admin_app.activites.BasicActivity;
+import com.example.rest_admin_app.activites.MapsFragment;
 import com.example.rest_admin_app.dependencies.modules.AlertsModule;
 import com.example.rest_admin_app.dependencies.modules.LocationModule;
 import com.example.rest_admin_app.dependencies.modules.PermissionModule;
@@ -16,4 +17,5 @@ import dagger.Component;
 @Component(modules = {AlertsModule.class, PermissionModule.class, LocationModule.class, RouterGoogleAPIModule.class, ResponseLBModule.class})
 public interface ApplicationComponent {
     void inject(BasicActivity activity);
+    void inject(MapsFragment fragment);
 }

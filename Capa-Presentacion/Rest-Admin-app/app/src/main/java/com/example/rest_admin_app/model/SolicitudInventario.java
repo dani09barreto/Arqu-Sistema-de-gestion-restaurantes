@@ -1,9 +1,10 @@
 package com.example.rest_admin_app.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolicitudInventario {
+public class SolicitudInventario implements Serializable {
     private String uri;
     private List <InventarioRequests> inventarioRequests = new ArrayList<>();
 

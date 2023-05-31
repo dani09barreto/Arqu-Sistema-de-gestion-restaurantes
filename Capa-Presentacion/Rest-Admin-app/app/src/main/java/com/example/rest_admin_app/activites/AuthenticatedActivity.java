@@ -32,9 +32,15 @@ public class AuthenticatedActivity extends BasicActivity{
 
     }
 
+    public String getIdPedido(){
+        sharedPreferences = getSharedPreferences("session_rest", Context.MODE_PRIVATE);
+        String idPedido = sharedPreferences.getString("id_pedido", null);
+        return idPedido;
+    }
     protected String getIdRestaurante(){
         sharedPreferences = getSharedPreferences("session_rest", Context.MODE_PRIVATE);
-        return sharedPreferences.getString("idRestaurante", null);
+        String idRestaurante = sharedPreferences.getString("idRestaurante", null);
+        return idRestaurante;
     }
 
     protected boolean existeDestinoRestaurante(){

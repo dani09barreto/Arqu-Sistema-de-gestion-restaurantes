@@ -21,7 +21,9 @@
         android:theme="@style/Theme.RestAdminapp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".activites.MapaActivity"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

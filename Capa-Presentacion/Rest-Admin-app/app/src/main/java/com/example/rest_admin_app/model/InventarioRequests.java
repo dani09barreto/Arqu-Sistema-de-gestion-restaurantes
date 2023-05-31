@@ -1,8 +1,9 @@
 package com.example.rest_admin_app.model;
 
 
+import java.io.Serializable;
 
-public class InventarioRequests {
+public class InventarioRequests implements Serializable {
     private Long ingredienteId;
     private int cantidad;
 
