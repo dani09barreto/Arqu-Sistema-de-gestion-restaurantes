@@ -4,6 +4,7 @@ import com.example.authServer.config.TokenProvider;
 import com.example.authServer.payload.request.LoginUser;
 import com.example.authServer.payload.request.UsuarioRequest;
 import com.example.authServer.payload.response.AuthToken;
+import com.example.authServer.payload.response.Mensaje;
 import com.example.authServer.service.IServicioUsuario;
 import com.example.authServer.utils.UserErrorException;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +54,7 @@ public class UserController {
             if (!userService.agregarUsuario(user)){
                 throw new UserErrorException("Error al añadir usuario");
             }
-            return ResponseEntity.ok("Usuario añadido correctamente");
+            return ResponseEntity.ok(new Mensaje("Usuario añadido correctamente"));
         } catch (NamingException | IOException | UserErrorException e) {
             System.out.println(e.getMessage());
             return ResponseEntity.badRequest().body("Error al añadir usuario");

@@ -1,7 +1,9 @@
 package com.example.negociogeneral.Controller;
 
 import com.example.entidades.*;
+import com.example.negociogeneral.Payload.Request.EnvioSolicitudInventario;
 import com.example.negociogeneral.Payload.Request.InventarioRequest;
+import com.example.negociogeneral.Payload.Request.SolicitudInventario;
 import com.example.negociogeneral.Payload.Response.InventarioIngredienteResponse;
 import com.example.negociogeneral.Payload.Response.InventarioResponse;
 import com.example.negociogeneral.Payload.Response.Mensaje;
@@ -86,7 +88,7 @@ public class ControllerInventario {
 
     @PreAuthorize("hasRole('ADMINRESTAURANTE')")
     @PostMapping("/solicitarInventario/restaurante={id}")
-    public ResponseEntity <?> solicitarInventario (@PathVariable Long id, @RequestBody List<InventarioRequest> inventarioRequest, HttpServletRequest request){
+    public ResponseEntity <?> solicitarInventario (@PathVariable Long id, @RequestBody SolicitudInventario solicitudInventario, HttpServletRequest request){
         try {
             String uri = restClient.getResponse();
             EnvioInventario miEnvio = null;
@@ -112,7 +114,7 @@ public class ControllerInventario {
 
                 List <CantidadIngrediente> ingredientesEnvio = new ArrayList<>();
 
-                for (InventarioRequest inventario : inventarioRequest){
+                for (InventarioRequest inventario : solicitudInventario.getInventarioRequests()){
                     Ingrediente ingrediente = servicioIngrediente.obtenerIngrediente(inventario.getIngredienteId(), uri);
                     Inventario inventarioBodega = servicioInventario.obtenerTodosInventarioPorBodegaPorIngrediente(bodega, ingrediente, uri);
                     if (inventarioBodega.getCantidad() < inventario.getCantidad()){
@@ -126,13 +128,16 @@ public class ControllerInventario {
                     ingredientesEnvio.add(cantidadIngrediente);
 
                 }
-                if (ingredientesEnvio.size() != inventarioRequest.size()){
+                if (ingredientesEnvio.size() != solicitudInventario.getInventarioRequests().size()){
                     return ResponseEntity.badRequest().body("No hay suficiente inventario en la bodega " + bodega.getNombre());
                 }
                 miEnvio = servicioInventario.agregarEnvioInventario(envioInventario, ingredientesEnvio, uri);
                 break;
             }
-            WebSocketHandler.enviarActualizacion(miEnvio);
+            EnvioSolicitudInventario en = EnvioSolicitudInventario.builder()
+                            .envioInventario(miEnvio).uriSocket(solicitudInventario.getUri()).build();
+
+            WebSocketHandler.enviarActualizacion(en);
             return ResponseEntity.ok().body("Inventario solicitado");
 
         } catch (Exception e) {
@@ -148,6 +153,8 @@ public class ControllerInventario {
         try {
             String uri = restClient.getResponse();
             servicioInventario.actualizarEnvioInventario(idEnvio, nameEstado, uri);
+            EnvioInventario en = servicioInventario.obtenerEnvioInventario(idEnvio, uri);
+            WebSocketHandler.enviarActualizacion(en);
             return ResponseEntity.ok().body(new Mensaje("Estado cambiado"));
         } catch (NamingException | IOException e) {
             return ResponseEntity.badRequest().body(new Mensaje("Error al cambiar estado"));
