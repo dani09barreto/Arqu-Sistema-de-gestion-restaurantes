@@ -11,4 +11,5 @@ public interface IRemoteAdicionalesService {
     void eliminarAdicionales(Long id);
     Adicionales obtenerAdicionales(Long id);
     List<Adicionales> obtenerTodasAdicionales();
+    Adicionales obtenerAdicionalporNombre(String nombre);
 }

@@ -39,4 +39,9 @@ public class AdicionalesService implements IAdicionalesService {
     public List<Adicionales> obtenerTodasAdicionales() {
         return entityManager.createQuery("SELECT a FROM Adicionales a",Adicionales.class).getResultList();
     }
+
+    @Override
+    public Adicionales obtenerAdicionalporNombre(String nombre) {
+        return entityManager.createQuery("SELECT a FROM Adicionales a WHERE a.nombre = :nombre",Adicionales.class).setParameter("nombre",nombre).getSingleResult();
+    }
 }

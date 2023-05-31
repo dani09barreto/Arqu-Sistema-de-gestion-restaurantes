@@ -37,7 +37,7 @@ public class ServiceLocator implements IServiceLocator {
     private final Map<String, IRemoteIngredientePlatoService> cacheRemoteIngredientePlatoService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteRoleService> cacheRemoteRoleService = new ConcurrentHashMap<>();
     private final Map<String, IRemoteReservaService> cacheRemoteReservaService = new ConcurrentHashMap<>();
-
+    private final Map<String,IRemoteAdicionalesPagoService> cacheRemoteAdicionalesPagoService = new ConcurrentHashMap<>();
     public ServiceLocator(@Qualifier("responseLBRest") IResponseLB restClientRest, @Qualifier("responseLBGeneral") IResponseLB restClientGeneral) {
         this.restClientRest = restClientRest;
         this.restClientGeneral = restClientGeneral;
@@ -282,7 +282,26 @@ public class ServiceLocator implements IServiceLocator {
         cacheRemoteReservaService.put(uri,remoteReservaService);
         return remoteReservaService;
     }
- //Servicio remoto de usuario
+
+    @Override
+    public IRemoteAdicionalesPagoService getRemoteAdicionalesPago() throws Exception {
+        String uri = restClientRest.getResponse();
+        if(cacheRemoteAdicionalesPagoService.containsKey(uri)){
+            return cacheRemoteAdicionalesPagoService.get(uri);
+        }
+        Properties jndiProperties = new Properties();
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        jndiProperties.put(Context.PROVIDER_URL, String.format("http-remoting://%s", uri));
+        jndiProperties.put("jboss.naming.client.ejb.context", true);
+        Context context = new InitialContext(jndiProperties);
+        String name = "ejb:/modeloRestaurante/RemoteReservaService!com.example.IRemoteServiciosDatos.IRemoteAdicionalesPagoService";
+        IRemoteAdicionalesPagoService remoteAdicionalesPagoService = (IRemoteAdicionalesPagoService) context.lookup(name);
+        cacheRemoteAdicionalesPagoService.put(uri,remoteAdicionalesPagoService);
+        return remoteAdicionalesPagoService;
+
+    }
+
+    //Servicio remoto de usuario
     @Override
     public IRemoteUsuarioService getRemoteUsuarioService() throws NamingException, IOException {
         String uri = restClientGeneral.getResponse();

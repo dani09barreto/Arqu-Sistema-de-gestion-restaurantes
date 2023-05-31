@@ -38,4 +38,9 @@ public class RemoteAdicionalesService implements IRemoteAdicionalesService {
     public List<Adicionales> obtenerTodasAdicionales() {
         return adicionalesService.obtenerTodasAdicionales();
     }
+
+    @Override
+    public Adicionales obtenerAdicionalporNombre(String nombre) {
+        return null;
+    }
 }
