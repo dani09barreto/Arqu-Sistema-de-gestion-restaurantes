@@ -1,7 +1,7 @@
 package com.example.negociorestaurante.Services.imp;
 
-import com.example.entidades.Inventario;
-import com.example.entidades.InventarioR;
+
+import com.example.modeloRestaurante.entidades.Inventario;
 import com.example.negociorestaurante.ServiceLocator.IServiceLocator;
 import com.example.negociorestaurante.Services.intf.IServiceInventario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ public class ServiceInventario implements IServiceInventario {
     private IServiceLocator serviceLocator;
 
     @Override
-    public void agregarInventario(InventarioR inventario) throws Exception {
+    public void agregarInventario(Inventario inventario) throws Exception {
         serviceLocator.getRemoteInventarioService().agregarInventario(inventario);
     }
 
     @Override
-    public void actualizarInventario(InventarioR inventario) throws Exception {
+    public void actualizarInventario(Inventario inventario) throws Exception {
         serviceLocator.getRemoteInventarioService().actualizarInventario(inventario);
     }
 
@@ -33,17 +33,17 @@ public class ServiceInventario implements IServiceInventario {
     }
 
     @Override
-    public InventarioR obtenerInventario(Long id) throws Exception {
+    public Inventario obtenerInventario(Long id) throws Exception {
         return serviceLocator.getRemoteInventarioService().obtenerInventario(id);
     }
 
     @Override
-    public List<InventarioR> obtenerTodosInventarios() throws Exception {
+    public List<Inventario> obtenerTodosInventarios() throws Exception {
         return serviceLocator.getRemoteInventarioService().obtenerTodosInventarios();
     }
 
     @Override
-    public InventarioR obtenerInvetarioporIngrediente(Long id) throws Exception {
+    public Inventario obtenerInvetarioporIngrediente(Long id) throws Exception {
         return serviceLocator.getRemoteInventarioService().obtenerInvetarioporIngrediente(id);
     }
 }

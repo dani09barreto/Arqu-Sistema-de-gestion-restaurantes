@@ -1,15 +1,15 @@
 package com.example.modeloRestaurante.GestionDatos.Interfaces;
 
-import com.example.entidades.InventarioR;
+import com.example.modeloRestaurante.entidades.Inventario;
 import jakarta.ejb.Local;
 
 import java.util.List;
 @Local
 public interface IInventarioService {
-    void agregarInventario(InventarioR inventario);
-    void actualizarInventario(InventarioR inventario);
+    void agregarInventario(Inventario inventario);
+    void actualizarInventario(Inventario inventario);
     void eliminarInventario(Long id);
-    InventarioR obtenerInventario(Long id);
-    List<InventarioR> obtenerTodosInventarios();
-    InventarioR obtenerInvetarioporIngrediente(Long id);
+    Inventario obtenerInventario(Long id);
+    List<Inventario> obtenerTodosInventarios();
+    Inventario obtenerInvetarioporIngrediente(Long id);
 }

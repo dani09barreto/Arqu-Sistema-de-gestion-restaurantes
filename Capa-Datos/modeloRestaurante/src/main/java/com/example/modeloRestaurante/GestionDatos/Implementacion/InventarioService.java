@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Implementacion;
 
-import com.example.entidades.InventarioR;
+import com.example.modeloRestaurante.entidades.Inventario;
 import com.example.modeloRestaurante.GestionDatos.Interfaces.IInventarioService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -13,36 +13,36 @@ public class InventarioService implements IInventarioService {
     private EntityManager entityManager;
 
     @Override
-    public void agregarInventario(InventarioR inventario) {
+    public void agregarInventario(Inventario inventario) {
         entityManager.persist(inventario);
     }
 
     @Override
-    public void actualizarInventario(InventarioR inventario) {
+    public void actualizarInventario(Inventario inventario) {
         entityManager.merge(inventario);
     }
 
     @Override
     public void eliminarInventario(Long id) {
-        InventarioR inventario = obtenerInventario(id);
+        Inventario inventario = obtenerInventario(id);
         if (inventario != null) {
             entityManager.remove(inventario);
         }
     }
 
     @Override
-    public InventarioR obtenerInventario(Long id) {
-        return entityManager.find(InventarioR.class, id);
+    public Inventario obtenerInventario(Long id) {
+        return entityManager.find(Inventario.class, id);
     }
 
     @Override
-    public List<InventarioR> obtenerTodosInventarios() {
-        return entityManager.createQuery("SELECT i FROM InventarioR i", InventarioR.class).getResultList();
+    public List<Inventario> obtenerTodosInventarios() {
+        return entityManager.createQuery("SELECT i FROM Inventario i", Inventario.class).getResultList();
     }
 
     @Override
-    public InventarioR obtenerInvetarioporIngrediente(Long id) {
-        return entityManager.createQuery("SELECT i FROM InventarioR i WHERE i.Ingredienteid = :id", InventarioR.class).setParameter("id", id).getSingleResult();
+    public Inventario obtenerInvetarioporIngrediente(Long id) {
+        return entityManager.createQuery("SELECT i FROM Inventario i WHERE i.Ingredienteid = :id", Inventario.class).setParameter("id", id).getSingleResult();
     }
 
 }

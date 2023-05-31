@@ -1,9 +1,10 @@
 package com.example.negociorestaurante.Controller;
 
-import com.example.entidades.Pago;
-import com.example.entidades.Pedido;
-import com.example.entidades.RegistroPago;
-import com.example.entidades.TipoPago;
+
+import com.example.modeloRestaurante.entidades.Pago;
+import com.example.modeloRestaurante.entidades.Pedido;
+import com.example.modeloRestaurante.entidades.RegistroPago;
+import com.example.modeloRestaurante.entidades.TipoPago;
 import com.example.negociorestaurante.Payloads.Request.PagoRequest;
 import com.example.negociorestaurante.Services.intf.IServicePago;
 import com.example.negociorestaurante.Services.intf.IServiceRegistroPago;

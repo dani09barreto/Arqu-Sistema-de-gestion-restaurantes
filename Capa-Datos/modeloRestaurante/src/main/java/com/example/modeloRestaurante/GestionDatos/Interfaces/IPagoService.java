@@ -1,6 +1,6 @@
 package com.example.modeloRestaurante.GestionDatos.Interfaces;
 
-import com.example.entidades.Pago;
+import com.example.modeloRestaurante.entidades.Pago;
 import jakarta.ejb.Local;
 
 import java.util.List;

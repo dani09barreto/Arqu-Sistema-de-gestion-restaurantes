@@ -1,6 +1,6 @@
 package com.example.negociorestaurante.Services.intf;
 
-import com.example.entidades.Pedido;
+import com.example.modeloRestaurante.entidades.Pedido;
 
 import java.util.List;
 
