@@ -1,1 +1,24 @@
-<p>estados-cooker works!</p>
+<table>
+  <thead>
+    <tr>
+      <th>ID Pedido</th>
+      <th>Platos</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pedido of pedidos">
+      <td>{{ pedido.idPedido }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let plato of pedido.lista_plato">
+            {{ plato.plato.nombre }}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <button class="round-button">p</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

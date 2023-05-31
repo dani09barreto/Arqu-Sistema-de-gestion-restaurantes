@@ -11,6 +11,8 @@ import { RestaurantService } from 'src/app/services/services-restaurant/restaura
 import { PagoRequest } from 'src/app/core/models/pagoResponse.model';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SignPopupComponent } from '../../auth-components/signin-popup/sign-popup/sign-popup.component';
+import { Menu } from 'src/app/core/models/menu.model';
+import { Mesa } from 'src/app/core/models/mesa.model';
 
 
 @Component({
@@ -23,6 +25,10 @@ export class PaymentGatewayComponent implements OnInit{
   cartItems: Plato[] = [];
   dialogRefSignIn: MatDialogRef<SignPopupComponent> | undefined;
 
+  mesasObj: Mesa[] = [];
+  idsMesas: string[] = [];
+
+
   constructor(private router: Router,
     private cartService: CartService,
     private localStorage: LocalStorageService,
@@ -31,11 +37,24 @@ export class PaymentGatewayComponent implements OnInit{
      this.cartService.update();
   }
 
+  mesas: number[] = [];
+
   ngOnInit(): void {
     this.cartService.platosEnCarritoSubject.subscribe(platos => {
       this.cartItems = platos;
     });
     this.cartService.update();
+
+    this.restService.getMesas().subscribe(
+      (mesas) => {
+        this.mesasObj = mesas;
+        this.mesas = this.mesasObj.map((mesa) => mesa.id);
+      },
+      (error) => {
+        console.error('Error al obtener los restaurantes', error);
+      }
+    );
+    this.totalAPagar = '$'+(this.getTotalPrice()+this.getTotalPrice()*0.19).toString();
   }
 
   mesaDestino: number = 0;
@@ -43,7 +62,7 @@ export class PaymentGatewayComponent implements OnInit{
   totalAPagar: string = "";
   seleccionarPropina: boolean= false;
 
-  mesas: number[] = [4, 14, 24, 34]; // Lista de números de mesa
+  // Lista de números de mesa
 
   pedir(): void {
 
@@ -60,7 +79,6 @@ export class PaymentGatewayComponent implements OnInit{
           console.error(error);
         }
       );
-      alert("Pedido Creado");
       //Aqui iniciar Popup 2.
     }
     // Lógica para ir a la página de pago
@@ -131,14 +149,14 @@ export class PaymentGatewayComponent implements OnInit{
 
     console.log(pedido);
 
-    var valorParcial: number= this.getTotalPrice();
+    var valorParcial: number= this.getTotalPrice()+this.getTotalPrice()*0.19;
 
       if (this.seleccionarPropina) {
         var add: string[] = ["IVA", "PROPINA"];
         // Aplicar lógica para incluir la propina en el cálculo del total
         // Puedes usar un valor fijo o calcularlo en base a algún porcentaje
       } else {
-        var add: string[] = ["IVA", "PROPINA"];
+        var add: string[] = ["IVA"];
         // Aplicar lógica para calcular el total sin propina
       }
       const pago: PagoRequest ={
@@ -147,7 +165,17 @@ export class PaymentGatewayComponent implements OnInit{
         pedido: pedido,
         adiciones: add
       }
-      //this.totalAPagar = this.restService.getTotalApagar(pago);
+
+      this.restService.agregarPago(pago).subscribe(
+        resp => {
+          // Manejar la respuesta del servidor
+          console.log(resp);
+        },
+        error => {
+          // Manejar errores
+          console.error(error);
+        }
+      );
 
 
     return pedido;
@@ -161,7 +189,7 @@ export class PaymentGatewayComponent implements OnInit{
       // El popup de login no está abierto, abrir diálogo
       this.dialogRefSignIn = this.dialog.open(SignPopupComponent, {
         width: '250px',
-        height: '100%',
+        height: '70%',
         data: {},
       });
     }

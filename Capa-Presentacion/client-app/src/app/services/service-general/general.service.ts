@@ -7,6 +7,7 @@ import { Restaurante } from 'src/app/core/models/restaurante.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
 import { HttpHeaders } from '@angular/common/http';
 import { DespachadorServices } from '../service-despachador/despachador.service';
+import { Mesa } from 'src/app/core/models/mesa.model';
 
 
 @Injectable({
@@ -23,6 +24,7 @@ export class GeneralService {
   URL= this.url+this.urlSelector;
   URL_= this.url+this.urlMenu;
   URLUsuario= this.url+this.urlUser;
+  URL_mesas= this.url+'/restaurante/mesa//listAll';
 
   constructor(private http: HttpClient, private localStorage: LocalStorageService, private despachador : DespachadorServices) {
     this.despachador.getUrlDespachador("general");
