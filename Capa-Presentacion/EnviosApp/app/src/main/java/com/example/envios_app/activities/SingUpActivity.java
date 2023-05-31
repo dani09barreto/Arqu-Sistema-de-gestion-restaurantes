@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.example.envios_app.R;
 import com.example.envios_app.REST.IUsuarioService;
 import com.example.envios_app.databinding.ActivitySingUpBinding;
+import com.example.envios_app.model.Mensaje;
 import com.example.envios_app.model.ServicesRoutes;
 import com.example.envios_app.model.UsuarioRequest;
 import com.example.envios_app.utils.ResponseLB;
@@ -93,11 +94,11 @@ public class SingUpActivity extends BasicActivity {
 
         UsuarioRequest us = new UsuarioRequest(username, pass, name, email, new BigInteger(telefono.toString()), "REPARTIDOR");
         usuarioService = RetrofitClient.getRetrofitInstance(urlAuth).create(IUsuarioService.class);
-        Call <String> call = usuarioService.singUp(us);
+        Call <Mensaje> call = usuarioService.singUp(us);
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<Mensaje>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<Mensaje> call, Response<Mensaje> response) {
                 loadingDialog.dismiss();
                 if(response.isSuccessful()){
                     alertsHelper.shortToast(getApplicationContext(),"Usuario creado correctamente");
@@ -108,7 +109,7 @@ public class SingUpActivity extends BasicActivity {
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<Mensaje> call, Throwable t) {
                 alertsHelper.shortToast(getApplicationContext(),"Error al crear el usuario");
                 loadingDialog.dismiss();
             }

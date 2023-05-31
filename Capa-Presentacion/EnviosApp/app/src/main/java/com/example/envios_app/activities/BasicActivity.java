@@ -39,12 +39,12 @@ public abstract class BasicActivity extends AppCompatActivity {
     }
 
     protected boolean existeDestinoAuth(){
-        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("session_envio", Context.MODE_PRIVATE);
         return sharedPreferences.getString("direccionAuth", null) != null;
     }
 
     protected String getDestinoAuth(){
-        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("session_envio", Context.MODE_PRIVATE);
         return sharedPreferences.getString("direccionAuth", null);
     }
 }

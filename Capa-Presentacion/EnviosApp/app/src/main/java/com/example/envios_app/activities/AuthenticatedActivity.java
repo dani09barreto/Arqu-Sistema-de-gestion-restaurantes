@@ -33,27 +33,27 @@ public class AuthenticatedActivity extends BasicActivity{
     }
 
     protected boolean isAuthenticated() {
-        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("session_envio", Context.MODE_PRIVATE);
         return sharedPreferences.getString("token", null) != null;
     }
 
     protected boolean existeDestinoGeneral(){
-        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("session_envio", Context.MODE_PRIVATE);
         return sharedPreferences.getString("direccionGeneral", null) != null;
     }
 
     protected String getDestinoGeneral(){
-        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("session_envio", Context.MODE_PRIVATE);
         return sharedPreferences.getString("direccionGeneral", null);
     }
 
     protected String getTokenUser(){
-        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("session_envio", Context.MODE_PRIVATE);
         return sharedPreferences.getString("token", null);
     }
 
     protected String getUsername(){
-        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("session_envio", Context.MODE_PRIVATE);
         return sharedPreferences.getString("username", null);
     }
 
@@ -67,7 +67,7 @@ public class AuthenticatedActivity extends BasicActivity{
 
 
     public void signOut(){
-        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("session_envio", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
@@ -128,7 +128,7 @@ public class AuthenticatedActivity extends BasicActivity{
                     runOnUiThread(() -> {
                         DestServer destServer = response.body();
                         if (destServer != null) {
-                            SharedPreferences sharedPref = getSharedPreferences("session", Context.MODE_PRIVATE);
+                            SharedPreferences sharedPref = getSharedPreferences("session_envio", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPref.edit();
                             editor.putString("direccionGeneral", destServer.getDireccion());
                             editor.apply();

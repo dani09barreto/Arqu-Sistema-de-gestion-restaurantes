@@ -12,6 +12,7 @@ import com.example.envios_app.REST.IDespachadorService;
 import com.example.envios_app.REST.IUsuarioService;
 import com.example.envios_app.databinding.ActivityUserBinding;
 import com.example.envios_app.model.DestServer;
+import com.example.envios_app.model.Mensaje;
 import com.example.envios_app.model.ServicesRoutes;
 import com.example.envios_app.model.Usuario;
 import com.example.envios_app.model.UsuarioUpdate;
@@ -71,10 +72,10 @@ public class UserActivity extends AuthenticatedActivity {
             BigInteger phone = new BigInteger(binding.userPhone.getEditText().getText().toString());
             UsuarioUpdate usuarioUpdate = new UsuarioUpdate(username, name, email, phone);
 
-            Call<JsonObject> call = usuarioService.updateUser(usuarioUpdate);
-            call.enqueue(new Callback<JsonObject>() {
+            Call<Mensaje> call = usuarioService.updateUser(usuarioUpdate);
+            call.enqueue(new Callback<Mensaje>() {
                 @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                public void onResponse(Call<Mensaje> call, Response<Mensaje> response) {
                     if (!response.isSuccessful()){
                         alertsHelper.shortToast(getApplicationContext(), "Error al actualizar la información del usuario");
                         return;
@@ -84,7 +85,7 @@ public class UserActivity extends AuthenticatedActivity {
                 }
 
                 @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
+                public void onFailure(Call<Mensaje> call, Throwable t) {
                     alertsHelper.shortToast(getApplicationContext(), "Error al conectar con el servidor");
                     loadingDialog.dismiss();
                 }
