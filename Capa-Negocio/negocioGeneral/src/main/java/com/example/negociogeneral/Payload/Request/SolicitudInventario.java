@@ -1,17 +1,17 @@
 package com.example.negociogeneral.Payload.Request;
 
-import com.example.entidades.Ingrediente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
-public class InventarioRequest {
+@Getter
+public class SolicitudInventario {
     private String uri;
-    private Long ingredienteId;
-    private int cantidad;
+    private List<InventarioRequest> inventarioRequests;
 }
