@@ -14,6 +14,7 @@ public class Restaurante implements Serializable {
     private String direccion;
     private double lat;
     private double lng;
+    private String path;
 
 
     public Long getId() {
@@ -54,5 +55,13 @@ public class Restaurante implements Serializable {
 
     public void setLng(double lng) {
         this.lng = lng;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

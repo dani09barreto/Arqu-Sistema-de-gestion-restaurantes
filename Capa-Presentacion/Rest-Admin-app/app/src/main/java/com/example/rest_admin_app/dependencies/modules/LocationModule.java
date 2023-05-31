@@ -2,7 +2,7 @@ package com.example.rest_admin_app.dependencies.modules;
 
 import android.app.Application;
 
-import com.example.envios_app.services.LocationService;
+import com.example.rest_admin_app.services.LocationService;
 
 import javax.inject.Singleton;
 

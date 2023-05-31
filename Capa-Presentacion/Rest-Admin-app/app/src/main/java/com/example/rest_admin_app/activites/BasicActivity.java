@@ -7,13 +7,13 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.envios_app.App;
-import com.example.envios_app.activities.dialog.LoadingDialog;
-import com.example.envios_app.services.LocationService;
-import com.example.envios_app.services.RouterGoogleAPIService;
-import com.example.envios_app.utils.AlertsHelper;
-import com.example.envios_app.utils.PermissionHelper;
-import com.example.envios_app.utils.ResponseLB;
+
+import com.example.rest_admin_app.activites.dialog.LoadingDialog;
+import com.example.rest_admin_app.services.LocationService;
+import com.example.rest_admin_app.services.RouterGoogleAPIService;
+import com.example.rest_admin_app.utils.AlertsHelper;
+import com.example.rest_admin_app.utils.PermissionHelper;
+import com.example.rest_admin_app.utils.ResponseLB;
 
 import javax.inject.Inject;
 
@@ -39,12 +39,12 @@ public abstract class BasicActivity extends AppCompatActivity {
     }
 
     protected boolean existeDestinoAuth(){
-        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("session_rest", Context.MODE_PRIVATE);
         return sharedPreferences.getString("direccionAuth", null) != null;
     }
 
     protected String getDestinoAuth(){
-        sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("session_rest", Context.MODE_PRIVATE);
         return sharedPreferences.getString("direccionAuth", null);
     }
 }

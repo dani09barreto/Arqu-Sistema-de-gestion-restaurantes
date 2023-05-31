@@ -2,9 +2,9 @@ package com.example.rest_admin_app;
 
 import android.app.Application;
 
-import com.example.envios_app.dependencies.components.ApplicationComponent;
-import com.example.envios_app.dependencies.components.DaggerApplicationComponent;
-import com.example.envios_app.dependencies.modules.LocationModule;
+import com.example.rest_admin_app.dependencies.components.ApplicationComponent;
+import com.example.rest_admin_app.dependencies.components.DaggerApplicationComponent;
+import com.example.rest_admin_app.dependencies.modules.LocationModule;
 
 import lombok.Getter;
 

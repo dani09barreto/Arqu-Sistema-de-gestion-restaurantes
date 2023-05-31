@@ -1,7 +1,7 @@
 package com.example.rest_admin_app.dependencies.modules;
 
 
-import com.example.envios_app.utils.ResponseLB;
+import com.example.rest_admin_app.utils.ResponseLB;
 
 import javax.inject.Singleton;
 

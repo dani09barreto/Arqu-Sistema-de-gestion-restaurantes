@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.envios_app.R;
+import com.example.rest_admin_app.R;
 import com.google.android.material.snackbar.Snackbar;
 
 public class AlertsHelper {

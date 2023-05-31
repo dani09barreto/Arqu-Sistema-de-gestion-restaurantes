@@ -1,6 +1,6 @@
 package com.example.rest_admin_app.dependencies.modules;
 
-import com.example.envios_app.utils.PermissionHelper;
+import com.example.rest_admin_app.utils.PermissionHelper;
 
 import javax.inject.Singleton;
 

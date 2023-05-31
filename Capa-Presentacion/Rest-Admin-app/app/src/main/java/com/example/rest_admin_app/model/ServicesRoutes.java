@@ -2,7 +2,7 @@ package com.example.rest_admin_app.model;
 
 public class ServicesRoutes {
 
-    private static final String URL_LB_DESPACHADOR = "http://192.168.10.8:1000/";
+    private static final String URL_LB_DESPACHADOR = "http://192.168.215.101:1000/";
     private static final String DESTINO_AUTH = "auth";
     private static final String DESTINO_GENERAL = "general";
 
