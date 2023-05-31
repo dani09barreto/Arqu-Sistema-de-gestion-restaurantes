@@ -18,7 +18,6 @@ import com.example.envios_app.model.Usuario;
 import com.example.envios_app.model.UsuarioUpdate;
 import com.example.envios_app.utils.ResponseLB;
 import com.example.envios_app.utils.RetrofitClient;
-import com.google.gson.JsonObject;
 
 import java.math.BigInteger;
 import java.util.Objects;

@@ -14,15 +14,16 @@ import com.example.envios_app.activities.MainActivity;
 import com.example.envios_app.activities.MapActivity;
 import com.example.envios_app.databinding.EnvioInventarioAdapterBinding;
 import com.example.envios_app.model.EnvioInventario;
+import com.example.envios_app.model.EnvioSolicitudInventario;
 
 import java.util.List;
 
-public class EnvioInventarioAdapter extends ArrayAdapter <EnvioInventario> {
+public class EnvioInventarioAdapter extends ArrayAdapter <EnvioSolicitudInventario> {
 
     private Context context;
     private MainActivity mainActivity;
 
-    public EnvioInventarioAdapter(@NonNull Context context, int resource, @NonNull List<EnvioInventario> objects, MainActivity mainActivity) {
+    public EnvioInventarioAdapter(@NonNull Context context, int resource, @NonNull List<EnvioSolicitudInventario> objects, MainActivity mainActivity) {
         super(context, resource, objects);
         this.context = context;
         this.mainActivity = mainActivity;
@@ -31,7 +32,7 @@ public class EnvioInventarioAdapter extends ArrayAdapter <EnvioInventario> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
-        EnvioInventario envioInventario = getItem(position);
+        EnvioSolicitudInventario envioInventario = getItem(position);
         EnvioInventarioAdapterBinding binding;
         if (convertView == null) {
             binding = EnvioInventarioAdapterBinding.inflate(LayoutInflater.from(parent.getContext()),parent, false);
@@ -39,10 +40,10 @@ public class EnvioInventarioAdapter extends ArrayAdapter <EnvioInventario> {
             binding = EnvioInventarioAdapterBinding.bind(convertView);
         }
 
-        binding.textRestaurante.setText(String.format("Restaurante: %s", envioInventario.getRestaurante().getNombre()));
-        binding.textDireccionBodega.setText(String.format("Dirección: %s", envioInventario.getBodega().getDireccion()));
-        binding.textBodega.setText(String.format("Bodega: %s", envioInventario.getBodega().getNombre()));
-        binding.textDireccionRestaurante.setText(String.format("Dirección: %s", envioInventario.getRestaurante().getDireccion()));
+        binding.textRestaurante.setText(String.format("Restaurante: %s", envioInventario.getEnvioInventario().getRestaurante().getNombre()));
+        binding.textDireccionBodega.setText(String.format("Dirección: %s", envioInventario.getEnvioInventario().getBodega().getDireccion()));
+        binding.textBodega.setText(String.format("Bodega: %s", envioInventario.getEnvioInventario().getBodega().getNombre()));
+        binding.textDireccionRestaurante.setText(String.format("Dirección: %s", envioInventario.getEnvioInventario().getRestaurante().getDireccion()));
         binding.buttonIr.setOnClickListener(v -> {
             mainActivity.getUrlGeneral(envioInventario);
         });

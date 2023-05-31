@@ -15,6 +15,7 @@ import com.example.envios_app.adapters.EnvioInventarioAdapter;
 import com.example.envios_app.databinding.ActivityMainBinding;
 import com.example.envios_app.model.DestServer;
 import com.example.envios_app.model.EnvioInventario;
+import com.example.envios_app.model.EnvioSolicitudInventario;
 import com.example.envios_app.model.Mensaje;
 import com.example.envios_app.model.ServicesRoutes;
 import com.example.envios_app.utils.PermissionHelper;
@@ -34,7 +35,7 @@ public class MainActivity extends AuthenticatedActivity {
 
     private ActivityMainBinding binding;
     private WebSocketClientEnvios webSocketClient;
-    private List<EnvioInventario> enviosInventario = new ArrayList<>();
+    private List<EnvioSolicitudInventario> enviosInventario = new ArrayList<>();
     private EnvioInventarioAdapter adapter;
     private IInventarioService inventarioService;
 
@@ -60,7 +61,7 @@ public class MainActivity extends AuthenticatedActivity {
         binding.listViewEnvioInventario.setAdapter(adapter);
     }
 
-    public void getUrlGeneral(EnvioInventario en){
+    public void getUrlGeneral(EnvioSolicitudInventario en){
         responseLB.getResponse(getDestinoGeneral(), new ResponseLB.ResponseCallback() {
             @Override
             public void onResponse(String headerValue) {
@@ -70,7 +71,6 @@ public class MainActivity extends AuthenticatedActivity {
                 }
                 cambiarEstadoEnvio(headerValue, en);
             }
-
             @Override
             public void onError(String errorMessage) {
 
@@ -78,12 +78,12 @@ public class MainActivity extends AuthenticatedActivity {
         });
     }
 
-    private void cambiarEstadoEnvio(String ipGeneral, EnvioInventario en) {
+    private void cambiarEstadoEnvio(String ipGeneral, EnvioSolicitudInventario en) {
         String token = getTokenUser();
         loadingDialog.show();
         inventarioService = RetrofitClient.getRetrofitInstance(ServicesRoutes.getServerGeneral(ipGeneral), token).create(IInventarioService.class);
 
-        Call <Mensaje> call = inventarioService.cambiarEstado(en.getId(), "En_Camino");
+        Call <Mensaje> call = inventarioService.cambiarEstado(en.getEnvioInventario().getId(), "En_Camino");
         call.enqueue(new Callback<Mensaje>() {
             @Override
             public void onResponse(Call<Mensaje> call, Response<Mensaje> response) {
@@ -93,7 +93,7 @@ public class MainActivity extends AuthenticatedActivity {
                     return;
                 }
                 loadingDialog.dismiss();
-                alertsHelper.shortToast(getApplicationContext(), String.format("Se asigno el pedido a %s", en.getUsuario().getNombre()));
+                alertsHelper.shortToast(getApplicationContext(), String.format("Se asigno el pedido a %s", en.getEnvioInventario().getUsuario().getNombre()));
                 Intent intent = new Intent(MainActivity.this , MapActivity.class);
                 intent.putExtra("ENVIO_INVENTARIO", en);
                 startActivity(intent);

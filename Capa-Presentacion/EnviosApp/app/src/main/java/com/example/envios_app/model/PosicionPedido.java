@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class PosicionPedido {
-    private Long idPedido;
+
+    private EnvioInventario envioInventario;
     private double lat;
     private double lng;
 
-    public PosicionPedido(Long id, double latitude, double longitude) {
-        this.idPedido = id;
+    public PosicionPedido(EnvioInventario envioInventario, double latitude, double longitude) {
+        this.envioInventario = envioInventario;
         this.lat = latitude;
         this.lng = longitude;
     }

@@ -6,10 +6,9 @@ import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +17,9 @@ import android.view.ViewGroup;
 import com.example.envios_app.App;
 import com.example.envios_app.R;
 import com.example.envios_app.activities.dialog.InfoBodegaDialog;
+import com.example.envios_app.activities.dialog.InfoRestauranteDialog;
 import com.example.envios_app.databinding.FragmentMapsBinding;
-import com.example.envios_app.model.EnvioInventario;
+import com.example.envios_app.model.EnvioSolicitudInventario;
 import com.example.envios_app.utils.AlertsHelper;
 import com.example.envios_app.utils.BitmapUtils;
 import com.example.envios_app.utils.DistanceUtils;
@@ -27,10 +27,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -39,15 +41,15 @@ public class MapsFragment extends Fragment {
     private GoogleMap googleMap;
     private FragmentMapsBinding binding;
     static final int INITIAL_ZOOM_LEVEL = 18;
-    private static final int iconSize = 64;
     private boolean init = false;
-    private EnvioInventario envioInventario;
+    private EnvioSolicitudInventario envioInventario;
     private LatLng actualPosition;
+    private List <Marker> markers = new ArrayList<>();
 
     @Inject
     AlertsHelper alertsHelper;
 
-    public void setEnvioInventario(EnvioInventario envioInventario) {
+    public void setEnvioInventario(EnvioSolicitudInventario envioInventario) {
         this.envioInventario = envioInventario;
     }
 
@@ -70,9 +72,9 @@ public class MapsFragment extends Fragment {
         public boolean onMarkerClick(@NonNull Marker marker) {
             if (esBodega(marker.getPosition())){
                 InfoBodegaDialog dialog = new InfoBodegaDialog(getContext());
-                dialog.getBinding().textViewPedido.setText(String.format("Pedido %d", envioInventario.getId()));
-                dialog.getBinding().textBodega.setText(envioInventario.getBodega().getNombre());
-                dialog.getBinding().textDireccionBodega.setText(envioInventario.getBodega().getDireccion());
+                dialog.getBinding().textViewPedido.setText(String.format("Pedido %d", envioInventario.getEnvioInventario().getId()));
+                dialog.getBinding().textBodega.setText(envioInventario.getEnvioInventario().getBodega().getNombre());
+                dialog.getBinding().textDireccionBodega.setText(envioInventario.getEnvioInventario().getBodega().getDireccion());
                 double distancia = DistanceUtils.calculateDistanceInKilometer(marker.getPosition().latitude, marker.getPosition().longitude, actualPosition.latitude, actualPosition.longitude);
                 dialog.getBinding().textDistancia.setText(String.format("Distancia %.2f", distancia) + " km");
                 dialog.show();
@@ -80,17 +82,41 @@ public class MapsFragment extends Fragment {
                     if (!verificarDistancia(distancia)){
                         alertsHelper.shortToast(getContext(), "Aun no se encuentra en la bodega");
                     }
+                    removeMarkers();
+                    generateMarkerRest();
                 });
                 dialog.getBinding().buttonIr.setOnClickListener(v -> {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(String.format("geo:0,0?q=%f,%f", envioInventario.getBodega().getLat(), envioInventario.getBodega().getLng())));
-                    Intent chooser = Intent.createChooser(intent, "Selecciona una aplicación de navegación");
-                    startActivity(chooser);
+                    LatLng pos = new LatLng(envioInventario.getEnvioInventario().getBodega().getLat(), envioInventario.getEnvioInventario().getBodega().getLng());
+                    createIntentIr(pos);
+                });
+            }else{
+                InfoRestauranteDialog dialog = new InfoRestauranteDialog(getContext());
+                dialog.getBinding().textViewPedido.setText(String.format("Pedido %d", envioInventario.getEnvioInventario().getId()));
+                dialog.getBinding().textRestaurante.setText(envioInventario.getEnvioInventario().getRestaurante().getNombre());
+                dialog.getBinding().textDireccionRestaurante.setText(envioInventario.getEnvioInventario().getRestaurante().getDireccion());
+                double distancia = DistanceUtils.calculateDistanceInKilometer(marker.getPosition().latitude, marker.getPosition().longitude, actualPosition.latitude, actualPosition.longitude);
+                dialog.getBinding().textDistancia.setText(String.format("Distancia %.2f", distancia) + " km");
+                dialog.show();
+                dialog.getBinding().buttonEntregar.setOnClickListener(v -> {
+                    if (!verificarDistancia(distancia)){
+                        alertsHelper.shortToast(getContext(), "Aun no se encuentra en el restaurante");
+                    }
+                });
+                dialog.getBinding().buttonIr.setOnClickListener(v -> {
+                    LatLng pos = new LatLng(envioInventario.getEnvioInventario().getRestaurante().getLat(), envioInventario.getEnvioInventario().getRestaurante().getLng());
+                    createIntentIr(pos);
                 });
             }
             return false;
         }
     };
+
+    private void removeMarkers() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            markers.forEach(marker -> marker.remove());
+            markers.clear();
+        }
+    }
 
     private boolean verificarDistancia(double distancia) {
         if (distancia <= 0.4){
@@ -124,8 +150,8 @@ public class MapsFragment extends Fragment {
         if (googleMap != null) {
             if (!init){
                 init = true;
-                generateMarker();
-                centrarCamara(new LatLng(envioInventario.getBodega().getLat(), envioInventario.getBodega().getLng()));
+                generateMarkerBodega();
+                centrarCamara(new LatLng(envioInventario.getEnvioInventario().getBodega().getLat(), envioInventario.getEnvioInventario().getBodega().getLng()));
             }
             actualPosition = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
         }
@@ -134,15 +160,28 @@ public class MapsFragment extends Fragment {
         });
     }
 
-    private void generateMarker() {
-        LatLng posBodega = new LatLng(envioInventario.getBodega().getLat(), envioInventario.getBodega().getLng());
+    private void generateMarkerRest(){
+        LatLng posRest = new LatLng(envioInventario.getEnvioInventario().getRestaurante().getLat(), envioInventario.getEnvioInventario().getRestaurante().getLng());
 
-        googleMap.addMarker(new MarkerOptions()
+        Marker markerTemp = googleMap.addMarker(new MarkerOptions()
+                .position(posRest)
+                .title(envioInventario.getEnvioInventario().getRestaurante().getNombre())
+                .snippet(envioInventario.getEnvioInventario().getRestaurante().getDireccion())
+                .icon(BitmapUtils.getBitmapDescriptor(getContext(), R.drawable.baseline_fastfood_24))
+        );
+        markers.add(markerTemp);
+    }
+
+    private void generateMarkerBodega() {
+        LatLng posBodega = new LatLng(envioInventario.getEnvioInventario().getBodega().getLat(), envioInventario.getEnvioInventario().getBodega().getLng());
+
+        Marker markerTemp = googleMap.addMarker(new MarkerOptions()
                 .position(posBodega)
-                .title(envioInventario.getBodega().getNombre())
-                .snippet(envioInventario.getBodega().getDireccion())
+                .title(envioInventario.getEnvioInventario().getBodega().getNombre())
+                .snippet(envioInventario.getEnvioInventario().getBodega().getDireccion())
                 .icon(BitmapUtils.getBitmapDescriptor(getContext(), R.drawable.baseline_home_work_24))
         );
+        markers.add(markerTemp);
     }
 
     private void centrarCamara(LatLng pos) {
@@ -152,8 +191,16 @@ public class MapsFragment extends Fragment {
     }
 
     private boolean esBodega(LatLng location){
-        LatLng posBodega = new LatLng(envioInventario.getBodega().getLat(), envioInventario.getBodega().getLng());
+        LatLng posBodega = new LatLng(envioInventario.getEnvioInventario().getBodega().getLat(), envioInventario.getEnvioInventario().getBodega().getLng());
         LatLng pos = new LatLng(location.latitude, location.longitude);
         return posBodega.equals(pos);
+    }
+
+    @SuppressLint("DefaultLocale")
+    private void createIntentIr(LatLng pos){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(String.format("geo:0,0?q=%f,%f", pos.latitude, pos.longitude)));
+        Intent chooser = Intent.createChooser(intent, "Selecciona una aplicación de navegación");
+        startActivity(chooser);
     }
 }

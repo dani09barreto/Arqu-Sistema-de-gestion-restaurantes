@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.envios_app.databinding.ActivityMapBinding;
 import com.example.envios_app.model.EnvioInventario;
+import com.example.envios_app.model.EnvioSolicitudInventario;
 import com.example.envios_app.model.PosicionPedido;
 import com.example.envios_app.model.ServicesRoutes;
 import com.example.envios_app.utils.ResponseLB;
@@ -22,6 +23,7 @@ public class MapActivity extends AuthenticatedActivity {
 
     private ActivityMapBinding binding;
     private WebSocketClientPos webSocketClient;
+    private EnvioSolicitudInventario envioInventario;
 
     private final Gson gson = new Gson();
 
@@ -33,7 +35,7 @@ public class MapActivity extends AuthenticatedActivity {
         setContentView(binding.getRoot());
         MapsFragment mapsFragment = binding.fragmentContainerView.getFragment();
         Intent intent = getIntent();
-        EnvioInventario envioInventario = (EnvioInventario) intent.getSerializableExtra("ENVIO_INVENTARIO");
+         envioInventario = (EnvioSolicitudInventario) intent.getSerializableExtra("ENVIO_INVENTARIO");
 
         mapsFragment.setEnvioInventario(envioInventario);
 
@@ -55,7 +57,7 @@ public class MapActivity extends AuthenticatedActivity {
                     if (webSocketClient == null){
                         getUrlGeneral();
                     }else if (webSocketClient.isOpen()){
-                        enviarPosPedido(locationResult, envioInventario.getId());
+                        enviarPosPedido(locationResult, envioInventario.getEnvioInventario());
                     }
                 }
             }
@@ -67,7 +69,9 @@ public class MapActivity extends AuthenticatedActivity {
         responseLB.getResponse(getDestinoGeneral(), new ResponseLB.ResponseCallback() {
             @Override
             public void onResponse(String headerValue) {
-                conectarWebSocketPos(headerValue);
+                if (envioInventario.getUriSocket().equals(headerValue)) {
+                    conectarWebSocketPos(headerValue);
+                }
             }
 
             @Override
@@ -77,8 +81,8 @@ public class MapActivity extends AuthenticatedActivity {
         });
     }
 
-    private void enviarPosPedido(LocationResult locationResult, Long id) {
-        PosicionPedido pos = new PosicionPedido(id, locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
+    private void enviarPosPedido(LocationResult locationResult, EnvioInventario envioInventario) {
+        PosicionPedido pos = new PosicionPedido(envioInventario, locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
         webSocketClient.send(gson.toJson(pos));
     }
 

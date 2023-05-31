@@ -53,19 +53,19 @@
         app:srcCompat="@drawable/baseline_fastfood_24" />
 
     <Button
-        android:id="@+id/buttonRecoger"
+        android:id="@+id/buttonEntregar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textDistancia"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp"
-        android:text="Recoger" />
+        android:text="Entregar" />
 
     <Button
         android:id="@+id/buttonIr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonRecoger"
+        android:layout_below="@+id/buttonEntregar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp"
         android:backgroundTint="@color/yellow_900"

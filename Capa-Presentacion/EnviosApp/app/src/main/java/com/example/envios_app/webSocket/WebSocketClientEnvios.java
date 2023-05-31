@@ -7,6 +7,7 @@ import com.example.envios_app.activities.dialog.LoadingDialog;
 import com.example.envios_app.adapters.EnvioInventarioAdapter;
 import com.example.envios_app.databinding.ActivityMainBinding;
 import com.example.envios_app.model.EnvioInventario;
+import com.example.envios_app.model.EnvioSolicitudInventario;
 import com.example.envios_app.utils.AlertsHelper;
 import com.example.envios_app.utils.CustomDateDeserializer;
 import com.google.gson.Gson;
@@ -22,10 +23,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class WebSocketClientEnvios extends WebSocketClient {
 
-    private List <EnvioInventario> enviosInventario;
+    private List <EnvioSolicitudInventario> enviosInventario;
 
     private EnvioInventarioAdapter adapter;
     private ActivityMainBinding binding;
@@ -35,9 +37,11 @@ public class WebSocketClientEnvios extends WebSocketClient {
 
     private AlertsHelper alertsHelper;
 
+    private static final String ESTADO_ENVIO = "En_Camino";
+
     private Gson gson;
 
-    public WebSocketClientEnvios(String serverUrl, String token, ActivityMainBinding binding, LoadingDialog loadingDialog, Activity activity, AlertsHelper alertsHelper, List <EnvioInventario> enviosInventario, EnvioInventarioAdapter adapter) throws URISyntaxException {
+    public WebSocketClientEnvios(String serverUrl, String token, ActivityMainBinding binding, LoadingDialog loadingDialog, Activity activity, AlertsHelper alertsHelper, List <EnvioSolicitudInventario> enviosInventario, EnvioInventarioAdapter adapter) throws URISyntaxException {
         super(new URI(serverUrl), new Draft_6455(), createHeaders(token));
         this.binding = binding;
         this.loadingDialog = loadingDialog;
@@ -68,11 +72,26 @@ public class WebSocketClientEnvios extends WebSocketClient {
     public void onMessage(String message) {
         System.out.println("message received: " + message);
         activity.runOnUiThread(() -> {
-            EnvioInventario envioInventario = gson.fromJson(message, EnvioInventario.class);
-            enviosInventario.add(envioInventario);
-            adapter.notifyDataSetChanged();
-            binding.listViewEnvioInventario.post(() -> binding.listViewEnvioInventario.setSelection(enviosInventario.size() - 1));
+             EnvioSolicitudInventario solicitudInventario = gson.fromJson(message, EnvioSolicitudInventario.class);
+             if(pedidoAsignado(solicitudInventario.getEnvioInventario()) != null){
+                 enviosInventario.remove(pedidoAsignado(solicitudInventario.getEnvioInventario()));
+             }else{
+                 enviosInventario.add(solicitudInventario);
+             }
+             adapter.notifyDataSetChanged();
+             binding.listViewEnvioInventario.post(() -> binding.listViewEnvioInventario.setSelection(enviosInventario.size() - 1));
         });
+    }
+
+    private EnvioSolicitudInventario pedidoAsignado(EnvioInventario envioInventario) {
+        for (EnvioSolicitudInventario envioSolicitudInventario : enviosInventario){
+            if(envioSolicitudInventario.getEnvioInventario().getId().equals(envioInventario.getId())){
+                if (envioInventario.getEstadoEnvio().getEstado().equals(ESTADO_ENVIO)){
+                    return envioSolicitudInventario;
+                }
+            }
+        }
+        return null;
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.example.envios_app.model;
 
 public class ServicesRoutes {
 
-    private static final String URL_LB_DESPACHADOR = "http://192.168.10.8:100/";
+    private static final String URL_LB_DESPACHADOR = "http://192.168.195.101:1000/";
     private static final String DESTINO_AUTH = "auth";
     private static final String DESTINO_GENERAL = "general";
 
