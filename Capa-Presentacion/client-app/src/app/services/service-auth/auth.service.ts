@@ -7,12 +7,14 @@ import { environment } from 'src/environments/environment';
 import { DespachadorServices } from '../service-despachador/despachador.service';
 import { Token } from 'src/app/core/models/token.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
+import { UserRegister } from 'src/app/core/models/userRegister.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
 
   ip = this.localStorage.get('auth');
   url = 'http://'+this.ip+'/api';
@@ -21,18 +23,6 @@ export class AuthService {
 
   constructor(private http: HttpClient,private localStorage: LocalStorageService, private despachaService: DespachadorServices) {
     this.despachaService.getUrlDespachador("auth");
-  }
-
-  sendCredentials(email: string, password: string): Observable<any> {
-    const body = {
-      email,
-      password
-    }
-    return this.http.post(`${this.URL}/auth/login`, body)
-  }
-
-  suma(a: number, b: number): number {
-    return a + b
   }
 
   loginUser: LoginUser | undefined;
@@ -54,5 +44,10 @@ export class AuthService {
     );
     return response;
   }
+
+  signIn(registro: UserRegister):Observable<any> {
+    return this.http.post<any>(`${this.URL}/singUp`, registro);
+  }
+
 }
 

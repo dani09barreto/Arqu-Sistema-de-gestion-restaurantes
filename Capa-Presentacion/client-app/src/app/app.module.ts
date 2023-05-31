@@ -13,10 +13,10 @@ import { PaymentGatewayComponent } from './components/restaurant-components/paym
 import { PlaceSelectorComponent } from './components/home-components/place-selector/place-selector.component';
 import { LoginPopupComponent } from './components/auth-components/login-popup/login-popup.component';
 import { HomePageComponent } from './components/home-components/home-page/home-page.component';
-import { PrincipalLocalComponent } from './components/restaurantAdmin-components/principal-local/principal-local.component';
 import { CookerComponent } from './components/cooker-components/cooker/cooker.component';
 import { EstadosCookerComponent } from './components/cooker-components/webSocketPublic/estados-cooker/estados-cooker.component';
 import { WaiterComponent } from './components/restaurant-components/webSocketSubs/waiter/waiter.component';
+import { SignPopupComponent } from './components/auth-components/signin-popup/sign-popup/sign-popup.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +28,10 @@ import { WaiterComponent } from './components/restaurant-components/webSocketSub
     PlaceSelectorComponent,
     LoginPopupComponent,
     HomePageComponent,
-    PrincipalLocalComponent,
     CookerComponent,
     EstadosCookerComponent,
     WaiterComponent,
+    SignPopupComponent,
   ],
   imports: [
     BrowserModule,

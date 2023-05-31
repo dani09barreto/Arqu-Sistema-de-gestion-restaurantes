@@ -1,6 +1,6 @@
 export interface UsuarioResponse {
   usuario: string;
   nombre: string;
-  correo: string;
+  email: string;
   telefono: bigint;
 }

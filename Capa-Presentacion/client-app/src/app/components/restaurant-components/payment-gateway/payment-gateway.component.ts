@@ -9,6 +9,8 @@ import { UsuarioResponse } from 'src/app/core/models/usuarioResponse.model';
 import { LocalStorageService } from 'angular-web-storage';
 import { RestaurantService } from 'src/app/services/services-restaurant/restaurant.service';
 import { PagoRequest } from 'src/app/core/models/pagoResponse.model';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { SignPopupComponent } from '../../auth-components/signin-popup/sign-popup/sign-popup.component';
 
 
 @Component({
@@ -19,8 +21,13 @@ import { PagoRequest } from 'src/app/core/models/pagoResponse.model';
 export class PaymentGatewayComponent implements OnInit{
 
   cartItems: Plato[] = [];
+  dialogRefSignIn: MatDialogRef<SignPopupComponent> | undefined;
 
-  constructor(private router: Router,private cartService: CartService, private localStorage: LocalStorageService, private restService: RestaurantService){
+  constructor(private router: Router,
+    private cartService: CartService,
+    private localStorage: LocalStorageService,
+    private restService: RestaurantService,
+    public dialog: MatDialog){
      this.cartService.update();
   }
 
@@ -54,6 +61,7 @@ export class PaymentGatewayComponent implements OnInit{
         }
       );
       alert("Pedido Creado");
+      //Aqui iniciar Popup 2.
     }
     // Lógica para ir a la página de pago
   }
@@ -99,7 +107,7 @@ export class PaymentGatewayComponent implements OnInit{
       client = {
         usuario: clientTemp.usuario,
         nombre: clientTemp.nombre,
-        correo: clientTemp.correo,
+        email: clientTemp.correo,
         telefono: clientTemp.telefono
       };
 
@@ -109,7 +117,7 @@ export class PaymentGatewayComponent implements OnInit{
       client = {
         usuario: 'ejemplo',
         nombre: 'John Doe',
-        correo: 'johndoe@example.com',
+        email: 'johndoe@example.com',
         telefono: BigInt(1234567890)
       };
     }
@@ -139,15 +147,26 @@ export class PaymentGatewayComponent implements OnInit{
         pedido: pedido,
         adiciones: add
       }
-      this.totalAPagar = this.restService.getTotalApagar(pago);
+      //this.totalAPagar = this.restService.getTotalApagar(pago);
 
 
     return pedido;
   }
 
   register(): void {
-    // Lógica para registro de usuario
+    if (this.dialogRefSignIn && this.dialogRefSignIn.componentInstance) {
+      // El popup de login ya está abierto, forzar cierre
+      this.dialogRefSignIn.close();
+    } else {
+      // El popup de login no está abierto, abrir diálogo
+      this.dialogRefSignIn = this.dialog.open(SignPopupComponent, {
+        width: '250px',
+        height: '100%',
+        data: {},
+      });
+    }
   }
+
 }
 
 

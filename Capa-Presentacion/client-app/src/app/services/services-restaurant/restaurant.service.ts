@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'angular-web-storage';
 import { Observable } from 'rxjs';
@@ -23,11 +23,15 @@ export class RestaurantService {
   }
 
   getTotalApagar(pago: PagoRequest): number {
-    
+
     return 0;
   }
 
   agregarPedido(pedido: PedidoResponse): Observable<any> {
-    return this.http.post<any>(this.URL_agregar, pedido);
-  }
+    const token: string= 'Bearer '+ this.localStorage.get('token');
+    const headers = new HttpHeaders({
+      'Authorization': token
+    });
+      return this.http.post<any>(this.URL_agregar, pedido, { headers });
+    }
 }
