@@ -1,6 +1,7 @@
 package com.example.negociogeneral.ServiceLocator;
 
 import com.example.IRemoteServiciosDatos.*;
+import com.example.modeloRestaurante.IRemoteServiciosDatos.IRemoteReservaService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 

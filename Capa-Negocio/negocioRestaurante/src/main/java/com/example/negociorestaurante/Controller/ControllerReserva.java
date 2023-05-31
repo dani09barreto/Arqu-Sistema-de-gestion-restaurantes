@@ -1,6 +1,5 @@
 package com.example.negociorestaurante.Controller;
 
-import com.example.negociorestaurante.Services.intf.IServiceReserva;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ControllerReserva {
-
+/*
     @Autowired
     @Qualifier("serviceReserva")
     IServiceReserva serviceReserva;
@@ -26,5 +25,5 @@ public class ControllerReserva {
         }
     }
 
-
+*/
 }

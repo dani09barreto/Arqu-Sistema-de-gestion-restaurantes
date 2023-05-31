@@ -12,16 +12,20 @@ import com.example.negociorestaurante.Payloads.Response.PedidoResponse;
 import com.example.negociorestaurante.Payloads.Response.PlatoIngredientesResponse;
 import com.example.negociorestaurante.Payloads.Response.PlatoResponse;
 import com.example.negociorestaurante.Services.intf.*;
-import com.example.negociorestaurante.WebSocket.WebSocketHandler;
+import com.example.negociorestaurante.WebSocket.WebSocketHandlerClient;
+import com.example.negociorestaurante.WebSocket.WebSocketHandlerCooker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.sql.Date;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +58,7 @@ public class ControllerPedido {
     IServiceInventario serviceInventario;
 
 
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/agregar")
     public ResponseEntity<?> agregarPedido(@RequestBody PedidoRequest pedido) throws Exception {
         try {
@@ -103,7 +108,7 @@ public class ControllerPedido {
             }
             PedidoResponse pedidoResponse = PedidoResponse.builder()
                     .idPedido(pedido1.getId()).lista_plato(platosIngredientes).build();
-            WebSocketHandler.enviarActualizacion(pedidoResponse);
+            WebSocketHandlerCooker.enviarActualizacion(pedidoResponse);
             return ResponseEntity.ok().body("Pedido agregado existosamente");
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,6 +132,7 @@ public class ControllerPedido {
                     serviceInventario.actualizarInventario(inven);
                 }
             }
+            WebSocketHandlerClient.enviarActualizacion(pedido1);
             return ResponseEntity.ok().body(pedido1);
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,6 +145,11 @@ public class ControllerPedido {
             Pedido pedido1 = servicePedido.obtenerPedido(pedido.getId());
             pedido1.setEstadoPedidoid(serviceEstadoPedido.obtenerEstadoPedidoPorEstado("ENTREGADO"));
             servicePedido.actualizarPedido(pedido1);
+            WebSocketHandlerClient.enviarActualizacion(pedido1);
+            /*
+            String uri = "";
+            HttpClient httpClient = HttpClient.newBuilder().build();
+            HttpRequest request  = HttpRequest.newBuilder().uri(URI.create(uri)).header();*/
             return ResponseEntity.ok().body(pedido1);
         } catch (Exception e) {
             e.printStackTrace();

@@ -15,6 +15,7 @@ import { LoginPopupComponent } from './components/auth-components/login-popup/lo
 import { HomePageComponent } from './components/home-components/home-page/home-page.component';
 import { PrincipalGeneralComponent } from './components/general-components/principal-general/principal-general.component';
 import { PrincipalLocalComponent } from './components/restaurantAdmin-components/principal-local/principal-local.component';
+import { CookerComponentComponent } from './cooker-component/cooker-component.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PrincipalLocalComponent } from './components/restaurantAdmin-components
     HomePageComponent,
     PrincipalGeneralComponent,
     PrincipalLocalComponent,
+    CookerComponentComponent,
   ],
   imports: [
     BrowserModule,
