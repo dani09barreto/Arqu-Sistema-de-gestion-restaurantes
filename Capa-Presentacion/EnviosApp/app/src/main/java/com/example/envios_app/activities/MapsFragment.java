@@ -81,9 +81,10 @@ public class MapsFragment extends Fragment {
                 dialog.getBinding().buttonRecoger.setOnClickListener(v -> {
                     if (!verificarDistancia(distancia)){
                         alertsHelper.shortToast(getContext(), "Aun no se encuentra en la bodega");
+                    }else{
+                        removeMarkers();
+                        generateMarkerRest();
                     }
-                    removeMarkers();
-                    generateMarkerRest();
                 });
                 dialog.getBinding().buttonIr.setOnClickListener(v -> {
                     LatLng pos = new LatLng(envioInventario.getEnvioInventario().getBodega().getLat(), envioInventario.getEnvioInventario().getBodega().getLng());
