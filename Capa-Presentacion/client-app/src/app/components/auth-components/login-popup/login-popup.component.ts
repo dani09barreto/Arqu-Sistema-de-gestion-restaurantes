@@ -6,6 +6,8 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 //import { AuthService } from '@modules/auth/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/service-auth/auth.service';
+import { GeneralService } from 'src/app/services/service-general/general.service';
 
 
 
@@ -18,14 +20,17 @@ export class LoginPopupComponent implements OnInit {
 
   errorSession: boolean = false
   formLogin: UntypedFormGroup = new UntypedFormGroup({});
+  username: string = "";
+  password: string = "";
 
   @Output() private update = new EventEmitter<string>();
   constructor(
     //private service:ServicioService,
      public dialogRef: MatDialogRef<LoginPopupComponent>
      //private authService: AuthService,
-     ,private cookie: CookieService,
-      private router: Router
+     ,private authService: AuthService,
+     private generalService: GeneralService
+
 
      ) { }
 
@@ -47,22 +52,25 @@ export class LoginPopupComponent implements OnInit {
     }
 
 
-    sendLogin(): void {
+    login(): void {
+      console.log("Enviando LoginUser..")
       /*
-      const { email, password } = this.formLogin.value
-      this.authService.sendCredentials(email, password)
-        //TODO: 200 <400
-        .subscribe(responseOk => { //TODO: Cuando el usuario credenciales Correctas ✔✔
-          console.log('Session iniciada correcta', responseOk);
-          const { tokenSession, data } = responseOk
-          this.cookie.set('token', tokenSession, 4, '/') //TODO:📌📌📌📌
-          this.router.navigate(['/', 'tracks'])
+      if (this.formLogin.invalid) {
+        return;
+      }*/
+      const username = this.username ;
+      const password = this.password;
+      this.authService.login(username, password).subscribe(
+        (respo) => {
+          console.log(respo);
+          this.generalService.saveUser(username);
+          this.dialogRef.close();
         },
-          err => {//TODO error 400>=
-            this.errorSession = true
-            console.log('⚠⚠⚠⚠Ocurrio error con tu email o password');
-          })
-*/
+        () => {
+          this.errorSession = true;
+          alert("Contraseña Incorrecta")
+        }
+      );
     }
 
 

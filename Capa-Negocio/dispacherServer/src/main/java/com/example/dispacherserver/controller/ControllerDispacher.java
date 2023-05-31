@@ -101,10 +101,12 @@ public class ControllerDispacher {
 
     @GetMapping(value = "/dest={destination}")
     public ResponseEntity<?> dispatcher(@PathVariable String destination) {
+        System.out.println("se recibe destino :"  + destination);
         String server = serverMap.get(destination);
         if (server == null){
             return ResponseEntity.notFound().build();
         } else {
+            System.out.println("Se devuelve ruta de conexion: " + server);
             return ResponseEntity.ok(new DestServer(server));
         }
     }

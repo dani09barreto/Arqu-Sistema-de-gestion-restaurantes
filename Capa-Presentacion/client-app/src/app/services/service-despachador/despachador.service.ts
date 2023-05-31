@@ -8,19 +8,17 @@ import { LocalStorageService } from 'angular-web-storage';
 @Injectable({
   providedIn: 'root'
 })
-export class DespachadorServicesService {
+export class DespachadorServices {
 
   urlDespachador = 'http://localhost:1000/api/dispatcher';
 
   constructor(private http: HttpClient,private localStorage: LocalStorageService) { }
-
-  getUrlDespachador(destination : string) :void {
-    console.log('Obteniendo URL del despachador');
-    this.http.get<DestServer>(
-      this.urlDespachador
-       + '/dest='
-       + destination
-       + '/server').subscribe((response) =>      this.localStorage.set('ip',response.direccion));
-       console.log(this.localStorage.get('ip'))
+  getUrlDespachador(destination : string) {
+      console.log('Obteniendo URL del despachador');
+      this.http.get<DestServer>(
+        this.urlDespachador
+         + '/dest='
+         + destination
+         + '/server').subscribe((response) =>      this.localStorage.set(destination,response.direccion));
   }
 }

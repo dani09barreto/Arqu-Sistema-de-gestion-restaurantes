@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component} from '@angular/core';
 })
 export class AppComponent{
   title = 'client-app';
+  constructor(private localStorage: LocalStorageService){
+    this.localStorage.remove('username');
+  }
 }

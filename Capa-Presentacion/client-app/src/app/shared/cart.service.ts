@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Plato } from 'src/app/core/models/plato.model';
+import { Usuario } from '../core/models/usuario.model';
 
 /**
  * PENDIENTE CONVERTIR A PEDIDO RESPONSE

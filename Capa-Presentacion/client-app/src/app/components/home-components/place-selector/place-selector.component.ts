@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GeneralService } from 'src/app/services/service-general/general.service';
-import { DespachadorServicesService } from 'src/app/services/service-despachador/despachador.service';
+import { DespachadorServices } from 'src/app/services/service-despachador/despachador.service';
 import { Restaurante } from 'src/app/core/models/restaurante.model';
 import { LocalStorageService } from 'angular-web-storage';
 @Component({
@@ -18,7 +18,7 @@ export class PlaceSelectorComponent implements OnInit{
 
   constructor(
     private router: Router, private generalService: GeneralService
-    , private servicioDespacher : DespachadorServicesService
+    , private servicioDespacher : DespachadorServices
     , private localStorage: LocalStorageService
   ) {}
   ngOnInit(): void {
@@ -50,7 +50,18 @@ export class PlaceSelectorComponent implements OnInit{
 
   onPlaceSelected(){
     console.log(this.selectedPlace);
-    this.localStorage.set('restauranteSesion',this.selectedPlace)
+    // Buscar el restaurante con el nombre seleccionado
+    const restauranteSeleccionado = this.restaurantes.find(restaurante => restaurante.nombre === this.selectedPlace);
+
+    if (restauranteSeleccionado) {
+      // Restaurante encontrado, hacer algo con él
+      console.log('Restaurante seleccionado:', restauranteSeleccionado);
+      this.localStorage.set('restauranteSesion', restauranteSeleccionado.path);
+    } else {
+      // Restaurante no encontrado
+      console.log('Restaurante no encontrado');
+    }
+
     console.log("Navegando...");
     this.router.navigate(['principal']);
   }

@@ -1,19 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { PlaceSelectorComponent } from '../place-selector/place-selector.component';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import { HttpResponse } from '@angular/common/http';
-import { GeneralService  } from 'src/app/services/service-general/general.service';
+import { Component } from '@angular/core';
 import { LoginPopupComponent } from '../../auth-components/login-popup/login-popup.component';
-import { DespachadorServices } from 'src/app/services/service-despachador/despachador.service';
+import { GeneralService } from 'src/app/services/service-general/general.service';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css'],
-  providers: [GeneralService]
+  selector: 'app-cooker',
+  templateUrl: './cooker.component.html',
+  styleUrls: ['./cooker.component.css']
 })
-export class HomePageComponent{
-
+export class CookerComponent {
   dialogRefLogin: MatDialogRef<LoginPopupComponent> | undefined;
   constructor(public dialog: MatDialog,private servicio: GeneralService) {}
   onInit(): void {
@@ -37,4 +32,5 @@ export class HomePageComponent{
   reloadPage() {
     location.reload();
   }
+
 }

@@ -1,7 +1,5 @@
-export interface Usuario {
-  id: number;
+export interface UsuarioResponse {
   usuario: string;
-  password: string;
   nombre: string;
   correo: string;
   telefono: bigint;

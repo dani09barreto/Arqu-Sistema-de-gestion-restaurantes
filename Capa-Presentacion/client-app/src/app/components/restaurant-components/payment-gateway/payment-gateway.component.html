@@ -18,12 +18,22 @@
 
   <div class="metodo-pago">
     <label for="metodoPago">Método de Pago:</label>
-    <select id="metodoPago" [(ngModel)]="metodoPago">
+    <select id="metodoPago" [(ngModel)]="tipoPago">
       <option value="tarjeta">Tarjeta de Crédito</option>
       <option value="efectivo">Efectivo</option>
       <option value="paypal">PayPal</option>
     </select>
   </div>
 
-  <button (click)="goToPayment()" class="pago-btn">Realizar Pedido</button>
+  <div class="propina">
+    <label for="propinaCheckbox">Seleccionar Propina:</label>
+    <input type="checkbox" id="propinaCheckbox" [(ngModel)]="seleccionarPropina" />
+  </div>
+
+  <div class="total-pagar">
+    <h3>Total a Pagar</h3>
+    <p>{{ totalAPagar }}</p>
+  </div>
+
+  <button (click)="pedir()" class="pago-btn">Realizar Pedido</button>
 </div>

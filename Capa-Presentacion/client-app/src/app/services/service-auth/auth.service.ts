@@ -1,15 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { LocalStorageService } from 'angular-web-storage';
+import { Observable, map } from 'rxjs';
+import { LoginUser } from 'src/app/core/models/loginUser.model';
 import { environment } from 'src/environments/environment';
+import { DespachadorServices } from '../service-despachador/despachador.service';
+import { Token } from 'src/app/core/models/token.model';
+import { Usuario } from 'src/app/core/models/usuario.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly URL = environment.api
-  constructor(private http: HttpClient) { }
+
+  ip = this.localStorage.get('auth');
+  url = 'http://'+this.ip+'/api';
+  urlAuth= '/auth';
+  URL= this.url+this.urlAuth;
+
+  constructor(private http: HttpClient,private localStorage: LocalStorageService, private despachaService: DespachadorServices) {
+    this.despachaService.getUrlDespachador("auth");
+  }
 
   sendCredentials(email: string, password: string): Observable<any> {
     const body = {
@@ -22,4 +34,25 @@ export class AuthService {
   suma(a: number, b: number): number {
     return a + b
   }
+
+  loginUser: LoginUser | undefined;
+
+  login(user: string, pass: string): Observable<Token> {
+    // Realiza la solicitud HTTP para autenticar al usuario
+    this.loginUser = {
+      username: user,
+      password: pass
+    };
+    console.log(this.loginUser);
+    const response = this.http.post<Token>(`${this.URL}/login`, this.loginUser).pipe(
+      map((data: Token) => {
+        this.localStorage.set('token', data.token);
+        console.log(this.localStorage.get('token'));
+        this.localStorage.set('username',user);
+        return data;
+      })
+    );
+    return response;
+  }
 }
+
