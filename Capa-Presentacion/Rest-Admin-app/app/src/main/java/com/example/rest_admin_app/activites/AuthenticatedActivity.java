@@ -24,12 +24,35 @@ import retrofit2.Response;
 
 public class AuthenticatedActivity extends BasicActivity{
 
-    private IDespachadorService despachadorService;
+    protected IDespachadorService despachadorService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    protected String getIdRestaurante(){
+        sharedPreferences = getSharedPreferences("session_rest", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("idRestaurante", null);
+    }
+
+    protected boolean existeDestinoRestaurante(){
+        sharedPreferences = getSharedPreferences("session_rest", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("direccionRestaurante", null) != null;
+    }
+    protected String getDestinoRestaurante(){
+        sharedPreferences = getSharedPreferences("session_rest", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("direccionRestaurante", null);
+    }
+    protected boolean existePathRestaurante(){
+        sharedPreferences = getSharedPreferences("session_rest", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("restaurante", null) != null;
+    }
+
+    protected String getPathRestaurante(){
+        sharedPreferences = getSharedPreferences("session_rest", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("restaurante", null);
     }
 
     protected boolean isAuthenticated() {
@@ -83,18 +106,17 @@ public class AuthenticatedActivity extends BasicActivity{
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.logoutButton:
-                signOut();
-                break;
-            case R.id.userInfo:
-                if (!existeDestinoGeneral()){
-                    alertsHelper.shortToast(getApplicationContext(), "Debes realizar primero la conexion");
-                }
-                else {
-                    infoUser();
-                }
-                break;
+
+        if (item.getItemId() == R.id.logoutButton){
+            signOut();
+        }
+        else if (item.getItemId() == R.id.userInfo){
+            if (!existeDestinoGeneral()){
+                alertsHelper.shortToast(getApplicationContext(), "Debes realizar primero la conexion");
+            }
+            else {
+                infoUser();
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -133,6 +155,8 @@ public class AuthenticatedActivity extends BasicActivity{
                             editor.putString("direccionGeneral", destServer.getDireccion());
                             editor.apply();
                         }
+                        MainActivity mainActivity = (MainActivity) AuthenticatedActivity.this;
+                        mainActivity.getUrlGeneral();
                     });
                 }
             }

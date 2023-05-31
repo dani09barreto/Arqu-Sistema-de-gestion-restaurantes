@@ -1,5 +1,7 @@
 package com.example.rest_admin_app.model;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
@@ -63,5 +65,11 @@ public class Restaurante implements Serializable {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

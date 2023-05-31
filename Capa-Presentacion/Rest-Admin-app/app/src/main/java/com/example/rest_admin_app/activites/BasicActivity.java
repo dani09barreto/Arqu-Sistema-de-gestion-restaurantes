@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.example.rest_admin_app.App;
 import com.example.rest_admin_app.activites.dialog.LoadingDialog;
 import com.example.rest_admin_app.services.LocationService;
 import com.example.rest_admin_app.services.RouterGoogleAPIService;

@@ -2,7 +2,7 @@ package com.example.rest_admin_app.model;
 
 public class ServicesRoutes {
 
-    private static final String URL_LB_DESPACHADOR = "http://192.168.215.101:1000/";
+    private static final String URL_LB_DESPACHADOR = "http://192.168.211.101:1000/";
     private static final String DESTINO_AUTH = "auth";
     private static final String DESTINO_GENERAL = "general";
 
@@ -18,6 +18,9 @@ public class ServicesRoutes {
 
     public static String getServerAuth(String serverIp){
         return String.format("http://%s/api/auth/", serverIp);
+    }
+    public static String getServerRestaurante(String serverIp){
+        return String.format("http://%s/api/restaurante/", serverIp);
     }
     public static String getServerDespachador(String serverIp){
         return String.format("http://%s/api/dispatcher/", serverIp);

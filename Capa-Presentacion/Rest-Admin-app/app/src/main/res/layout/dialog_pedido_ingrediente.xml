@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="@drawable/dialog_rounded_background">
+
+
+    <TextView
+        android:id="@+id/textBodega"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:text="Bodega" />
+
+
+    <Button
+        android:id="@+id/buttonAñadir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextCantidad"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:backgroundTint="@color/green_300"
+        android:text="Añadir" />
+
+    <EditText
+        android:id="@+id/editTextCantidad"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/textBodega"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/grey_300"
+        android:hint="Cantidad"
+        android:layout_marginStart="93dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="102dp"
+        android:ems="10"
+        android:inputType="text" />
+
+</RelativeLayout>

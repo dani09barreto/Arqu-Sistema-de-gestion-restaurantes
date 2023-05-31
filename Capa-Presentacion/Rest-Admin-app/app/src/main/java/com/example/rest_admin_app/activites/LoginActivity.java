@@ -69,7 +69,7 @@ public class LoginActivity extends BasicActivity {
                     runOnUiThread(() -> {
                         DestServer destServer = response.body();
                         if (destServer != null) {
-                            SharedPreferences sharedPref = getSharedPreferences("session_envio", Context.MODE_PRIVATE);
+                            SharedPreferences sharedPref = getSharedPreferences("session_rest", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPref.edit();
                             editor.putString("direccionAuth", destServer.getDireccion());
                             editor.apply();
@@ -129,7 +129,7 @@ public class LoginActivity extends BasicActivity {
                 if (response.isSuccessful()){
                     runOnUiThread(() ->{
                         AuthToken token = response.body();
-                        SharedPreferences sharedPreferences = getSharedPreferences("session_envio", Context.MODE_PRIVATE);
+                        SharedPreferences sharedPreferences = getSharedPreferences("session_rest", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("token", token.getToken());
                         editor.putString("username", loginUser.getUsername());
